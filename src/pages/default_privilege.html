@@ -18,10 +18,11 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/modal-ui.css">
     <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+    <link rel="stylesheet" href="../css/theme-vars.css">
     
     <!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../js/theme_manager.js"></script>
+    <script src="../js/theme-control.js"></script>
     <script src="../js/admin/admin_data.js"></script>
 </head>
 <body class="admin-dashboard-layout">
@@ -37,7 +38,7 @@
                 <div class="app-header-controls">
                   <!-- Theme Toggle -->
                   <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
-                    <i id="themeToggleIcon" class="ph ph-moon font-16px"></i>
+                    <i id="themeIcon" class="ph ph-moon font-16px"></i>
                   </button>
                   <!-- Back -->
                   <button id="adminBackBtn" class="ui-btn-pill">
@@ -104,30 +105,9 @@
                 `).join('');
             }
 
-            // Theme Initialization
-            if (typeof ThemeManager !== 'undefined' && ThemeManager.init) {
-                ThemeManager.init();
-            }
-
-            const $themeToggleIcon = $('#themeToggleIcon');
-            function updateThemeIcon() {
-                if (!$themeToggleIcon.length) return;
-                const settings = ThemeManager.getSettings();
-                $themeToggleIcon.attr('class', settings.mode === 'dark' ? 'ph ph-sun font-16px' : 'ph ph-moon font-16px');
-            }
-
-            $('#themeToggleBtn').on('click', () => {
-                const settings = ThemeManager.getSettings();
-                ThemeManager.setMode(settings.mode === 'dark' ? 'light' : 'dark');
-                updateThemeIcon();
-            });
-
             $('#adminBackBtn').on('click', () => {
                 window.location.href = 'admin_dashboard.html';
             });
-
-            updateThemeIcon();
-            $(window).on('themeChanged', updateThemeIcon);
 
             // --- Default Privilege Logic ---
             const DefaultPrivilegeView = (() => {

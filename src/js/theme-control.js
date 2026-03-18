@@ -1,61 +1,83 @@
-(function() {
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const themeIcon = document.getElementById('themeIcon');
-    const fontDecreaseBtn = document.getElementById('fontDecreaseBtn');
-    const fontIncreaseBtn = document.getElementById('fontIncreaseBtn');
+window.ThemeControl = (function() {
     const htmlElement = document.documentElement;
 
-    // --- Theme Logic ---
-    function applyTheme(theme) {
-        if (theme === 'light') {
-            htmlElement.setAttribute('data-theme', 'light');
-            if (themeIcon) themeIcon.classList.replace('ph-moon', 'ph-sun');
-        } else {
-            htmlElement.removeAttribute('data-theme');
-            if (themeIcon) themeIcon.classList.replace('ph-sun', 'ph-moon');
+    const ThemeControl = {
+        settings: {
+            theme: localStorage.getItem('theme') || 'dark',
+            fontSize: parseInt(localStorage.getItem('fontSize')) || 16
+        },
+        minFontSize: 12,
+        maxFontSize: 24,
+
+        init() {
+            this.applyTheme(this.settings.theme);
+            this.applyFontSize(this.settings.fontSize);
+            this.attachEventListeners();
+        },
+
+        getSettings() {
+            return {
+                mode: this.settings.theme,
+                fontSize: this.settings.fontSize
+            };
+        },
+
+        applyTheme(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            if (theme === 'light') {
+                htmlElement.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.classList.replace('ph-moon', 'ph-sun');
+            } else {
+                htmlElement.removeAttribute('data-theme');
+                if (themeIcon) themeIcon.classList.replace('ph-sun', 'ph-moon');
+            }
+            this.settings.theme = theme;
+            localStorage.setItem('theme', theme);
+            window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+        },
+
+        setMode(mode) {
+            this.applyTheme(mode);
+        },
+
+        applyFontSize(size) {
+            htmlElement.style.fontSize = size + 'px';
+            this.settings.fontSize = size;
+            localStorage.setItem('fontSize', size);
+        },
+
+        increaseFontSize() {
+            if (this.settings.fontSize < this.maxFontSize) {
+                this.applyFontSize(this.settings.fontSize + 1);
+            }
+        },
+
+        decreaseFontSize() {
+            if (this.settings.fontSize > this.minFontSize) {
+                this.applyFontSize(this.settings.fontSize - 1);
+            }
+        },
+
+        attachEventListeners() {
+            document.addEventListener('click', (e) => {
+                const themeBtn = e.target.closest('#themeToggleBtn');
+                const fontIncreaseBtn = e.target.closest('#fontIncreaseBtn');
+                const fontDecreaseBtn = e.target.closest('#fontDecreaseBtn');
+
+                if (themeBtn) {
+                    const nextTheme = this.settings.theme === 'light' ? 'dark' : 'light';
+                    this.applyTheme(nextTheme);
+                }
+                if (fontIncreaseBtn) {
+                    this.increaseFontSize();
+                }
+                if (fontDecreaseBtn) {
+                    this.decreaseFontSize();
+                }
+            });
         }
-    }
+    };
 
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(currentTheme);
-
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const isLight = htmlElement.getAttribute('data-theme') === 'light';
-            const nextTheme = isLight ? 'dark' : 'light';
-            applyTheme(nextTheme);
-            localStorage.setItem('theme', nextTheme);
-        });
-    }
-
-    // --- Font Size Logic ---
-    let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 16;
-    const minSize = 12;
-    const maxSize = 24;
-
-    function applyFontSize(size) {
-        htmlElement.style.fontSize = size + 'px';
-    }
-
-    applyFontSize(currentFontSize);
-
-    if (fontDecreaseBtn) {
-        fontDecreaseBtn.addEventListener('click', () => {
-            if (currentFontSize > minSize) {
-                currentFontSize--;
-                applyFontSize(currentFontSize);
-                localStorage.setItem('fontSize', currentFontSize);
-            }
-        });
-    }
-
-    if (fontIncreaseBtn) {
-        fontIncreaseBtn.addEventListener('click', () => {
-            if (currentFontSize < maxSize) {
-                currentFontSize++;
-                applyFontSize(currentFontSize);
-                localStorage.setItem('fontSize', currentFontSize);
-            }
-        });
-    }
+    ThemeControl.init();
+    return ThemeControl;
 })();

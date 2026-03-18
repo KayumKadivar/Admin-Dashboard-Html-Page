@@ -140,36 +140,9 @@
                 `;
             }
 
-            // Theme Toggle
-            const $themeIcon = $('#themeIcon');
-            function updateThemeIcon() {
-                if (!$themeIcon.length) return;
-                const settings = ThemeControl.getSettings();
-                $themeIcon.attr('class', settings.mode === 'dark' ? 'ph ph-sun font-16px' : 'ph ph-moon font-16px');
-            }
-
-            $('#themeToggleBtn').on('click', () => {
-                const settings = ThemeControl.getSettings();
-                ThemeControl.setMode(settings.mode === 'dark' ? 'light' : 'dark');
-                updateThemeIcon();
-            });
-
-            // Font Size Controls
-            $('#fontDecreaseBtn').on('click', () => {
-                ThemeControl.decreaseFontSize();
-            });
-
-            $('#fontIncreaseBtn').on('click', () => {
-                ThemeControl.increaseFontSize();
-            });
-
             $('#adminBackBtn').on('click', () => {
                 goBack();
             });
-
-            // Initial theme icon update and event listener
-            updateThemeIcon();
-            $(window).on('themeChanged', updateThemeIcon);
 
             // --- Privilege Logic ---
             const PrivilegeView = (() => {

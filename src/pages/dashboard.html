@@ -22,8 +22,7 @@
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/modal-ui.css">
   <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
-  <script src="../js/theme_manager.js"></script>
-
+  <link rel="stylesheet" href="../css/theme-vars.css">
 </head>
 
 <body class="admin-dashboard-layout">
@@ -49,17 +48,17 @@
         <div class="app-header-controls">
           <!-- Font Size Controls -->
           <div class="ui-control-set">
-            <button id="adminFontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
               <i class="ph-bold ph-text-aa font-12px"></i>
             </button>
             <div class="ui-divider-v"></div>
-            <button id="adminFontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
               <i class="ph-bold ph-text-aa font-16px"></i>
             </button>
           </div>
           <!-- Theme Toggle -->
           <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
-            <i id="themeToggleIcon" class="ph ph-moon font-16px"></i>
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
           </button>
           <!-- Back -->
           <button id="adminBackBtn" class="ui-btn-pill">
@@ -79,6 +78,155 @@
 
   <!-- Modal Root (shared by all views) -->
   <div id="adminModalRoot" class="hidden"></div>
+  <script src="../js/theme-control.js"></script>
+
+  <!-- ═══════════ Scripts ═══════════ -->
+  <!-- Core modules (order matters: data → utils → router → sidebar) -->
+  <script src="../js/admin/admin_data.js"></script>
+  <script src="../js/admin/admin_data.js"></script>
+  <script src="../js/admin/admin_router.js"></script>
+  <script src="../js/admin_sidebar.js"></script>
+
+  <!-- View modules (each self-registers with AdminRouter) -->
+  <!-- <script src="../js/admin/views/privilege_view.js"></script>
+  <script src="../js/admin/views/default_privilege_view.js"></script>
+  <script src="../js/admin/views/user_privilege_view.js"></script>
+  <script src="../js/admin/views/plants_view.js"></script>
+  <script src="../js/admin/views/modules_view.js"></script>
+  <script src="../js/admin/views/user_info_view.js"></script>
+  <script src="../js/admin/views/user_plants_view.js"></script>
+  <script src="../js/admin/views/user_email_view.js"></script>
+  <script src="../js/admin/views/change_password_view.js"></script>
+  <script src="../js/admin/views/reset_password_view.js"></script>
+  <script src="../js/admin/views/admin_member_view.js"></script>
+  <script src="../js/admin/views/mail_schedule_view.js"></script>
+  <script src="../js/admin/views/login_info_view.js"></script>
+  <script src="../js/admin/views/ex_dms_view.js"></script>
+  <script src="../js/admin/views/update_popup_view.js"></script>
+  <script src="../js/admin/views/whats_new_view.js"></script>
+  <script src="../js/admin/views/admin_dashboard_view.js"></script> -->
+
+  <!-- Initialization -->
+  <script>
+    $(function () {
+      // --- Inline Utilities ---
+      function getStoredValue(key, fallbackValue) {
+        try {
+          const value = localStorage.getItem(key);
+          return value == null ? fallbackValue : value;
+        } catch (e) { return fallbackValue; }
+      }
+
+      function getStoredJsonValue(key, fallbackValue) {
+        const raw = getStoredValue(key, '');
+        if (!raw) return fallbackValue;
+        try { return JSON.parse(raw); } catch (e) { return fallbackValue; }
+      }
+
+      // Initialize theme
+      if (typeof ThemeManager !== 'undefined' && ThemeManager.init) {
+        ThemeManager.init();
+      }
+
+      // Hydrate stored data
+      const storedPopup = getStoredValue(AdminData.STORAGE_KEYS.LOGIN_POPUP, 'no');
+      AdminData.adminLoginPopupSelection = storedPopup === 'yes' ? 'yes' : 'no';
+
+      AdminData.whatsNewContent = getStoredValue(
+        AdminData.STORAGE_KEYS.WHATS_NEW,
+        AdminData.DEFAULT_WHATS_NEW_TEXT
+      );
+
+      AdminData.mailScheduleRows = getStoredJsonValue(
+        AdminData.STORAGE_KEYS.MAIL_SCHEDULE,
+        AdminData.DEFAULT_MAIL_SCHEDULE_ROWS
+      );
+
+      // Init sidebar & load first view
+      if (typeof initAdminSidebar === 'function') {
+        initAdminSidebar();
+      }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Admin Dashboard</title>
+  <meta name="description"
+    content="GNFC IIMS Administrator Dashboard — manage privileges, users, plants, and system settings.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Theme & Typography -->
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+</head>
+
+<body class="admin-dashboard-layout">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Layout: Sidebar + Main -->
+  <div class="app-layout-root">
+
+    <!-- Sidebar -->
+    <aside class="app-sidebar-wrap">
+      <div id="adminSidebarContainer" class="h-full"></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <i class="ph ph-gear-six font-20px color-blue"></i>
+          <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area admin-content-scroll">
+        <section id="adminContent" class="space-y-3 max-w-8xl"></section>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Root (shared by all views) -->
+  <div id="adminModalRoot" class="hidden"></div>
+  <script src="../js/theme-control.js"></script>
 
   <!-- ═══════════ Scripts ═══════════ -->
   <!-- Core modules (order matters: data → utils → router → sidebar) -->
@@ -152,30 +300,9 @@
         window.renderAdminContent('dashboard');
       }
 
-      // Sidebar & Header Actions
-      const $themeToggleIcon = $('#themeToggleIcon');
-
-      function updateThemeIcon() {
-        if (!$themeToggleIcon.length) return;
-        const settings = ThemeManager.getSettings();
-        $themeToggleIcon.attr('class', settings.mode === 'dark' ? 'ph ph-sun font-16px' : 'ph ph-moon font-16px');
-      }
-
-      $('#adminFontDecreaseBtn').on('click', () => ThemeManager.decreaseFontSize());
-      $('#adminFontIncreaseBtn').on('click', () => ThemeManager.increaseFontSize());
       $('#adminBackBtn').on('click', () => {
         window.location.href = '../../index.html';
       });
-
-      $('#themeToggleBtn').on('click', () => {
-        const settings = ThemeManager.getSettings();
-        ThemeManager.setMode(settings.mode === 'dark' ? 'light' : 'dark');
-        updateThemeIcon();
-      });
-
-      // Listen for theme changes to update icon
-      updateThemeIcon();
-      $(window).on('themeChanged.adminDashboard', updateThemeIcon);
     });
   </script>
 </html>
