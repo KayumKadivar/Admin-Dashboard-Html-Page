@@ -442,6 +442,26 @@ body.sidebar-collapsed .admin-sidebar-logo {
     background: rgba(255, 255, 255, 0.03);
 }
 
+/* ── Active/Updated Row Highlights ── */
+.updated-row-highlight {
+    position: relative;
+    z-index: 10;
+    animation: rowOutlineAnim 4s ease forwards !important;
+}
+.updated-row-highlight td {
+    animation: rowBgAnim 4s ease forwards !important;
+}
+
+@keyframes rowOutlineAnim {
+    0% { outline: 2px solid #5794F2; outline-offset: -2px; }
+    100% { outline: 2px solid transparent; outline-offset: -2px; }
+}
+
+@keyframes rowBgAnim {
+    0% { background-color: rgba(87, 148, 242, 0.15); }
+    100% { background-color: transparent; }
+}
+
 /* ── Status Badges ── */
 .admin-status-badge {
     display: inline-flex;

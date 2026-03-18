@@ -147,7 +147,7 @@ html[data-theme-mode="light"] {
 
 .gnfc-modal-title {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gnfc-modal-title-color);
   text-transform: uppercase;
@@ -156,11 +156,10 @@ html[data-theme-mode="light"] {
 
 .gnfc-modal-subtitle {
   margin: 0;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--gnfc-modal-subtitle-color);
-  font-family: monospace;
-  margin-top: 0.125rem;
+  margin-top: 5px;
   letter-spacing: 0.08em;
 }
 
@@ -171,8 +170,8 @@ html[data-theme-mode="light"] {
   align-items: center;
   justify-content: center;
   border-radius: 0.125rem;
-  border: 1px solid transparent;
-  background: transparent;
+  border: 1px solid var(--app-border);
+  background: var(--app-bg);
   color: var(--gnfc-modal-close-color);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;

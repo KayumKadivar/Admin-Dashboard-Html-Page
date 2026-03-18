@@ -28,6 +28,7 @@
   <script src="../js/theme-control.js"></script>
   <script src="../js/sidebar.js"></script>
   <script src="../js/admin/admin_data.js"></script>
+
 </head>
 
 <body class="admin-dashboard-layout">
@@ -203,7 +204,6 @@
                   </tbody>
                 </table>
               </div>
-<!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
@@ -222,15 +222,18 @@
       const PrivilegeManager = (() => {
         'use strict';
 
+        // Bind Events
         function bind() {
+
+          // Back Button
           $('#adminBackBtn').on('click', goBack);
 
-          // Removed row click handler (radios gone)
-
+          // Add Privilege
           $('#privilegeAddBtn').on('click', function () {
             const code = $('#privilegeCodeInput').val().trim();
             const name = $('#privilegeNameInput').val().trim();
 
+            // Empty Fields Alert
             if (!code || !name) {
               Swal.fire({
                 icon: 'warning',
@@ -243,6 +246,7 @@
               return;
             }
 
+            // Add Privilege Alert
             Swal.fire({
               icon: 'success',
               title: 'Added!',
@@ -262,6 +266,7 @@
             const row = $(this).closest('tr');
             const code = row.find('td:first-child').text().trim(); // Get Code from first cell
             
+            // Delete Confirmation Alert
             Swal.fire({
               title: 'Are you sure?',
               text: "Do you want to delete Privilege Code: " + code + "?",
@@ -284,14 +289,108 @@
               }
             });
           });
+
+          // Edit Logic (Open Modal)
+          let activeRow = null;
+
+          // Edit Button
+          $(document).on('click', '.edit-btn', function (e) {
+            e.stopPropagation();
+            activeRow = $(this).closest('tr');
+            const code = activeRow.find('td:nth-child(1)').text().trim();
+            const name = activeRow.find('td:nth-child(2)').text().trim();
+
+            $('#editCodeInput').val(code);
+            $('#editNameInput').val(name);
+            $('#editErrorMsg').hide();
+
+            $('#editPrivilegeModal').addClass('is-open');
+          });
+
+          // Close Modal
+          $('#closeEditModal, #cancelEditModal').on('click', function () {
+            $('#editPrivilegeModal').removeClass('is-open');
+          });
+
+          // Update Click
+          $('#updatePrivilegeBtn').on('click', function () {
+            const newCode = $('#editCodeInput').val().trim();
+            const newName = $('#editNameInput').val().trim();
+
+            // Empty Fields Alert
+            if (!newCode || !newName) {
+              $('#editErrorMsg').show();
+              return;
+            }
+
+            // Update Privilege
+            if (activeRow) {
+              activeRow.find('td:nth-child(1)').text(newCode);
+              activeRow.find('td:nth-child(2)').text(newName);
+              
+              // Highlight row
+              activeRow.addClass('updated-row-highlight');
+              setTimeout(() => {
+                 activeRow.removeClass('updated-row-highlight');
+              }, 4000);
+            }
+
+            // Close Modal
+            $('#editPrivilegeModal').removeClass('is-open');
+
+            // Success Alert
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated!',
+              text: 'Privilege updated successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+          });
         }
 
         return { init: bind };
       })();
 
+      // Initialize Privilege Manager
       PrivilegeManager.init();
     });
   </script>
+
+  <!-- Edit Privilege Modal -->
+  <div id="editPrivilegeModal" class="gnfc-modal-overlay">
+    <div class="gnfc-modal-shell gnfc-modal-shell--narrow">
+
+      <!-- Modal Header -->
+      <div class="gnfc-modal-header">
+        <div>
+          <div class="gnfc-modal-title">Edit Privilege</div>
+          <div class="gnfc-modal-subtitle">Update privilege details</div>
+        </div>
+        <button type="button" class="gnfc-modal-close" id="closeEditModal"><i class="ph ph-x"></i></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="gnfc-modal-body">
+        <div class="admin-field-group mb-16px">
+          <label for="editCodeInput" class="admin-field-label">Code</label>
+          <input id="editCodeInput" type="text" class="admin-input">
+        </div>
+        <div class="admin-field-group">
+          <label for="editNameInput" class="admin-field-label">Name</label>
+          <input id="editNameInput" type="text" class="admin-input" placeholder="Enter new name...">
+          <div id="editErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 4px; display: none;">Both fields are required</div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="gnfc-modal-footer">
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" id="cancelEditModal">Cancel</button>
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-primary" id="updatePrivilegeBtn">Update</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
