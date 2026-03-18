@@ -456,3 +456,38 @@ body {
 
 .max-w-8xl { max-width: 90rem; margin: 0 auto; }
 .space-y-3 > * + * { margin-top: 0.75rem; }
+
+/* ── Radio Inputs ── */
+.radio-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--app-border, #23272e);
+    border-radius: 50%;
+    background: var(--app-bg, #111217);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.radio-input:checked {
+    border-color: var(--typo-blue, #5794F2);
+}
+
+.radio-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--typo-blue, #5794F2);
+    border-radius: 50%;
+}
+
+.radio-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(87, 148, 242, 0.15);
+}
