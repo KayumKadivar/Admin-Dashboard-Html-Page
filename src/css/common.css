@@ -1,20 +1,13 @@
-
 /* ── Reset & Base ── */
-*, *::before, *::after {
+*{
     box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 html {
     height: 100%;
-}
-
-body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: var(--app-bg, #07090f);
-    color: var(--app-text, #ffffff);
-    margin: 0;
 }
 
 .admin-dashboard-layout {
@@ -139,7 +132,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 0.4rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: 6px;
     font-size: 0.9375rem;
     font-weight: 500;
     color: var(--typo-secondary, #d1d5db);
@@ -201,39 +194,35 @@ body {
 }
 
 .admin-sidebar-exit i {
-    font-size: 1.375rem;
+    font-size: 1.275rem;
     flex-shrink: 0;
     width: 1.5rem;
     text-align: center;
 }
 
 /* --- Sidebar Collapse Styles --- */
-body.sidebar-collapsed .app-sidebar-wrap {
-    width: 68px;
+.sidebar-collapsed .app-sidebar-wrap {
+    width: 72px;
     overflow-x: hidden;
 }
 
 /* Custom scrollbar for collapsed sidebar to prevent crowding */
-body.sidebar-collapsed .app-sidebar-wrap::-webkit-scrollbar {
+.sidebar-collapsed .app-sidebar-wrap::-webkit-scrollbar {
     width: 3px;
 }
 
-body.sidebar-collapsed .admin-sidebar {
-    padding: 1rem 0;
-}
-
-body.sidebar-collapsed .logo-full {
+.sidebar-collapsed .logo-full {
     display: none !important;
 }
 
-body.sidebar-collapsed .logo-short {
+.sidebar-collapsed .logo-short {
     display: block !important;
     width: 32px;
     height: 32px;
     margin: 0 auto;
 }
 
-body.sidebar-collapsed .admin-sidebar-section-label {
+.sidebar-collapsed .admin-sidebar-section-label {
     opacity: 0;
     height: 0;
     margin: 0;
@@ -241,23 +230,23 @@ body.sidebar-collapsed .admin-sidebar-section-label {
     overflow: hidden;
 }
 
-body.sidebar-collapsed .admin-sidebar-link span,
-body.sidebar-collapsed .admin-sidebar-exit span {
+.sidebar-collapsed .admin-sidebar-link span,
+.sidebar-collapsed .admin-sidebar-exit span {
     display: none !important;
 }
 
-body.sidebar-collapsed .admin-sidebar-link,
-body.sidebar-collapsed .admin-sidebar-exit {
+.sidebar-collapsed .admin-sidebar-link,
+.sidebar-collapsed .admin-sidebar-exit {
     justify-content: center;
-    padding: 0.8rem 0;
     gap: 0;
+
 }
 
-body.sidebar-collapsed .admin-sidebar-logo {
+.sidebar-collapsed .admin-sidebar-logo {
     justify-content: center;
-    padding: 0 0 1rem 0;
+    padding: 0 0 0.5rem 0;
     border-bottom: 1px solid var(--app-border, #23272e);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 /* ── UI Components ── */
@@ -277,7 +266,8 @@ body.sidebar-collapsed .admin-sidebar-logo {
     align-items: center;
 }
 
-.admin-input, .admin-select {
+.admin-input,
+.admin-select {
     height: 46px;
     width: 100%;
     border-radius: 10px;
@@ -290,7 +280,8 @@ body.sidebar-collapsed .admin-sidebar-logo {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.admin-input:focus, .admin-select:focus {
+.admin-input:focus,
+.admin-select:focus {
     border-color: var(--typo-blue, #5794F2);
     box-shadow: 0 0 0 3px rgba(87, 148, 242, 0.15);
 }
@@ -348,7 +339,8 @@ body.sidebar-collapsed .admin-sidebar-logo {
     cursor: pointer;
 }
 
-.ui-btn-icon:hover, .ui-btn-theme:hover {
+.ui-btn-icon:hover,
+.ui-btn-theme:hover {
     background: var(--app-panel-alt);
     border-color: var(--typo-blue);
     color: var(--typo-blue);
@@ -409,7 +401,7 @@ body.sidebar-collapsed .admin-sidebar-logo {
     border-right: none;
 }
 
-.admin-table-body {
+.admin-table- {
     background: transparent;
 }
 
@@ -448,18 +440,31 @@ body.sidebar-collapsed .admin-sidebar-logo {
     z-index: 10;
     animation: rowOutlineAnim 4s ease forwards !important;
 }
+
 .updated-row-highlight td {
     animation: rowBgAnim 4s ease forwards !important;
 }
 
 @keyframes rowOutlineAnim {
-    0% { outline: 2px solid #5794F2; outline-offset: -2px; }
-    100% { outline: 2px solid transparent; outline-offset: -2px; }
+    0% {
+        outline: 2px solid #5794F2;
+        outline-offset: -2px;
+    }
+
+    100% {
+        outline: 2px solid transparent;
+        outline-offset: -2px;
+    }
 }
 
 @keyframes rowBgAnim {
-    0% { background-color: rgba(87, 148, 242, 0.15); }
-    100% { background-color: transparent; }
+    0% {
+        background-color: rgba(87, 148, 242, 0.15);
+    }
+
+    100% {
+        background-color: transparent;
+    }
 }
 
 /* ── Status Badges ── */
@@ -473,9 +478,23 @@ body.sidebar-collapsed .admin-sidebar-logo {
     font-weight: 600;
 }
 
-.admin-status-badge.success { color: #73BF69; background: rgba(115, 191, 105, 0.1); border: 1px solid rgba(115, 191, 105, 0.2); }
-.admin-status-badge.warning { color: #FF9900; background: rgba(255, 153, 0, 0.1); border: 1px solid rgba(255, 153, 0, 0.2); }
-.admin-status-badge.danger { color: #F2495C; background: rgba(242, 73, 92, 0.1); border: 1px solid rgba(242, 73, 92, 0.2); }
+.admin-status-badge.success {
+    color: #73BF69;
+    background: rgba(115, 191, 105, 0.1);
+    border: 1px solid rgba(115, 191, 105, 0.2);
+}
+
+.admin-status-badge.warning {
+    color: #FF9900;
+    background: rgba(255, 153, 0, 0.1);
+    border: 1px solid rgba(255, 153, 0, 0.2);
+}
+
+.admin-status-badge.danger {
+    color: #F2495C;
+    background: rgba(242, 73, 92, 0.1);
+    border: 1px solid rgba(242, 73, 92, 0.2);
+}
 
 /* ── Admin TopBar ── */
 .admin-topbar {
@@ -545,8 +564,14 @@ body.sidebar-collapsed .admin-sidebar-logo {
     width: 100%;
 }
 
-.max-w-8xl { max-width: 90rem; margin: 0 auto; }
-.space-y-3 > * + * { margin-top: 0.75rem; }
+.max-w-8xl {
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.space-y-3>*+* {
+    margin-top: 0.75rem;
+}
 
 /* ── Radio Inputs ── */
 .radio-input {

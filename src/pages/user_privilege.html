@@ -7,10 +7,7 @@
   <title>GNFC | User Privilege</title>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="../css/fonts.css">
 
   <!-- Icons -->
   <script src="../js/vendor/phosphor-icons.min.js"></script>
@@ -22,9 +19,11 @@
   <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
   <link rel="stylesheet" href="../css/theme-vars.css">
 
+  <!-- SweetAlert2 -->
+  <script src="../js/vendor/sweetalert2.all.min.js"></script> 
+
   <!-- Core JS -->
   <script src="../js/vendor/jquery-3.7.1.min.js"></script>
-  <script src="../js/vendor/sweetalert2.all.min.js"></script>
   <script src="../js/admin/admin_data.js"></script>
   <script src="../js/theme-control.js"></script>
   <script src="../js/sidebar.js"></script>
@@ -85,11 +84,14 @@
                 <div class="admin-form-section-body">
                   <div class="admin-form-cols-3">
                     <div class="admin-field-group">
-                      <label for="userPrivilegeFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
-                      <input id="userPrivilegeFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
+                      <label for="userPrivilegeFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i>
+                        Filter</label>
+                      <input id="userPrivilegeFilter" type="text" class="admin-input"
+                        placeholder="Search by EC or Name...">
                     </div>
                     <div class="admin-field-group">
-                      <label for="userPrivilegeSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <label for="userPrivilegeSelect" class="admin-field-label"><i
+                          class="ph ph-identification-card"></i> EC Number</label>
                       <select id="userPrivilegeSelect" class="admin-select">
                         <!-- Loaded dynamically -->
                       </select>
@@ -190,50 +192,50 @@
         renderTable();
 
         // Filter event
-        $('#userPrivilegeFilter').on('input', function() {
+        $('#userPrivilegeFilter').on('input', function () {
           const filtered = filterRows($(this).val());
           $('#userPrivilegeSelect').html(buildSelectOptions(filtered));
         });
 
         // Event delegation for row clicks
-        $(document).on('click', '.admin-table-row', function(e) {
+        $(document).on('click', '.admin-table-row', function (e) {
           if ($(e.target).is('input[type="checkbox"]')) return;
           const chk = $(this).find('input[type="checkbox"]');
           chk.prop('checked', !chk.prop('checked'));
         });
 
         // Go Button Support
-        $('#userPrivilegeGo').on('click', function() {
-           const ec = $('#userPrivilegeSelect').val();
-           if (!ec) {
-              Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
-              return;
-           }
-           Swal.fire({
-              icon: 'info',
-              title: 'Loading',
-              text: 'Fetching permissions for EC: ' + ec,
-              timer: 600,
-              showConfirmButton: false,
-              background: 'var(--app-panel, #181b1f)',
-              color: 'var(--app-text, #ffffff)'
-           });
+        $('#userPrivilegeGo').on('click', function () {
+          const ec = $('#userPrivilegeSelect').val();
+          if (!ec) {
+            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+            return;
+          }
+          Swal.fire({
+            icon: 'info',
+            title: 'Loading',
+            text: 'Fetching permissions for EC: ' + ec,
+            timer: 600,
+            showConfirmButton: false,
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)'
+          });
         });
 
         // Save Support
-        $('#userPrivilegeSaveBtn').on('click', function() {
-           const selectedEc = $('#userPrivilegeSelect').val();
-           if (!selectedEc) {
-              Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
-              return;
-           }
-           Swal.fire({
-              icon: 'success',
-              title: 'Saved',
-              text: 'User plant access permissions saved successfully for EC: ' + selectedEc,
-              background: 'var(--app-panel, #181b1f)',
-              color: 'var(--app-text, #ffffff)'
-           });
+        $('#userPrivilegeSaveBtn').on('click', function () {
+          const selectedEc = $('#userPrivilegeSelect').val();
+          if (!selectedEc) {
+            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+            return;
+          }
+          Swal.fire({
+            icon: 'success',
+            title: 'Saved',
+            text: 'User plant access permissions saved successfully for EC: ' + selectedEc,
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)'
+          });
         });
       }
 
@@ -241,7 +243,7 @@
     })();
 
     $(function () {
-       UserPrivilegeView.init();
+      UserPrivilegeView.init();
     });
   </script>
 </body>
