@@ -67,13 +67,12 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 10px;
 }
 
 .app-content-area {
     flex: 1;
     overflow: auto;
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 /* ── Sidebar ── */
