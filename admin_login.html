@@ -9,10 +9,13 @@
     content="GNFC IIMS Administrator login portal — secure gateway for master controls and system configuration.">
   <link rel="stylesheet" href="src/css/fonts.css">
   <script src="src/js/vendor/phosphor-icons.min.js"></script>
-  <link rel="stylesheet" href="src/css/typography.css">
+  <link rel="stylesheet" href="src/css/theme-vars.css">
+  <link rel="stylesheet" href="src/css/utilities.css">
   <link rel="stylesheet" href="src/css/common.css">
   <link rel="stylesheet" href="src/css/pages/login.css">
-  <script src="src/js/theme_manager.js"></script>
+  
+  <!-- Theme control script should be loaded before any inline script that uses it -->
+  <script src="src/js/theme-control.js"></script>
 </head>
 
 <body>
@@ -127,21 +130,20 @@
 
       function updateThemeUI() {
         if (!themeIcon) return;
-        const settings = ThemeManager.getSettings();
+        const settings = ThemeControl.getSettings();
         themeIcon.className = settings.mode === 'dark' ? 'ph ph-moon' : 'ph ph-sun';
       }
 
       if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-          const settings = ThemeManager.getSettings();
-          ThemeManager.setMode(settings.mode === 'dark' ? 'light' : 'dark');
+          const settings = ThemeControl.getSettings();
+          ThemeControl.setMode(settings.mode === 'dark' ? 'light' : 'dark');
           updateThemeUI();
         });
       }
 
       // Init theme
-      if (typeof ThemeManager !== 'undefined' && ThemeManager.init) {
-        ThemeManager.init();
+      if (typeof ThemeControl !== 'undefined') {
         updateThemeUI();
       }
 
@@ -149,6 +151,8 @@
     });
 
   </script>
+
+  <script src="./src/js/theme-control.js"></script>
 
 </body>
 
