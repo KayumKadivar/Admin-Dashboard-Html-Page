@@ -33,10 +33,11 @@ body {
 }
 
 .app-sidebar-wrap {
-    width: 320px;
+    width: 300px;
     flex-shrink: 0;
     height: 100%;
     overflow-y: auto;
+    transition: width 0.3s ease;
 }
 
 .app-main-view {
@@ -118,26 +119,28 @@ body {
 }
 
 .admin-sidebar-section {
-    padding: 0 20px;
+    padding: 0 16px;
+}
+
+.admin-sidebar-section:first-of-type {
+    margin-top: 1rem;
+}
+
+.admin-sidebar-section:last-child {
+    margin-bottom: 1rem;
 }
 
 .admin-sidebar-section-label {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--typo-hint, #6b7280);
-    padding: 0.375rem 0.5rem;
-    margin-bottom: 0.25rem;
+    display: none !important;
 }
 
 .admin-sidebar-link {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.625rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--typo-secondary, #d1d5db);
     text-decoration: none;
@@ -175,7 +178,7 @@ body {
 
 .admin-sidebar-footer {
     margin-top: auto;
-    padding: 0.875rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     border-top: 1px solid var(--app-border, #23272e);
 }
 
@@ -183,7 +186,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.625rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 600;
@@ -204,6 +207,59 @@ body {
     text-align: center;
 }
 
+/* --- Sidebar Collapse Styles --- */
+body.sidebar-collapsed .app-sidebar-wrap {
+    width: 68px;
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar for collapsed sidebar to prevent crowding */
+body.sidebar-collapsed .app-sidebar-wrap::-webkit-scrollbar {
+    width: 3px;
+}
+
+body.sidebar-collapsed .admin-sidebar {
+    padding: 1rem 0;
+}
+
+body.sidebar-collapsed .logo-full {
+    display: none !important;
+}
+
+body.sidebar-collapsed .logo-short {
+    display: block !important;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+}
+
+body.sidebar-collapsed .admin-sidebar-section-label {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+body.sidebar-collapsed .admin-sidebar-link span,
+body.sidebar-collapsed .admin-sidebar-exit span {
+    display: none !important;
+}
+
+body.sidebar-collapsed .admin-sidebar-link,
+body.sidebar-collapsed .admin-sidebar-exit {
+    justify-content: center;
+    padding: 0.8rem 0;
+    gap: 0;
+}
+
+body.sidebar-collapsed .admin-sidebar-logo {
+    justify-content: center;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--app-border, #23272e);
+    margin-bottom: 1rem;
+}
+
 /* ── UI Components ── */
 .admin-card {
     background: var(--app-panel, #181b1f);
@@ -222,7 +278,7 @@ body {
 }
 
 .admin-input, .admin-select {
-    height: 52px;
+    height: 46px;
     width: 100%;
     border-radius: 10px;
     border: 1px solid var(--app-border, #23272e);
@@ -371,6 +427,7 @@ body {
     border-bottom: 1px solid var(--app-border, #23272e);
     transition: background 0.15s;
     background: var(--app-panel, #181b1f);
+    cursor: pointer;
 }
 
 .admin-table-row:hover {
@@ -542,4 +599,39 @@ body {
 .checkbox-input:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(87, 148, 242, 0.15);
+}
+
+/* ── Table Row Actions ── */
+.admin-table-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.admin-action-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid var(--app-border, #23272e);
+    background: var(--app-bg, #111217);
+    color: var(--app-text-muted, #a0aec0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    padding: 0;
+}
+
+.admin-action-btn:hover {
+    border-color: var(--typo-blue, #5794F2);
+    color: var(--typo-blue, #5794F2);
+    background: rgba(87, 148, 242, 0.05);
+}
+
+.admin-action-btn.delete-btn:hover {
+    border-color: var(--app-red, #E53E3E);
+    color: var(--app-red, #E53E3E);
+    background: rgba(229, 62, 62, 0.05);
 }

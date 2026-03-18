@@ -27,6 +27,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
   <script src="../js/admin/admin_data.js"></script>
 </head>
 
@@ -68,9 +69,6 @@
       <!-- Content Area -->
       <div class="app-content-area">
         <div id="adminContent">
-          <!-- Static Top Bar -->
-
-
           <!-- Static Content -->
           <div id="privilegeViewContainer">
             <div class="admin-card">
@@ -85,20 +83,15 @@
                   </div>
                 </div>
                 <div class="admin-form-section-body">
-                  <div class="admin-form-cols">
-                    <div class="admin-field-group">
+                  <div class="flex items-end gap-16px justify-start">
+                    <div class="admin-field-group w-300px mb-0">
                       <label for="privilegeCodeInput" class="admin-field-label"><i class="ph ph-hash"></i> Code</label>
-                      <input id="privilegeCodeInput" type="text" class="admin-input"
-                        placeholder="Enter privilege code...">
+                      <input id="privilegeCodeInput" type="text" class="admin-input" placeholder="Enter privilege code...">
                     </div>
-                    <div class="admin-field-group">
-                      <label for="privilegeNameInput" class="admin-field-label"><i class="ph ph-text-aa"></i>
-                        Name</label>
-                      <input id="privilegeNameInput" type="text" class="admin-input"
-                        placeholder="Enter privilege name...">
+                    <div class="admin-field-group w-300px mb-0">
+                      <label for="privilegeNameInput" class="admin-field-label"><i class="ph ph-text-aa"></i> Name</label>
+                      <input id="privilegeNameInput" type="text" class="admin-input" placeholder="Enter privilege name...">
                     </div>
-                  </div>
-                  <div class="admin-btn-row mt-16px" style="justify-content: flex-start">
                     <button id="privilegeAddBtn" type="button" class="admin-btn admin-btn-primary">
                       <i class="ph ph-plus-circle"></i> Add
                     </button>
@@ -122,60 +115,96 @@
                 <table class="admin-table">
                   <thead>
                     <tr>
-                      <th class="admin-table-head-cell w-12 text-center">Sel</th>
                       <th class="admin-table-head-cell">Code</th>
                       <th class="admin-table-head-cell">Name</th>
+                      <th class="admin-table-head-cell text-center">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="privilegeTableBody">
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="1" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">1</td>
                       <td class="admin-table-cell">Tech</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="2" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">2</td>
                       <td class="admin-table-cell">IE/SIE</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="3" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">3</td>
                       <td class="admin-table-cell">M</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="4" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">4</td>
                       <td class="admin-table-cell">SM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="12" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">12</td>
                       <td class="admin-table-cell">CM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="13" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">13</td>
                       <td class="admin-table-cell">AGM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="14" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">14</td>
                       <td class="admin-table-cell">GM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="privilegeSelected" value="15" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">15</td>
                       <td class="admin-table-cell">HOD</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="admin-btn-row mt-16px">
-                <button type="button" class="admin-btn admin-btn-danger" id="privilegeDeleteBtn">
-                  <i class="ph ph-trash"></i> Delete Selected
-                </button>
-              </div>
+<!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
@@ -197,6 +226,8 @@
         function bind() {
           $('#adminBackBtn').on('click', goBack);
 
+          // Removed row click handler (radios gone)
+
           $('#privilegeAddBtn').on('click', function () {
             const code = $('#privilegeCodeInput').val().trim();
             const name = $('#privilegeNameInput').val().trim();
@@ -214,66 +245,35 @@
             }
 
             Swal.fire({
-              title: 'Are you sure?',
-              text: "Do you want to add Privilege: " + name + " (" + code + ")?",
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonColor: 'var(--typo-blue, #5794F2)',
-              cancelButtonColor: 'var(--app-border, #23272e)',
-              confirmButtonText: 'Yes, add it!',
+              icon: 'success',
+              title: 'Added!',
+              text: 'Privilege has been added successfully.',
               background: 'var(--app-panel, #181b1f)',
-              color: 'var(--app-text, #ffffff)'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                // Clear inputs
-                $('#privilegeCodeInput').val('');
-                $('#privilegeNameInput').val('');
-
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Added!',
-                  text: 'Privilege has been added successfully.',
-                  background: 'var(--app-panel, #181b1f)',
-                  color: 'var(--app-text, #ffffff)',
-                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
-                });
-              }
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
             });
+            $('#privilegeCodeInput').val('');
+            $('#privilegeNameInput').val('');
+
           });
 
-          $('#privilegeDeleteBtn').on('click', function () {
-            const $selected = $('input[name="privilegeSelected"]:checked');
+          // Delete Logic (Row-level)
+          $(document).on('click', '.delete-btn', function (e) {
+            e.stopPropagation(); // Prevent click bubbles
+            const row = $(this).closest('tr');
+            const code = row.find('td:first-child').text().trim(); // Get Code from first cell
             
-            if ($selected.length === 0) {
-              Swal.fire({
-                icon: 'warning',
-                title: 'No Selection',
-                text: 'Please select a privilege row to delete.',
-                background: 'var(--app-panel, #181b1f)',
-                color: 'var(--app-text, #ffffff)',
-                confirmButtonColor: 'var(--typo-blue, #5794F2)'
-              });
-              return;
-            }
-
-            const row = $selected.closest('tr');
-            const code = $selected.val();
-
             Swal.fire({
               title: 'Are you sure?',
               text: "Do you want to delete Privilege Code: " + code + "?",
               icon: 'warning',
               showCancelButton: true,
-              confirmButtonColor: '#F2495C', // Danger Red
-              cancelButtonColor: 'var(--app-border, #23272e)',
-              confirmButtonText: 'Yes, delete it!',
+              confirmButtonColor: '#F2495C',
               background: 'var(--app-panel, #181b1f)',
               color: 'var(--app-text, #ffffff)'
             }).then((result) => {
               if (result.isConfirmed) {
-                // Remove row from DOM (for visual static demo)
                 row.remove();
-
                 Swal.fire({
                   icon: 'success',
                   title: 'Deleted!',

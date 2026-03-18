@@ -293,6 +293,32 @@
 
 /* ======================================== Text Alignment ======================================== */
 
+.flex { display: flex !important; }
+.justify-start { justify-content: flex-start !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-around { justify-content: space-around !important; }
+.justify-evenly { justify-content: space-evenly !important; }
+
+.items-start { align-items: flex-start !important; }
+.items-center { align-items: center !important; }
+.items-end { align-items: flex-end !important; }
+
+.flex-1 { flex: 1 !important; }
+.flex-auto { flex: auto !important; }
+.flex-none { flex: none !important; }
+
+.gap-8px { gap: 8px !important; }
+.gap-12px { gap: 12px !important; }
+.gap-16px { gap: 16px !important; }
+.gap-24px { gap: 24px !important; }
+
+.w-400px { width: 400px !important; }
+.w-500px { width: 500px !important; }
+.max-w-400px { max-width: 400px !important; }
+.max-w-500px { max-width: 500px !important; }
+
 .text-left { text-align: left !important; }
 .text-center { text-align: center !important; }
 .text-right { text-align: right !important; }

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | User Privilege</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/admin/admin_data.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <!-- <i class="ph ph-gear-six"></i> -->
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" onclick="window.location.href='admin_dashboard.html'">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+          <!-- Static Content -->
+          <div id="userPrivilegeViewContainer">
+            <!-- Select Employee Form Section -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(183,148,244,0.12); color: #B794F4">
+                    <i class="ph-bold ph-user-focus"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Select Employee</div>
+                    <div class="admin-form-section-desc">Search and select a user to manage their privilege access</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-form-cols-3">
+                    <div class="admin-field-group">
+                      <label for="userPrivilegeFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
+                      <input id="userPrivilegeFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
+                    </div>
+                    <div class="admin-field-group">
+                      <label for="userPrivilegeSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <select id="userPrivilegeSelect" class="admin-select">
+                        <!-- Loaded dynamically -->
+                      </select>
+                    </div>
+                    <button id="userPrivilegeGo" type="button" class="admin-btn admin-btn-primary">
+                      <i class="ph ph-arrow-right"></i> Go
+                    </button>
+                  </div>
+                  <div class="admin-info-box mt-4">
+                    <i class="ph ph-info"></i>
+                    Click <strong>Go</strong> to view and manage the selected user's plant access permissions.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simplified In-Page Results Section (Direct Plant Access Table) -->
+            <div id="userPrivilegeResultsSection" class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                  <i class="ph-bold ph-shield"></i>
+                </div>
+                <div>
+                  <div class="admin-form-section-title">User Plant Access</div>
+                  <div class="admin-form-section-desc">Manage plant access and permissions</div>
+                </div>
+              </div>
+              <div class="admin-table-scroll" style="max-height: 52vh;">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head">Plant</th>
+                      <th class="admin-table-head">Code</th>
+                      <th class="admin-table-head text-center">Access</th>
+                    </tr>
+                  </thead>
+                  <tbody id="userPrivilegeTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="admin-btn-row mt-16px">
+                <button type="button" class="admin-btn admin-btn-primary" id="userPrivilegeSaveBtn">
+                  <i class="ph ph-floppy-disk"></i> Save Access
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const UserPrivilegeView = (() => {
+      'use strict';
+
+      function filterRows(filterText) {
+        const query = String(filterText || '').trim().toLowerCase();
+        const rows = AdminData.userPrivilegeRows || [];
+        if (!query) return rows;
+        return rows.filter(row =>
+          row.ec.toLowerCase().includes(query) ||
+          row.name.toLowerCase().includes(query) ||
+          row.group.toLowerCase().includes(query)
+        );
+      }
+
+      function buildSelectOptions(rows) {
+        if (!rows.length) return '<option value="">No records found</option>';
+        let html = '<option value="">Select EC Number</option>';
+        rows.forEach(row => {
+          const label = `${row.ec}    ${row.name}    ${row.group}`;
+          html += `<option value="${row.ec}">${label}</option>`;
+        });
+        return html;
+      }
+
+      function renderTable() {
+        const plants = AdminData.userPlantsPrivilegePlantRows || [];
+        let html = '';
+        plants.forEach(plant => {
+          html += `
+            <tr class="admin-table-row">
+              <td class="admin-table-cell">${plant.name}</td>
+              <td class="admin-table-cell font-15px fw-semibold">${plant.code}</td>
+              <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="${plant.code}"></td>
+            </tr>
+          `;
+        });
+        $('#userPrivilegeTableBody').html(html);
+      }
+
+      function init() {
+        // Render initial structures
+        const rows = filterRows('');
+        $('#userPrivilegeSelect').html(buildSelectOptions(rows));
+        renderTable();
+
+        // Filter event
+        $('#userPrivilegeFilter').on('input', function() {
+          const filtered = filterRows($(this).val());
+          $('#userPrivilegeSelect').html(buildSelectOptions(filtered));
+        });
+
+        // Event delegation for row clicks
+        $(document).on('click', '.admin-table-row', function(e) {
+          if ($(e.target).is('input[type="checkbox"]')) return;
+          const chk = $(this).find('input[type="checkbox"]');
+          chk.prop('checked', !chk.prop('checked'));
+        });
+
+        // Go Button Support
+        $('#userPrivilegeGo').on('click', function() {
+           const ec = $('#userPrivilegeSelect').val();
+           if (!ec) {
+              Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              return;
+           }
+           Swal.fire({
+              icon: 'info',
+              title: 'Loading',
+              text: 'Fetching permissions for EC: ' + ec,
+              timer: 600,
+              showConfirmButton: false,
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)'
+           });
+        });
+
+        // Save Support
+        $('#userPrivilegeSaveBtn').on('click', function() {
+           const selectedEc = $('#userPrivilegeSelect').val();
+           if (!selectedEc) {
+              Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              return;
+           }
+           Swal.fire({
+              icon: 'success',
+              title: 'Saved',
+              text: 'User plant access permissions saved successfully for EC: ' + selectedEc,
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)'
+           });
+        });
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+       UserPrivilegeView.init();
+    });
+  </script>
+</body>
+
+</html>

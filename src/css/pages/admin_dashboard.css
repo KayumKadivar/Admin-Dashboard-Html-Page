@@ -363,7 +363,7 @@
 }
 
 .admin-field-label {
-  font-size: 0.875rem;
+  font-size: 18px;
   font-weight: 700;
   color: var(--typo-secondary);
   display: flex;

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | User Information</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/admin/admin_data.js"></script>
+  <script src="../js/sidebar.js"></script>
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <!-- <i class="ph ph-gear-six"></i> -->
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" onclick="window.location.href='admin_dashboard.html'">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+
+          <!-- Static Content -->
+          <div id="userInfoViewContainer">
+            <!-- Add New User Form Section -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(87,148,242,0.12); color: #5794F2">
+                    <i class="ph-bold ph-user-plus"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Add New User</div>
+                    <div class="admin-form-section-desc">Create a new user account with their credentials and group</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-form-cols">
+                    <div class="admin-field-group">
+                      <label for="userInfoEc" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <input id="userInfoEc" type="text" class="admin-input" placeholder="Enter EC Number...">
+                    </div>
+                    <div class="admin-field-group">
+                      <label for="userInfoName" class="admin-field-label"><i class="ph ph-user"></i> User Name</label>
+                      <input id="userInfoName" type="text" class="admin-input" placeholder="Enter full name...">
+                    </div>
+                    <div class="admin-field-group">
+                      <label for="userInfoPassword" class="admin-field-label"><i class="ph ph-lock"></i> Password</label>
+                      <input id="userInfoPassword" type="text" class="admin-input" placeholder="Enter password...">
+                    </div>
+                    <div class="admin-field-group">
+                      <label for="userInfoGroup" class="admin-field-label"><i class="ph ph-users"></i> Group</label>
+                      <select id="userInfoGroup" class="admin-select">
+                        <option value="Tech">Tech</option>
+                        <option value="IE/SIE">IE/SIE</option>
+                        <option value="M">M</option>
+                        <option value="SM">SM</option>
+                        <option value="CM">CM</option>
+                        <option value="AGM">AGM</option>
+                        <option value="GM">GM</option>
+                        <option value="IED">IED</option>
+                        <option value="GAT">GAT</option>
+                        <option value="DAT">DAT</option>
+                        <option value="GUEST">GUEST</option>
+                        <option value="VISITOR">VISITOR</option>
+                        <option value="TS">TS</option>
+                        <option value="CLAB">CLAB</option>
+                        <option value="R&D">R&D</option>
+                        <option value="IAT">IAT</option>
+                        <option value="OVS">OVS</option>
+                        <option value="PURCHASE">PURCHASE</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="admin-btn-row mt-16px justify-start">
+                    <button id="userInfoAddBtn" type="button" class="admin-btn admin-btn-primary">
+                      <i class="ph ph-plus-circle"></i> Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simplified In-Page Results Section -->
+            <div id="userInfoResultsSection" class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                  <i class="ph-bold ph-list-bullets"></i>
+                </div>
+                <div>
+                  <div class="admin-form-section-title">User List</div>
+                  <div class="admin-form-section-desc">All Configured Users</div>
+                </div>
+              </div>
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell">EC Number</th>
+                      <th class="admin-table-head-cell">User Name</th>
+                      <th class="admin-table-head-cell">Group</th>
+                      <th class="admin-table-head-cell text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="userInfoTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+              <!-- Removed bulk delete button -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const UserInfoView = (() => {
+      'use strict';
+
+      function renderTable() {
+        const users = AdminData.userInfoRows || [];
+        let html = '';
+        if (!users.length) {
+           html = '<tr><td colspan="4" class="text-center">No users found</td></tr>';
+        } else {
+           users.forEach(user => {
+             html += `
+               <tr class="admin-table-row">
+                 <td class="admin-table-cell font-semibold">${user.ec}</td>
+                 <td class="admin-table-cell">${user.userName}</td>
+                 <td class="admin-table-cell">${user.group || '-'}</td>
+                 <td class="admin-table-cell text-center">
+                   <div class="admin-table-actions">
+                     <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                     <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                   </div>
+                 </td>
+               </tr>
+             `;
+           });
+        }
+        $('#userInfoTableBody').html(html);
+      }
+
+      function init() {
+         renderTable();
+
+         $('#userInfoAddBtn').on('click', function () {
+            const ec = $('#userInfoEc').val().trim();
+            const name = $('#userInfoName').val().trim();
+            if (!ec || !name) {
+              Swal.fire({ icon: 'warning', title: 'Empty Fields', text: 'Please fill both EC Number and Name.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              return;
+            }
+            Swal.fire({ icon: 'success', title: 'Added', text: 'User added successfully.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+            $('#userInfoEc').val(''); $('#userInfoName').val('');
+         });
+
+         $(document).on('click', '.delete-btn', function (e) {
+            e.stopPropagation();
+            const row = $(this).closest('tr');
+            const ec = row.find('td:first-child').text().trim();
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want to delete User EC: " + ec + "?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#F2495C',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                row.remove();
+                Swal.fire({ icon: 'success', title: 'Deleted!', text: 'User has been removed.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              }
+            });
+         });
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+       UserInfoView.init();
+    });
+  </script>
+</body>
+
+</html>
