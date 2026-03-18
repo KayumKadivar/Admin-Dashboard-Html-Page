@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Administrator Login</title>
+  <meta name="description"
+    content="GNFC IIMS Administrator login portal — secure gateway for master controls and system configuration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="src/css/typography.css">
+  <link rel="stylesheet" href="src/css/common.css">
+  <link rel="stylesheet" href="src/css/pages/login.css">
+  <script src="src/js/theme_manager.js"></script>
+</head>
+
+<body>
+
+  <div class="login-page">
+
+    <a href="/index.html" class="home-link">
+      <i class="ph ph-house"></i>
+      Home
+    </a>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark theme">
+      <i id="themeIcon" class="ph ph-moon"></i>
+    </button>
+
+    <!-- Login Card -->
+    <div class="login-wrapper">
+      <div class="login-card">
+
+        <!-- Logo -->
+        <div class="logo-block">
+          <img src="src/assets/images/gnfc-full-logo.png"
+            onerror="this.onerror=null;this.src='src/assets/images/gnfc-sidebar-logo.png';" alt="GNFC Logo">
+          <h1>Gujarat Narmada Valley<br>Fertilizers &amp; Chemicals Ltd</h1>
+          <div class="subtitle">
+            <i class="ph ph-shield-check"></i>
+            Administrator Portal
+          </div>
+        </div>
+
+        <!-- Welcome -->
+        <div class="welcome-text">
+          <h2>Welcome back</h2>
+          <p>Sign in to access the IIMS administrator dashboard.</p>
+        </div>
+
+        <!-- Form -->
+        <form id="adminLoginForm" onsubmit="handleLogin(event)" autocomplete="on">
+
+          <div class="form-group">
+            <label class="form-label" for="username">Username</label>
+            <div class="input-wrap">
+              <input class="form-input" id="username" type="text" value="admin" required autocomplete="username"
+                placeholder="Enter username">
+              <i class="ph ph-user input-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrap">
+              <input class="form-input" id="password" type="password" required autocomplete="current-password"
+                placeholder="••••••••">
+              <i class="ph ph-lock-key input-icon"></i>
+              <button type="button" id="togglePasswordBtn" class="pw-toggle" aria-label="Show password">
+                <i id="togglePasswordIcon" class="ph ph-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-login">
+              <i class="ph ph-sign-in"></i>
+              Login
+            </button>
+            <button type="button" onclick="window.location.href='/index.html'" class="btn btn-cancel">
+              <i class="ph ph-x-circle"></i>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <p class="login-footer">
+        Copyright &copy; GNFC Ltd. Bharuch<br>
+        Designed &amp; Developed by GNFC Ltd (IT Division), Ahmedabad
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    /* ── Login Logic ── */
+    function handleLogin(event) {
+      event.preventDefault();
+      localStorage.setItem('userRole', 'admin');
+      localStorage.setItem('currentUserName', 'Administrator');
+      localStorage.setItem('gnfc_login_session_id', String(Date.now()));
+      localStorage.removeItem('gnfc_calibration_modal_shown_for_login');
+      window.location.href = 'src/pages/admin_dashboard.html';
+    }
+
+    /* ── Password Toggle ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      const passwordInput = document.getElementById('password');
+      const toggleBtn = document.getElementById('togglePasswordBtn');
+      const toggleIcon = document.getElementById('togglePasswordIcon');
+      if (!passwordInput || !toggleBtn || !toggleIcon) return;
+
+      toggleBtn.addEventListener('click', () => {
+        const show = passwordInput.type === 'password';
+        passwordInput.type = show ? 'text' : 'password';
+        toggleIcon.className = show ? 'ph ph-eye-slash' : 'ph ph-eye';
+        toggleBtn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      });
+
+      // Theme Integration
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      function updateThemeUI() {
+        if (!themeIcon) return;
+        const settings = ThemeManager.getSettings();
+        themeIcon.className = settings.mode === 'dark' ? 'ph ph-moon' : 'ph ph-sun';
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const settings = ThemeManager.getSettings();
+          ThemeManager.setMode(settings.mode === 'dark' ? 'light' : 'dark');
+          updateThemeUI();
+        });
+      }
+
+      // Init theme
+      if (typeof ThemeManager !== 'undefined' && ThemeManager.init) {
+        ThemeManager.init();
+        updateThemeUI();
+      }
+
+      window.addEventListener('themeChanged', updateThemeUI);
+    });
+
+  </script>
+
+</body>
+
+</html>

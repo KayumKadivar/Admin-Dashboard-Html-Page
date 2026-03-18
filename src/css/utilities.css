@@ -1,0 +1,393 @@
+
+/* ========================================
+   MARGIN UTILITIES (Pixel-Based)
+   ======================================== */
+
+.m-0px { margin: 0px !important; }
+.m-2px { margin: 2px !important; }
+.m-4px { margin: 4px !important; }
+.m-8px { margin: 8px !important; }
+.m-10px { margin: 10px !important; }
+.m-12px { margin: 12px !important; }
+.m-16px { margin: 16px !important; }
+.m-20px { margin: 20px !important; }
+.m-24px { margin: 24px !important; }
+.m-32px { margin: 32px !important; }
+.m-40px { margin: 40px !important; }
+.m-48px { margin: 48px !important; }
+.m-64px { margin: 64px !important; }
+
+.mt-0px { margin-top: 0px !important; }
+.mt-2px { margin-top: 2px !important; }
+.mt-4px { margin-top: 4px !important; }
+.mt-8px { margin-top: 8px !important; }
+.mt-10px { margin-top: 10px !important; }
+.mt-12px { margin-top: 12px !important; }
+.mt-16px { margin-top: 16px !important; }
+.mt-20px { margin-top: 20px !important; }
+.mt-24px { margin-top: 24px !important; }
+.mt-32px { margin-top: 32px !important; }
+.mt-40px { margin-top: 40px !important; }
+.mt-48px { margin-top: 48px !important; }
+.mt-64px { margin-top: 64px !important; }
+
+.mb-0px { margin-bottom: 0px !important; }
+.mb-2px { margin-bottom: 2px !important; }
+.mb-4px { margin-bottom: 4px !important; }
+.mb-8px { margin-bottom: 8px !important; }
+.mb-10px { margin-bottom: 10px !important; }
+.mb-12px { margin-bottom: 12px !important; }
+.mb-16px { margin-bottom: 16px !important; }
+.mb-20px { margin-bottom: 20px !important; }
+.mb-24px { margin-bottom: 24px !important; }
+.mb-32px { margin-bottom: 32px !important; }
+.mb-40px { margin-bottom: 40px !important; }
+.mb-48px { margin-bottom: 48px !important; }
+.mb-64px { margin-bottom: 64px !important; }
+
+.ml-0px { margin-left: 0px !important; }
+.ml-2px { margin-left: 2px !important; }
+.ml-4px { margin-left: 4px !important; }
+.ml-8px { margin-left: 8px !important; }
+.ml-10px { margin-left: 10px !important; }
+.ml-12px { margin-left: 12px !important; }
+.ml-16px { margin-left: 16px !important; }
+.ml-20px { margin-left: 20px !important; }
+.ml-24px { margin-left: 24px !important; }
+.ml-32px { margin-left: 32px !important; }
+.ml-40px { margin-left: 40px !important; }
+.ml-48px { margin-left: 48px !important; }
+.ml-64px { margin-left: 64px !important; }
+
+.mr-0px { margin-right: 0px !important; }
+.mr-2px { margin-right: 2px !important; }
+.mr-4px { margin-right: 4px !important; }
+.mr-8px { margin-right: 8px !important; }
+.mr-10px { margin-right: 10px !important; }
+.mr-12px { margin-right: 12px !important; }
+.mr-16px { margin-right: 16px !important; }
+.mr-20px { margin-right: 20px !important; }
+.mr-24px { margin-right: 24px !important; }
+.mr-32px { margin-right: 32px !important; }
+.mr-40px { margin-right: 40px !important; }
+.mr-48px { margin-right: 48px !important; }
+.mr-64px { margin-right: 64px !important; }
+
+.mx-0px { margin-left: 0px !important; margin-right: 0px !important; }
+.mx-2px { margin-left: 2px !important; margin-right: 2px !important; }
+.mx-4px { margin-left: 4px !important; margin-right: 4px !important; }
+.mx-8px { margin-left: 8px !important; margin-right: 8px !important; }
+.mx-10px { margin-left: 10px !important; margin-right: 10px !important; }
+.mx-12px { margin-left: 12px !important; margin-right: 12px !important; }
+.mx-16px { margin-left: 16px !important; margin-right: 16px !important; }
+.mx-20px { margin-left: 20px !important; margin-right: 20px !important; }
+.mx-24px { margin-left: 24px !important; margin-right: 24px !important; }
+.mx-32px { margin-left: 32px !important; margin-right: 32px !important; }
+.mx-40px { margin-left: 40px !important; margin-right: 40px !important; }
+.mx-48px { margin-left: 48px !important; margin-right: 48px !important; }
+.mx-64px { margin-left: 64px !important; margin-right: 64px !important; }
+
+.my-0px { margin-top: 0px !important; margin-bottom: 0px !important; }
+.my-2px { margin-top: 2px !important; margin-bottom: 2px !important; }
+.my-4px { margin-top: 4px !important; margin-bottom: 4px !important; }
+.my-8px { margin-top: 8px !important; margin-bottom: 8px !important; }
+.my-10px { margin-top: 10px !important; margin-bottom: 10px !important; }
+.my-12px { margin-top: 12px !important; margin-bottom: 12px !important; }
+.my-16px { margin-top: 16px !important; margin-bottom: 16px !important; }
+.my-20px { margin-top: 20px !important; margin-bottom: 20px !important; }
+.my-24px { margin-top: 24px !important; margin-bottom: 24px !important; }
+.my-32px { margin-top: 32px !important; margin-bottom: 32px !important; }
+.my-40px { margin-top: 40px !important; margin-bottom: 40px !important; }
+.my-48px { margin-top: 48px !important; margin-bottom: 48px !important; }
+.my-64px { margin-top: 64px !important; margin-bottom: 64px !important; }
+
+/* ======================================== PADDING UTILITIES (Pixel-Based) ======================================== */
+
+.p-0px { padding: 0px !important; }
+.p-2px { padding: 2px !important; }
+.p-4px { padding: 4px !important; }
+.p-8px { padding: 8px !important; }
+.p-10px { padding: 10px !important; }
+.p-12px { padding: 12px !important; }
+.p-16px { padding: 16px !important; }
+.p-20px { padding: 20px !important; }
+.p-24px { padding: 24px !important; }
+.p-32px { padding: 32px !important; }
+.p-40px { padding: 40px !important; }
+.p-48px { padding: 48px !important; }
+.p-64px { padding: 64px !important; }
+
+.pt-0px { padding-top: 0px !important; }
+.pt-2px { padding-top: 2px !important; }
+.pt-4px { padding-top: 4px !important; }
+.pt-8px { padding-top: 8px !important; }
+.pt-10px { padding-top: 10px !important; }
+.pt-12px { padding-top: 12px !important; }
+.pt-16px { padding-top: 16px !important; }
+.pt-20px { padding-top: 20px !important; }
+.pt-24px { padding-top: 24px !important; }
+.pt-32px { padding-top: 32px !important; }
+.pt-40px { padding-top: 40px !important; }
+.pt-48px { padding-top: 48px !important; }
+.pt-64px { padding-top: 64px !important; }
+
+.pb-0px { padding-bottom: 0px !important; }
+.pb-2px { padding-bottom: 2px !important; }
+.pb-4px { padding-bottom: 4px !important; }
+.pb-8px { padding-bottom: 8px !important; }
+.pb-10px { padding-bottom: 10px !important; }
+.pb-12px { padding-bottom: 12px !important; }
+.pb-16px { padding-bottom: 16px !important; }
+.pb-20px { padding-bottom: 20px !important; }
+.pb-24px { padding-bottom: 24px !important; }
+.pb-32px { padding-bottom: 32px !important; }
+.pb-40px { padding-bottom: 40px !important; }
+.pb-48px { padding-bottom: 48px !important; }
+.pb-64px { padding-bottom: 64px !important; }
+
+.pl-0px { padding-left: 0px !important; }
+.pl-2px { padding-left: 2px !important; }
+.pl-4px { padding-left: 4px !important; }
+.pl-8px { padding-left: 8px !important; }
+.pl-10px { padding-left: 10px !important; }
+.pl-12px { padding-left: 12px !important; }
+.pl-16px { padding-left: 16px !important; }
+.pl-20px { padding-left: 20px !important; }
+.pl-24px { padding-left: 24px !important; }
+.pl-32px { padding-left: 32px !important; }
+.pl-40px { padding-left: 40px !important; }
+.pl-48px { padding-left: 48px !important; }
+.pl-64px { padding-left: 64px !important; }
+
+.pr-0px { padding-right: 0px !important; }
+.pr-2px { padding-right: 2px !important; }
+.pr-4px { padding-right: 4px !important; }
+.pr-8px { padding-right: 8px !important; }
+.pr-10px { padding-right: 10px !important; }
+.pr-12px { padding-right: 12px !important; }
+.pr-16px { padding-right: 16px !important; }
+.pr-20px { padding-right: 20px !important; }
+.pr-24px { padding-right: 24px !important; }
+.pr-32px { padding-right: 32px !important; }
+.pr-40px { padding-right: 40px !important; }
+.pr-48px { padding-right: 48px !important; }
+.pr-64px { padding-right: 64px !important; }
+
+.px-0px { padding-left: 0px !important; padding-right: 0px !important; }
+.px-2px { padding-left: 2px !important; padding-right: 2px !important; }
+.px-4px { padding-left: 4px !important; padding-right: 4px !important; }
+.px-8px { padding-left: 8px !important; padding-right: 8px !important; }
+.px-10px { padding-left: 10px !important; padding-right: 10px !important; }
+.px-12px { padding-left: 12px !important; padding-right: 12px !important; }
+.px-16px { padding-left: 16px !important; padding-right: 16px !important; }
+.px-20px { padding-left: 20px !important; padding-right: 20px !important; }
+.px-24px { padding-left: 24px !important; padding-right: 24px !important; }
+.px-32px { padding-left: 32px !important; padding-right: 32px !important; }
+.px-40px { padding-left: 40px !important; padding-right: 40px !important; }
+.px-48px { padding-left: 48px !important; padding-right: 48px !important; }
+.px-64px { padding-left: 64px !important; padding-right: 64px !important; }
+
+.py-0px { padding-top: 0px !important; padding-bottom: 0px !important; }
+.py-2px { padding-top: 2px !important; padding-bottom: 2px !important; }
+.py-4px { padding-top: 4px !important; padding-bottom: 4px !important; }
+.py-8px { padding-top: 8px !important; padding-bottom: 8px !important; }
+.py-10px { padding-top: 10px !important; padding-bottom: 10px !important; }
+.py-12px { padding-top: 12px !important; padding-bottom: 12px !important; }
+.py-16px { padding-top: 16px !important; padding-bottom: 16px !important; }
+.py-20px { padding-top: 20px !important; padding-bottom: 20px !important; }
+.py-24px { padding-top: 24px !important; padding-bottom: 24px !important; }
+.py-32px { padding-top: 32px !important; padding-bottom: 32px !important; }
+.py-40px { padding-top: 40px !important; padding-bottom: 40px !important; }
+.py-48px { padding-top: 48px !important; padding-bottom: 48px !important; }
+.py-64px { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+/* ======================================== Z-INDEX UTILITIES ======================================== */
+
+.z-0 { z-index: 0 !important; }
+.z-10 { z-index: 10 !important; }
+.z-20 { z-index: 20 !important; }
+.z-30 { z-index: 30 !important; }
+.z-40 { z-index: 40 !important; }
+.z-50 { z-index: 50 !important; }
+.z-100 { z-index: 100 !important; }
+.z-500 { z-index: 500 !important; }
+.z-1000 { z-index: 1000 !important; }
+.z-auto { z-index: auto !important; }
+
+/* ======================================== Border Radius ======================================== */
+
+.radius-0px { border-radius: 0px !important; }
+.radius-2px { border-radius: 2px !important; }
+.radius-4px { border-radius: 4px !important; }
+.radius-8px { border-radius: 8px !important; }
+.radius-10px { border-radius: 10px !important; }
+.radius-12px { border-radius: 12px !important; }
+.radius-16px { border-radius: 16px !important; }
+.radius-20px { border-radius: 20px !important; }
+.radius-24px { border-radius: 24px !important; }
+.radius-32px { border-radius: 32px !important; }
+.radius-40px { border-radius: 40px !important; }
+.radius-48px { border-radius: 48px !important; }
+.radius-64px { border-radius: 64px !important; }
+
+/* ======================================== Font Size ======================================== */
+
+.font-0px { font-size: 0px !important; }
+.font-2px { font-size: 2px !important; }
+.font-4px { font-size: 4px !important; }
+.font-8px { font-size: 8px !important; }
+.font-10px { font-size: 10px !important; }
+.font-12px { font-size: 12px !important; }
+.font-16px { font-size: 16px !important; }
+.font-20px { font-size: 20px !important; }
+.font-24px { font-size: 24px !important; }
+.font-32px { font-size: 32px !important; }
+.font-40px { font-size: 40px !important; }
+.font-48px { font-size: 48px !important; }
+.font-64px { font-size: 64px !important; }
+
+/* ======================================== Font Weight ======================================== */
+
+.fw-0 { font-weight: 0 !important; }
+.fw-100 { font-weight: 100 !important; }
+.fw-200 { font-weight: 200 !important; }
+.fw-300 { font-weight: 300 !important; }
+.fw-400 { font-weight: 400 !important; }
+.fw-500 { font-weight: 500 !important; }
+.fw-600 { font-weight: 600 !important; }
+.fw-700 { font-weight: 700 !important; }
+.fw-800 { font-weight: 800 !important; }
+.fw-900 { font-weight: 900 !important; }
+
+/* ======================================== Line Height ======================================== */
+
+.lh-0px { line-height: 0px !important; }
+.lh-2px { line-height: 2px !important; }
+.lh-4px { line-height: 4px !important; }
+.lh-8px { line-height: 8px !important; }
+.lh-10px { line-height: 10px !important; }
+.lh-12px { line-height: 12px !important; }
+.lh-16px { line-height: 16px !important; }
+.lh-20px { line-height: 20px !important; }
+.lh-24px { line-height: 24px !important; }
+.lh-32px { line-height: 32px !important; }
+.lh-40px { line-height: 40px !important; }
+.lh-48px { line-height: 48px !important; }
+.lh-64px { line-height: 64px !important; }
+
+/* ======================================== Letter Spacing ======================================== */
+
+.ls-0px { letter-spacing: 0px !important; }
+.ls-2px { letter-spacing: 2px !important; }
+.ls-4px { letter-spacing: 4px !important; }
+.ls-8px { letter-spacing: 8px !important; }
+.ls-10px { letter-spacing: 10px !important; }
+.ls-12px { letter-spacing: 12px !important; }
+.ls-16px { letter-spacing: 16px !important; }
+.ls-20px { letter-spacing: 20px !important; }
+.ls-24px { letter-spacing: 24px !important; }
+.ls-32px { letter-spacing: 32px !important; }
+.ls-40px { letter-spacing: 40px !important; }
+.ls-48px { letter-spacing: 48px !important; }
+.ls-64px { letter-spacing: 64px !important; }
+
+/* ======================================== Text Alignment ======================================== */
+
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-justify { text-align: justify !important; }
+
+/* ======================================== Text Decoration ======================================== */
+
+.text-none { text-decoration: none !important; }
+.text-underline { text-decoration: underline !important; }
+.text-line-through { text-decoration: line-through !important; }
+.text-overline { text-decoration: overline !important; }
+
+/* ======================================== Text Transform ======================================== */
+
+.text-none { text-transform: none !important; }
+.text-lowercase { text-transform: lowercase !important; }
+.text-uppercase { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+/* ======================================== Text Overflow ======================================== */
+
+.text-clip { text-overflow: clip !important; }
+.text-ellipsis { text-overflow: ellipsis !important; }
+.text-wrap { text-overflow: wrap !important; }
+
+/* ======================================== Text Shadow ======================================== */
+
+.text-shadow-none { text-shadow: none !important; }
+.text-shadow-sm { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) !important; }
+.text-shadow-md { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) !important; }
+.text-shadow-lg { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3) !important; }
+.text-shadow-xl { text-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4) !important; }
+
+/* ======================================== Text Wrap ======================================== */
+
+.text-wrap { white-space: normal !important; }
+.text-nowrap { white-space: nowrap !important; }
+.text-pre { white-space: pre !important; }
+.text-pre-wrap { white-space: pre-wrap !important; }
+.text-pre-line { white-space: pre-line !important; }
+
+/* ======================================== Text Indent ======================================== */
+
+.text-indent-0px { text-indent: 0px !important; }
+.text-indent-2px { text-indent: 2px !important; }
+.text-indent-4px { text-indent: 4px !important; }
+.text-indent-8px { text-indent: 8px !important; }
+.text-indent-10px { text-indent: 10px !important; }
+.text-indent-12px { text-indent: 12px !important; }
+.text-indent-16px { text-indent: 16px !important; }
+.text-indent-20px { text-indent: 20px !important; }
+.text-indent-24px { text-indent: 24px !important; }
+.text-indent-32px { text-indent: 32px !important; }
+.text-indent-40px { text-indent: 40px !important; }
+.text-indent-48px { text-indent: 48px !important; }
+.text-indent-64px { text-indent: 64px !important; }
+
+/* ======================================== Text Justify ======================================== */
+
+.text-justify { text-align: justify !important; }
+.text-justify-all { text-align: justify-all !important; }
+.text-justify-last { text-align: justify-last !important; }
+
+/* ======================================== Text Overflow ======================================== */
+
+.text-clip { text-overflow: clip !important; }
+.text-ellipsis { text-overflow: ellipsis !important; }
+.text-wrap { text-overflow: wrap !important; }
+
+/* ======================================== Text Shadow ======================================== */
+
+.text-shadow-none { text-shadow: none !important; }
+.text-shadow-sm { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) !important; }
+.text-shadow-md { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) !important; }
+.text-shadow-lg { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3) !important; }
+.text-shadow-xl { text-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4) !important; }
+
+/* ======================================== Text Wrap ======================================== */
+
+.text-wrap { white-space: normal !important; }
+.text-nowrap { white-space: nowrap !important; }
+.text-pre { white-space: pre !important; }
+.text-pre-wrap { white-space: pre-wrap !important; }
+.text-pre-line { white-space: pre-line !important; }
+.text-truncate { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+.text-break { word-break: break-word !important; overflow-wrap: break-word !important;}
+.text-hidden { visibility: hidden !important;}
+.text-visible { visibility: visible !important; }
+.text-clip { overflow: hidden !important; text-overflow: clip !important;}
+
+/* ======================================== Text Indent ======================================== */
+
+.text-indent-0px { text-indent: 0px !important; }
+.text-indent-2px { text-indent: 2px !important; }
+.text-indent-4px { text-indent: 4px !important; }
+.text-indent-8px { text-indent: 8px !important; }
+
+

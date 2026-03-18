@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Admin Dashboard Preview</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+  <!-- Theme & Typography -->
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+
+</head>
+
+<body class="admin-dashboard-layout">
+
+  <div class="app-layout-root">
+    <!-- Sidebar -->
+    <aside class="app-sidebar-wrap">
+      <div class="admin-sidebar" id="adminSidebar">
+        <div class="admin-sidebar-logo">
+          <img src="../assets/images/gnfc-full-logo.png" alt="GNFC">
+        </div>
+
+        <!-- Overview -->
+        <div class="admin-sidebar-section">
+          <div class="admin-sidebar-section-label">Overview</div>
+          <a class="admin-sidebar-link active" data-nav-key="dashboard">
+            <i class="ph ph-squares-four"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+
+        <!-- Masters -->
+        <div class="admin-sidebar-section">
+          <div class="admin-sidebar-section-label">Masters</div>
+          <a class="admin-sidebar-link" data-nav-key="privilege">
+            <i class="ph ph-shield-check"></i>
+            <span>Privilege</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="default_privilege">
+            <i class="ph ph-shield-star"></i>
+            <span>Default Privilege</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="plants">
+            <i class="ph ph-factory"></i>
+            <span>Plants</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="modules">
+            <i class="ph ph-puzzle-piece"></i>
+            <span>Modules</span>
+          </a>
+        </div>
+
+        <!-- Users -->
+        <div class="admin-sidebar-section">
+          <div class="admin-sidebar-section-label">Users</div>
+          <a class="admin-sidebar-link" data-nav-key="user">
+            <i class="ph ph-user-circle"></i>
+            <span>User Info</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="user_privilege">
+            <i class="ph ph-user-check"></i>
+            <span>User Privilege</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="user_plants">
+            <i class="ph ph-tree-structure"></i>
+            <span>User Plants</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="user_email">
+            <i class="ph ph-envelope"></i>
+            <span>User Email</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="admin_member">
+            <i class="ph ph-users-three"></i>
+            <span>Admin Member</span>
+          </a>
+        </div>
+
+        <!-- Security -->
+        <div class="admin-sidebar-section">
+          <div class="admin-sidebar-section-label">Security</div>
+          <a class="admin-sidebar-link" data-nav-key="change_password">
+            <i class="ph ph-key"></i>
+            <span>Change Password</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="reset_password">
+            <i class="ph ph-arrow-counter-clockwise"></i>
+            <span>Reset Password</span>
+          </a>
+        </div>
+
+        <!-- System -->
+        <div class="admin-sidebar-section">
+          <div class="admin-sidebar-section-label">System</div>
+          <a class="admin-sidebar-link" data-nav-key="mail_schedule">
+            <i class="ph ph-calendar-check"></i>
+            <span>Mail Schedule</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="login_info">
+            <i class="ph ph-signpost"></i>
+            <span>Login Info</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="ex_dms_space">
+            <i class="ph ph-folder-open"></i>
+            <span>Ex-DMS Space</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="new_update_popup">
+            <i class="ph ph-bell"></i>
+            <span>Login Popup</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="whats_new">
+            <i class="ph ph-sparkle"></i>
+            <span>What's New</span>
+          </a>
+        </div>
+
+        <div class="admin-sidebar-footer">
+          <a class="admin-sidebar-exit" href="../../index.html">
+            <i class="ph ph-sign-out"></i>
+            <span>Exit</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <i class="ph ph-gear-six font-20px color-blue"></i>
+          <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+          <!-- Theme Toggle -->
+          <button class="ui-btn-theme" id="themeToggleBtn" title="Toggle Theme">
+            <i class="ph ph-moon font-16px" id="themeIcon"></i>
+          </button>
+          <!-- Back -->
+          <button class="ui-btn-pill">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+          <div class="admin-dash-welcome">
+            <div class="admin-dash-welcome-left">
+              <h2 class="admin-dash-greeting">
+                <i class="ph-fill ph-sun-dim admin-dash-greeting-icon"></i>
+                Good Morning, <span class="color-orange">Administrator</span>
+              </h2>
+              <p class="admin-dash-subtitle">GNFC IIMS Admin Control Panel — manage privileges, users, plants, and
+                system settings.</p>
+            </div>
+            <div class="admin-dash-welcome-right">
+              <div class="admin-dash-clock-chip">
+                <i class="ph ph-calendar-blank color-blue"></i>
+                <span class="font-15px fw-bold font-mono color-primary">Wednesday, 18 Mar 2026</span>
+              </div>
+              <div class="admin-dash-clock-chip">
+                <i class="ph ph-clock color-orange"></i>
+                <span class="font-15px fw-bold font-mono color-primary tabular-nums">10:45:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-dash-kpi-grid">
+            <div class="admin-dash-kpi-card" style="--kpi-accent: #5794F2">
+              <div class="admin-dash-kpi-icon-wrap" style="background: rgba(87,148,242,0.12)">
+                <i class="ph-fill ph-users text-2xl" style="color: #5794F2"></i>
+              </div>
+              <div class="admin-dash-kpi-body">
+                <span class="admin-dash-kpi-value">124</span>
+                <span class="admin-dash-kpi-label">Total Users</span>
+              </div>
+              <div class="admin-dash-kpi-badge kpi-badge-blue">
+                <i class="ph-bold ph-trend-up"></i> Active
+              </div>
+            </div>
+
+            <div class="admin-dash-kpi-card" style="--kpi-accent: #73BF69">
+              <div class="admin-dash-kpi-icon-wrap" style="background: rgba(115,191,105,0.12)">
+                <i class="ph-fill ph-factory text-2xl" style="color: #73BF69"></i>
+              </div>
+              <div class="admin-dash-kpi-body">
+                <span class="admin-dash-kpi-value">12</span>
+                <span class="admin-dash-kpi-label">Plants</span>
+              </div>
+              <div class="admin-dash-kpi-badge kpi-badge-green">
+                <i class="ph-bold ph-check"></i> Configured
+              </div>
+            </div>
+
+            <div class="admin-dash-kpi-card" style="--kpi-accent: #FF9900">
+              <div class="admin-dash-kpi-icon-wrap" style="background: rgba(255,153,0,0.12)">
+                <i class="ph-fill ph-puzzle-piece text-2xl" style="color: #FF9900"></i>
+              </div>
+              <div class="admin-dash-kpi-body">
+                <span class="admin-dash-kpi-value">45</span>
+                <span class="admin-dash-kpi-label">Modules</span>
+              </div>
+              <div class="admin-dash-kpi-badge kpi-badge-orange">
+                <i class="ph-bold ph-lightning"></i> Running
+              </div>
+            </div>
+
+            <div class="admin-dash-kpi-card" style="--kpi-accent: #B794F4">
+              <div class="admin-dash-kpi-icon-wrap" style="background: rgba(183,148,244,0.12)">
+                <i class="ph-fill ph-shield-check text-2xl" style="color: #B794F4"></i>
+              </div>
+              <div class="admin-dash-kpi-body">
+                <span class="admin-dash-kpi-value">8</span>
+                <span class="admin-dash-kpi-label">Privilege Groups</span>
+              </div>
+              <div class="admin-dash-kpi-badge kpi-badge-purple">
+                <i class="ph-bold ph-lock-simple"></i> Roles
+              </div>
+            </div>
+
+            <div class="admin-dash-kpi-card" style="--kpi-accent: #14b8a6">
+              <div class="admin-dash-kpi-icon-wrap" style="background: rgba(20,184,166,0.12)">
+                <i class="ph-fill ph-users-three text-2xl" style="color: #14b8a6"></i>
+              </div>
+              <div class="admin-dash-kpi-body">
+                <span class="admin-dash-kpi-value">5</span>
+                <span class="admin-dash-kpi-label">Admin Members</span>
+              </div>
+              <div class="admin-dash-kpi-badge kpi-badge-teal">
+                <i class="ph-bold ph-crown"></i> Elevated
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-dash-section">
+            <div class="admin-dash-section-header">
+              <h3 class="admin-dash-section-title">Masters</h3>
+              <div class="admin-dash-section-line"></div>
+            </div>
+            <div class="admin-dash-action-grid">
+              <div class="admin-dash-action-card" style="--action-accent: #5794F2">
+                <div class="admin-dash-action-icon" style="background: rgba(87,148,242,0.15); color: #5794F2">
+                  <i class="ph ph-shield-check"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">Privilege</span>
+                  <span class="admin-dash-action-desc">Manage role-based access control</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #B794F4">
+                <div class="admin-dash-action-icon" style="background: rgba(183,148,244,0.15); color: #B794F4">
+                  <i class="ph ph-shield-star"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">Default Privilege</span>
+                  <span class="admin-dash-action-desc">Set default permissions per group</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #73BF69">
+                <div class="admin-dash-action-icon" style="background: rgba(115,191,105,0.15); color: #73BF69">
+                  <i class="ph ph-factory"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">Plants</span>
+                  <span class="admin-dash-action-desc">Plant master configuration</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #FF9900">
+                <div class="admin-dash-action-icon" style="background: rgba(255,153,0,0.15); color: #FF9900">
+                  <i class="ph ph-puzzle-piece"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">Modules</span>
+                  <span class="admin-dash-action-desc">System module registry</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-dash-section">
+            <div class="admin-dash-section-header">
+              <h3 class="admin-dash-section-title">Users</h3>
+              <div class="admin-dash-section-line"></div>
+            </div>
+            <div class="admin-dash-action-grid">
+              <div class="admin-dash-action-card" style="--action-accent: #5794F2">
+                <div class="admin-dash-action-icon" style="background: rgba(87,148,242,0.15); color: #5794F2">
+                  <i class="ph ph-user-circle"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">User Info</span>
+                  <span class="admin-dash-action-desc">User accounts & profiles</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #14b8a6">
+                <div class="admin-dash-action-icon" style="background: rgba(20,184,166,0.15); color: #14b8a6">
+                  <i class="ph ph-user-check"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">User Privilege</span>
+                  <span class="admin-dash-action-desc">Individual user permissions</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #73BF69">
+                <div class="admin-dash-action-icon" style="background: rgba(115,191,105,0.15); color: #73BF69">
+                  <i class="ph ph-tree-structure"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">User Plants</span>
+                  <span class="admin-dash-action-desc">Plant assignment mapping</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+              <div class="admin-dash-action-card" style="--action-accent: #06b6d4">
+                <div class="admin-dash-action-icon" style="background: rgba(6,182,212,0.15); color: #06b6d4">
+                  <i class="ph ph-envelope"></i>
+                </div>
+                <div class="admin-dash-action-info">
+                  <span class="admin-dash-action-label">User Email</span>
+                  <span class="admin-dash-action-desc">Email configuration</span>
+                </div>
+                <i class="ph ph-caret-right admin-dash-action-arrow"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-dash-section">
+            <div class="admin-dash-section-header">
+              <h3 class="admin-dash-section-title">Recent Login Activity</h3>
+              <div class="admin-dash-section-line"></div>
+              <button class="admin-dash-section-btn">
+                View All <i class="ph-bold ph-arrow-right font-11px"></i>
+              </button>
+            </div>
+            <div class="admin-table-scroll">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th class="admin-table-head-cell">EC No</th>
+                    <th class="admin-table-head-cell">Name</th>
+                    <th class="admin-table-head-cell">Group</th>
+                    <th class="admin-table-head-cell">Last Login</th>
+                    <th class="admin-table-head-cell">Machine</th>
+                    <th class="admin-table-head-cell">Hits</th>
+                  </tr>
+                </thead>
+                <tbody class="admin-table-body">
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-mono fw-bold color-blue">10245</td>
+                    <td class="admin-table-cell fw-medium">Aditya Sharma</td>
+                    <td class="admin-table-cell">
+                      <span class="admin-dash-group-badge">TECH</span>
+                    </td>
+                    <td class="admin-table-cell font-mono color-secondary">18 Mar 10:30</td>
+                    <td class="admin-table-cell font-mono color-secondary">SRV-PROD-01</td>
+                    <td class="admin-table-cell fw-bold">1,240</td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-mono fw-bold color-blue">10289</td>
+                    <td class="admin-table-cell fw-medium">Vikram Singh</td>
+                    <td class="admin-table-cell">
+                      <span class="admin-dash-group-badge">ADMIN</span>
+                    </td>
+                    <td class="admin-table-cell font-mono color-secondary">18 Mar 09:15</td>
+                    <td class="admin-table-cell font-mono color-secondary">WK-DEV-04</td>
+                    <td class="admin-table-cell fw-bold">850</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="adminModalRoot" class="hidden"></div>
+
+  <script>
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    // Initialize Theme
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+      htmlElement.setAttribute('data-theme', 'light');
+      themeIcon.classList.replace('ph-moon', 'ph-sun');
+    }
+
+    // Toggle Logic
+    themeBtn.addEventListener('click', () => {
+      const isLight = htmlElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        htmlElement.removeAttribute('data-theme');
+        themeIcon.classList.replace('ph-sun', 'ph-moon');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeIcon.classList.replace('ph-moon', 'ph-sun');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+</body>
+
+</html>

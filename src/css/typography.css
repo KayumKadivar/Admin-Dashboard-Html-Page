@@ -1,0 +1,286 @@
+
+
+/* ========================================
+   4. FONT COLORS — HIGH CONTRAST
+   Theme-aware via CSS Variables
+   ======================================== */
+
+/* --- Primary Text (Highest contrast) --- */
+.color-primary {
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* --- Secondary Text (Readable, not muted) --- */
+.color-secondary {
+  color: var(--typo-primary, #d1d5db) !important;
+}
+
+/* --- Label / Caption (Still clearly visible) --- */
+.color-label {
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* --- Disabled / Hint (Lightest allowed) --- */
+.color-hint {
+  color: var(--typo-hint, #6b7280) !important;
+}
+
+/* --- Accent Colors --- */
+.color-blue {
+  color: var(--typo-blue, #5794F2) !important;
+}
+
+.color-orange {
+  color: var(--typo-orange, #FF9900) !important;
+}
+
+.color-green {
+  color: var(--typo-green, #73BF69) !important;
+}
+
+.color-red {
+  color: var(--typo-red, #F2495C) !important;
+}
+
+.color-purple {
+  color: var(--typo-purple, #B794F4) !important;
+}
+
+.color-teal {
+  color: var(--typo-teal, #14b8a6) !important;
+}
+
+.color-cyan {
+  color: var(--typo-cyan, #06b6d4) !important;
+}
+
+.color-amber {
+  color: var(--typo-amber, #f59e0b) !important;
+}
+
+.color-white {
+  color: #ffffff !important;
+}
+
+.color-black {
+  color: #000000 !important;
+}
+
+/* --- Hover Colors --- */
+.hover-color-primary:hover {
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+.hover-color-secondary:hover {
+  color: var(--typo-secondary, #d1d5db) !important;
+}
+
+.hover-color-label:hover {
+  color: var(--typo-label, #9ca3af) !important;
+}
+
+.hover-color-blue:hover {
+  color: var(--typo-blue, #5794F2) !important;
+}
+
+.hover-color-orange:hover {
+  color: var(--typo-orange, #FF9900) !important;
+}
+
+.hover-color-white:hover {
+ background-color: var(--typo-white, #241f1f) !important;
+ color: var(--typo-white, #ffffff) !important;
+}
+
+/* --- Focus / Group Focus Colors --- */
+.focus-color-blue:focus,
+.group:focus-within .group-focus-within-color-blue {
+  color: var(--typo-blue, #5794F2) !important;
+}
+
+
+
+
+
+
+/* ========================================
+   11. COMPOSITE HELPER CLASSES
+   Common patterns used across the project
+   ======================================== */
+
+/* Page title */
+.typo-page-title {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Section heading */
+.typo-section-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.375 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Card heading */
+.typo-card-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.375 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Body text */
+.typo-body {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Body small */
+.typo-body-sm {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--typo-secondary, #d1d5db) !important;
+}
+
+/* Label / Caption */
+.typo-label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--typo-label, #9ca3af) !important;
+}
+
+/* Table header text */
+.typo-table-head {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--typo-blue, #5794F2) !important;
+}
+
+.typo-table-cell {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* KPI/Stat number */
+.typo-kpi {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Badge text */
+.typo-badge {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Sidebar link text */
+.typo-sidebar {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+}
+
+/* Sidebar section label */
+.typo-sidebar-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: var(--typo-label, #9ca3af) !important;
+}
+
+/* Form label */
+.typo-form-label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--typo-secondary, #d1d5db) !important;
+}
+
+/* Form input text */
+.typo-form-input {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}
+
+/* Monospace text (IDs, codes, timestamps) */
+.typo-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+}
+
+/* Footer text */
+.typo-footer {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  color: var(--typo-label, #9ca3af) !important;
+}
+
+/* Status text (small colored labels) */
+.typo-status {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Breadcrumb */
+.typo-breadcrumb {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+  color: var(--typo-label, #9ca3af) !important;
+}
+
+/* Button text */
+.typo-btn {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Button small */
+.typo-btn-sm {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+/* Tooltip text */
+.typo-tooltip {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: var(--typo-primary, #ffffff) !important;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Privilege</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+</head>
+
+<body class="admin-dashboard-layout">
+
+  <div class="app-layout-root">
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <i class="ph ph-gear-six font-20px color-blue"></i>
+          <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
+        </div>
+
+        <div class="app-header-controls">
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeToggleIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button onclick="goBack()" class="ui-btn-pill">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="app-content-area">
+
+        <!-- Top Bar -->
+        <!-- <div class="admin-topbar">
+          <span class="admin-topbar-label">MENU</span>
+          <div class="admin-topbar-left">
+            <span class="admin-topbar-icon">
+              <i class="ph ph-shield-check"></i>
+            </span>
+            <div class="admin-topbar-text">
+              <h2 class="admin-topbar-title">Master - Privilege</h2>
+              <span class="admin-topbar-subtitle">
+                Manage role-based access control groups
+              </span>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Card -->
+        <div class="admin-card">
+          <div class="admin-form-section">
+
+            <div class="admin-form-section-header">
+              <div class="admin-form-section-icon" style="background: rgba(183,148,244,0.12); color: #B794F4">
+                <i class="ph-bold ph-plus-circle"></i>
+              </div>
+              <div>
+                <div class="admin-form-section-title">Add / Search Privilege</div>
+                <div class="admin-form-section-desc">
+                  Add a new privilege group or search existing records
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-form-section-body">
+              <div class="admin-form-cols">
+
+                <div class="admin-field-group">
+                  <label class="admin-field-label">
+                    <i class="ph ph-hash"></i> Code
+                  </label>
+                  <input type="text" class="admin-input" placeholder="Enter privilege code...">
+                </div>
+
+                <div class="admin-field-group">
+                  <label class="admin-field-label">
+                    <i class="ph ph-text-aa"></i> Name
+                  </label>
+                  <input type="text" class="admin-input" placeholder="Enter privilege name...">
+                </div>
+
+              </div>
+
+              <div class="admin-btn-row mt-2px" style="justify-content: flex-start">
+                <button class="admin-btn admin-btn-primary">
+                  <i class="ph ph-plus-circle"></i> Add
+                </button>
+
+                <button class="admin-btn admin-btn-secondary">
+                  <i class="ph ph-list-magnifying-glass"></i> View All
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Theme Script ONLY -->
+  <script src="../js/theme_manager.js"></script>
+
+  <script>
+    // Init Theme
+    ThemeManager.init();
+
+    const btn = document.getElementById("themeToggleBtn");
+    const icon = document.getElementById("themeToggleIcon");
+
+    function updateIcon() {
+      const mode = ThemeManager.getSettings().mode;
+      icon.className = mode === "dark"
+        ? "ph ph-sun font-16px"
+        : "ph ph-moon font-16px";
+    }
+
+    btn.addEventListener("click", () => {
+      const current = ThemeManager.getSettings().mode;
+      ThemeManager.setMode(current === "dark" ? "light" : "dark");
+      updateIcon();
+    });
+
+    updateIcon();
+
+    // Back Button
+    function goBack() {
+      window.location.href = "admin_dashboard.html";
+    }
+  </script>
+
+</body>
+
+</html>
