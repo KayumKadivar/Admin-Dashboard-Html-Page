@@ -1,202 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GNFC | Default Privilege</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <!-- Theme & Utilities -->
-    <link rel="stylesheet" href="../css/utilities.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/modal-ui.css">
-    <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
-    <link rel="stylesheet" href="../css/theme-vars.css">
-    
-    <!-- Core JS -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../js/theme-control.js"></script>
-    <script src="../js/admin/admin_data.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Default Privilege</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/admin/admin_data.js"></script>
 </head>
+
 <body class="admin-dashboard-layout">
-    <div class="app-layout-root">
-        <!-- Main View -->
-        <main class="app-main-view">
-            <!-- Header -->
-            <header class="app-header">
-                <div class="app-header-group">
-                  <i class="ph ph-gear-six font-20px color-blue"></i>
-                  <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
-                </div>
-                <div class="app-header-controls">
-                  <!-- Theme Toggle -->
-                  <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
-                    <i id="themeIcon" class="ph ph-moon font-16px"></i>
-                  </button>
-                  <!-- Back -->
-                  <button id="adminBackBtn" class="ui-btn-pill">
-                    <i class="ph-bold ph-arrow-u-up-left"></i>
-                    <span>Back</span>
-                  </button>
-                </div>
-            </header>
+  <div class="app-layout-root">
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <i class="ph ph-gear-six font-20px color-blue"></i>
+          <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
 
-            <!-- Content Area -->
-            <div class="app-content-area">
-                <div id="adminContent">
-                    <!-- Default Privilege View Fragment -->
-                    <div id="defaultPrivilegeViewContainer"></div>
-                </div>
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+          <!-- Default Privilege View Fragment -->
+          <div id="defaultPrivilegeViewContainer">
+            <div class="app-header-group" style="margin-bottom: 20px;">
+              <i class="ph ph-shield-star font-20px color-blue"></i>
+              <h1 class="font-16px fw-bold color-primary ls-wide">Default Privilege</h1>
             </div>
-        </main>
-    </div>
 
-    <script>
-        $(function() {
-            // --- Inline Utilities ---
-            function escapeHtml(value) {
-                const text = String(value ?? '');
-                return text
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')                    .replace(/"/g, '&quot;')
-                    .replace(/'/g, '&#39;');
-            }
+            <div>
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(87,148,242,0.12); color: #5794F2">
+                    <i class="ph-bold ph-wrench"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Tech Group Permissions</div>
+                    <div class="admin-form-section-desc">Default privileges for technical users</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body" style="padding: 0">
+                  <div class="admin-table-scroll">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th class="admin-table-head-cell">Module</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Add</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Modify</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Delete</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Eng. Remark</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Ex. Remark</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">CMS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">COMDMS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">COSTSAVING_INSTWS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">CYL</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">DOCUMENTATION</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">ELOGBOOK</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">ENG_LOG</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">ENGG_DOC</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">EXEC-DOC</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">GATEPASS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">IIMS_DOC</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">INDENT</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">INDUSTRY_INFO</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">INSTRUMENT_DATA</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">ISO</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">JBDETAIL</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">JOB_HISTORY</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">JOB_LIST</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">LAB_JOBREGISTER</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">MRS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">OFF_LOGBOOK</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">OHSAS</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">PMFORM</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">POST</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">SPPADMIN</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">SYSTEM_PM</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">TESTEQUIPMENT</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">TRAINING_DETAIL</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">UTILITY</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">VENDORDETAIL</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"
+                              checked></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
 
-            function renderTopBar(title, icon, subtitle) {
-                const iconHtml = icon
-                    ? `<span class="admin-topbar-icon"><i class="ph ${escapeHtml(icon)}"></i></span>`
-                    : '';
-                const subtitleHtml = subtitle
-                    ? `<span class="admin-topbar-subtitle">${escapeHtml(subtitle)}</span>`
-                    : '';
-                return `
-                    <div class="admin-topbar">
-                        <span class="admin-topbar-label">MENU</span>
-                        <div class="admin-topbar-left">
-                            ${iconHtml}
-                            <div class="admin-topbar-text">
-                                <h2 class="admin-topbar-title">${escapeHtml(title)}</h2>
-                                ${subtitleHtml}
-                            </div>
-                        </div>
-                        <span></span>
-                    </div>
-                `;
-            }
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
+                    <i class="ph-bold ph-clipboard-text"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">IE / SIE Group Permissions</div>
+                    <div class="admin-form-section-desc">Default privileges for inspection and engineering users</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body" style="padding: 0">
+                  <div class="admin-table-scroll">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th class="admin-table-head-cell">Module</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Add</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Modify</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Delete</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Eng. Remark</th>
+                          <th class="admin-table-head-cell text-center" style="width: 12%">Ex. Remark</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="admin-table-row">
+                          <td class="admin-table-cell font-semibold">Module</td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                          <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
 
-            function renderPermissionRows(rows) {
-                return rows.map(row => `
-                    <tr class="admin-table-row">
-                        <td class="admin-table-cell font-semibold">${escapeHtml(row.module)}</td>
-                        <td class="admin-table-cell text-center"><input type="checkbox" class="admin-checkbox"${row.add ? ' checked' : ''}></td>
-                        <td class="admin-table-cell text-center"><input type="checkbox" class="admin-checkbox"${row.modify ? ' checked' : ''}></td>
-                        <td class="admin-table-cell text-center"><input type="checkbox" class="admin-checkbox"${row.del ? ' checked' : ''}></td>
-                        <td class="admin-table-cell text-center"><input type="checkbox" class="admin-checkbox"${row.engRemark ? ' checked' : ''}></td>
-                        <td class="admin-table-cell text-center"><input type="checkbox" class="admin-checkbox"${row.exRemark ? ' checked' : ''}></td>
-                    </tr>
-                `).join('');
-            }
+              <div class="admin-btn-row mt-16px" style="justify-content: flex-start">
+                <button id="defaultPrivilegeSaveBtn" type="button" class="admin-btn admin-btn-primary">
+                  <i class="ph ph-floppy-disk"></i> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-            $('#adminBackBtn').on('click', () => {
-                window.location.href = 'admin_dashboard.html';
-            });
+  <script>
+    $(function () {
+      $('#adminBackBtn').on('click', () => {
+        window.location.href = 'admin_dashboard.html';
+      });
 
-            // --- Default Privilege Logic ---
-            const DefaultPrivilegeView = (() => {
-                'use strict';
-                const $container = $('#defaultPrivilegeViewContainer');
-
-                function render() {
-                    const html = `
-                        ${renderTopBar('Default Privilege', 'ph-shield-star', 'Set default permissions per user group')}
-                        <div class="admin-card">
-                        <div class="admin-form-section">
-                            <div class="admin-form-section-header">
-                            <div class="admin-form-section-icon" style="background: rgba(87,148,242,0.12); color: #5794F2">
-                                <i class="ph-bold ph-wrench"></i>
-                            </div>
-                            <div>
-                                <div class="admin-form-section-title">Tech Group Permissions</div>
-                                <div class="admin-form-section-desc">Default privileges for technical users</div>
-                            </div>
-                            </div>
-                            <div class="admin-form-section-body" style="padding: 0">
-                            <div class="admin-table-scroll">
-                                <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                    <th class="admin-table-head">Module</th>
-                                    <th class="admin-table-head text-center">Add</th>
-                                    <th class="admin-table-head text-center">Modify</th>
-                                    <th class="admin-table-head text-center">Delete</th>
-                                    <th class="admin-table-head text-center">Eng. Remark</th>
-                                    <th class="admin-table-head text-center">Ex. Remark</th>
-                                    </tr>
-                                </thead>
-                                <tbody>${renderPermissionRows(AdminData.defaultPrivilegeRowsTech)}</tbody>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div class="admin-form-section">
-                            <div class="admin-form-section-header">
-                            <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
-                                <i class="ph-bold ph-clipboard-text"></i>
-                            </div>
-                            <div>
-                                <div class="admin-form-section-title">IE / SIE Group Permissions</div>
-                                <div class="admin-form-section-desc">Default privileges for inspection and engineering users</div>
-                            </div>
-                            </div>
-                            <div class="admin-form-section-body" style="padding: 0">
-                            <div class="admin-table-scroll" 
-                                <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                    <th class="admin-table-head">Module</th>
-                                    <th class="admin-table-head text-center">Add</th>
-                                    <th class="admin-table-head text-center">Modify</th>
-                                    <th class="admin-table-head text-center">Delete</th>
-                                    <th class="admin-table-head text-center">Eng. Remark</th>
-                                    <th class="admin-table-head text-center">Ex. Remark</th>
-                                    </tr>
-                                </thead>
-                                <tbody>${renderPermissionRows(AdminData.defaultPrivilegeRowsIeSie)}</tbody>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div class="admin-btn-row mt-2px2px" style="justify-content: flex-start">
-                            <button id="defaultPrivilegeSaveBtn" type="button" class="admin-btn admin-btn-primary">
-                            <i class="ph ph-floppy-disk"></i> Save
-                            </button>
-                        </div>
-                        </div>
-                    `;
-                    $container.html(html);
-                }
-
-                function bind() {
-                    $('#defaultPrivilegeSaveBtn').on('click', function () {
-                        $(this).trigger('blur');
-                    });
-                }
-
-                return { init: () => { render(); bind(); } };
-            })();
-
-            DefaultPrivilegeView.init();
+      $('#defaultPrivilegeSaveBtn').on('click', function () {
+        Swal.fire({
+          icon: 'success',
+          title: 'Saved!',
+          text: 'Default privileges have been updated successfully.',
+          background: 'var(--app-panel, #181b1f)',
+          color: 'var(--app-text, #ffffff)',
+          confirmButtonColor: 'var(--typo-blue, #5794F2)'
         });
-    </script>
+      });
+    });
+  </script>
 </body>
+
 </html>

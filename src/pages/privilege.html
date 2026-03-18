@@ -25,6 +25,7 @@
 
   <!-- Core JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/theme-control.js"></script>
   <script src="../js/admin/admin_data.js"></script>
 </head>
@@ -68,17 +69,10 @@
       <div class="app-content-area">
         <div id="adminContent">
           <!-- Static Top Bar -->
-          <!-- <div class="admin-topbar">
-            <span class="admin-topbar-label">MENU</span>
-            <div class="admin-topbar-left">
-              <span class="admin-topbar-icon"><i class="ph ph-shield-check"></i></span>
-              <div class="admin-topbar-text">
-                <h2 class="admin-topbar-title">Master - Privilege</h2>
-                <span class="admin-topbar-subtitle">Manage role-based access control groups</span>
-              </div>
+            <div class="app-header-group" style="margin-bottom: 20px;">
+              <i class="ph ph-shield-check font-20px color-blue"></i>
+              <h1 class="font-16px fw-bold color-primary ls-wide">Master - Privilege</h1>
             </div>
-            <span></span>
-          </div> -->
 
           <!-- Static Content -->
           <div id="privilegeViewContainer">
@@ -205,6 +199,95 @@
 
         function bind() {
           $('#adminBackBtn').on('click', goBack);
+
+          $('#privilegeAddBtn').on('click', function () {
+            const code = $('#privilegeCodeInput').val().trim();
+            const name = $('#privilegeNameInput').val().trim();
+
+            if (!code || !name) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Empty Fields',
+                text: 'Please fill both Code and Name fields.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+              return;
+            }
+
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want to add Privilege: " + name + " (" + code + ")?",
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: 'var(--typo-blue, #5794F2)',
+              cancelButtonColor: 'var(--app-border, #23272e)',
+              confirmButtonText: 'Yes, add it!',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Clear inputs
+                $('#privilegeCodeInput').val('');
+                $('#privilegeNameInput').val('');
+
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Added!',
+                  text: 'Privilege has been added successfully.',
+                  background: 'var(--app-panel, #181b1f)',
+                  color: 'var(--app-text, #ffffff)',
+                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
+                });
+              }
+            });
+          });
+
+          $('#privilegeDeleteBtn').on('click', function () {
+            const $selected = $('input[name="privilegeSelected"]:checked');
+            
+            if ($selected.length === 0) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'No Selection',
+                text: 'Please select a privilege row to delete.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+              return;
+            }
+
+            const row = $selected.closest('tr');
+            const code = $selected.val();
+
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want to delete Privilege Code: " + code + "?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#F2495C', // Danger Red
+              cancelButtonColor: 'var(--app-border, #23272e)',
+              confirmButtonText: 'Yes, delete it!',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Remove row from DOM (for visual static demo)
+                row.remove();
+
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Deleted!',
+                  text: 'Privilege has been removed.',
+                  background: 'var(--app-panel, #181b1f)',
+                  color: 'var(--app-text, #ffffff)',
+                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
+                });
+              }
+            });
+          });
         }
 
         return { init: bind };
