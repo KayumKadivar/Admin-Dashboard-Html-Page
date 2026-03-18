@@ -13,7 +13,7 @@
     rel="stylesheet">
 
   <!-- Icons -->
-  <script src="../js/phosphor-icons.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -22,36 +22,10 @@
   <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
   <link rel="stylesheet" href="../css/theme-vars.css">
 
+
   <!-- Core JS -->
-  <script src="../js/jquery-3.7.1.min.js"></script>
-  <style>
-    .custom-alert-overlay {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(4px);
-        display: none; align-items: center; justify-content: center; z-index: 10000;
-    }
-    .custom-alert-box {
-        background: var(--app-panel, #181b1f); border: 1px solid var(--app-border, #23272e);
-        border-radius: 12px; padding: 24px; width: 360px; text-align: center;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-        animation: alertScale 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-    }
-    @keyframes alertScale { 0% { transform: scale(0.88); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-    .custom-alert-icon { margin-bottom: 16px; display: flex; justify-content: center; }
-    .custom-alert-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; color: var(--app-text, #ffffff); }
-    .custom-alert-desc { font-size: 14px; color: var(--app-text-muted, #a0aec0); margin-bottom: 24px; line-height: 1.4; }
-    .custom-alert-actions { display: flex; gap: 12px; justify-content: center; }
-    .custom-alert-actions .admin-btn { padding: 8px 18px; font-size: 18px; font-weight: 500;}
-    .admin-input-error { border-color: #F2495C !important; }
-    .admin-field-group { position: relative; }
-    .admin-input-error-msg {
-        position: absolute;
-        bottom: -24px;
-        left: 0;
-        font-size: 18px !important;
-        white-space: nowrap;
-    }
-  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/theme-control.js"></script>
   <script src="../js/sidebar.js"></script>
   <script src="../js/admin/admin_data.js"></script>
@@ -113,12 +87,10 @@
                     <div class="admin-field-group w-300px mb-0">
                       <label for="privilegeCodeInput" class="admin-field-label"><i class="ph ph-hash"></i> Code</label>
                       <input id="privilegeCodeInput" type="text" class="admin-input" placeholder="Enter privilege code...">
-                      <div class="admin-input-error-msg" style="color: #F2495C; display: none;">Code is required</div>
                     </div>
                     <div class="admin-field-group w-300px mb-0">
                       <label for="privilegeNameInput" class="admin-field-label"><i class="ph ph-text-aa"></i> Name</label>
                       <input id="privilegeNameInput" type="text" class="admin-input" placeholder="Enter privilege name...">
-                      <div class="admin-input-error-msg" style="color: #F2495C; display: none;">Name is required</div>
                     </div>
                     <button id="privilegeAddBtn" type="button" class="admin-btn admin-btn-primary">
                       <i class="ph ph-plus-circle"></i> Add
@@ -232,6 +204,7 @@
                   </tbody>
                 </table>
               </div>
+<!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
@@ -246,43 +219,6 @@
     }
 
     $(function () {
-      // Custom Alert Helper mimicking SweetAlert syntax
-      const CustomAlert = {
-        show: function (options) {
-          return new Promise((resolve) => {
-            const $overlay = $('#customAlert');
-            $overlay.find('.custom-alert-title').text(options.title || '');
-            $overlay.find('.custom-alert-desc').text(options.text || '');
-            
-            let iconHtml = '';
-            $('#customAlertConfirm').css('background', 'var(--typo-blue, #5794F2)').text(options.confirmButtonText || 'OK');
-            $('#customAlertCancel').hide();
-
-            if (options.icon === 'warning') {
-              // Custom SVG for Danger/Warning
-              iconHtml = `<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#F2495C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
-              if (options.showCancelButton) $('#customAlertCancel').show();
-              $('#customAlertConfirm').css('background', '#F2495C');
-            } else if (options.icon === 'success') {
-              // Custom SVG for Success
-              iconHtml = `<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#48BB78" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-            }
-
-            $overlay.find('.custom-alert-icon').html(iconHtml);
-            $overlay.css('display', 'flex');
-
-            $('#customAlertConfirm').off('click').on('click', function () {
-              $overlay.hide();
-              resolve({ isConfirmed: true });
-            });
-
-            $('#customAlertCancel').off('click').on('click', function () {
-              $overlay.hide();
-              resolve({ isConfirmed: false });
-            });
-          });
-        }
-      };
       // --- Privilege Logic ---
       const PrivilegeManager = (() => {
         'use strict';
@@ -296,24 +232,19 @@
             const code = $('#privilegeCodeInput').val().trim();
             const name = $('#privilegeNameInput').val().trim();
 
-            let isValid = true;
-            if (!code) {
-              $('#privilegeCodeInput').addClass('admin-input-error').siblings('.admin-input-error-msg').show();
-              isValid = false;
-            } else {
-              $('#privilegeCodeInput').removeClass('admin-input-error').siblings('.admin-input-error-msg').hide();
+            if (!code || !name) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Empty Fields',
+                text: 'Please fill both Code and Name fields.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+              return;
             }
 
-            if (!name) {
-              $('#privilegeNameInput').addClass('admin-input-error').siblings('.admin-input-error-msg').show();
-              isValid = false;
-            } else {
-              $('#privilegeNameInput').removeClass('admin-input-error').siblings('.admin-input-error-msg').hide();
-            }
-
-            if (!isValid) return;
-
-            CustomAlert.show({
+            Swal.fire({
               icon: 'success',
               title: 'Added!',
               text: 'Privilege has been added successfully.',
@@ -332,7 +263,7 @@
             const row = $(this).closest('tr');
             const code = row.find('td:first-child').text().trim(); // Get Code from first cell
             
-            CustomAlert.show({
+            Swal.fire({
               title: 'Are you sure?',
               text: "Do you want to delete Privilege Code: " + code + "?",
               icon: 'warning',
@@ -343,7 +274,7 @@
             }).then((result) => {
               if (result.isConfirmed) {
                 row.remove();
-                CustomAlert.show({
+                Swal.fire({
                   icon: 'success',
                   title: 'Deleted!',
                   text: 'Privilege has been removed.',
@@ -362,18 +293,6 @@
       PrivilegeManager.init();
     });
   </script>
-  <!-- Custom Alert Overlay -->
-  <div id="customAlert" class="custom-alert-overlay">
-    <div class="custom-alert-box">
-      <div class="custom-alert-icon"></div>
-      <div class="custom-alert-title"></div>
-      <div class="custom-alert-desc"></div>
-      <div class="custom-alert-actions">
-        <button id="customAlertCancel" class="admin-btn admin-btn-secondary" style="display:none">Cancel</button>
-        <button id="customAlertConfirm" class="admin-btn admin-btn-primary">OK</button>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>
