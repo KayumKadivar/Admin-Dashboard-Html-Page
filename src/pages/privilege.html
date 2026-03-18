@@ -1,159 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GNFC | Master - Privilege</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-  <!-- Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/typography.css">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/modal-ui.css">
-  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
-  <link rel="stylesheet" href="../css/pages/utilities.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNFC | Master - Privilege</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Theme & Typography -->
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/modal-ui.css">
+    <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/theme-vars.css">
+    
+    <!-- Core JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/theme-control.js"></script>
+    <script src="../js/admin/admin_data.js"></script>
 </head>
-
 <body class="admin-dashboard-layout">
-
-  <div class="app-layout-root">
-    <main class="app-main-view">
-
-      <!-- Header -->
-      <header class="app-header">
-        <div class="app-header-group">
-          <i class="ph ph-gear-six font-20px color-blue"></i>
-          <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
-        </div>
-
-        <div class="app-header-controls">
-
-          <!-- Theme Toggle -->
-          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
-            <i id="themeToggleIcon" class="ph ph-moon font-16px"></i>
-          </button>
-
-          <!-- Back -->
-          <button onclick="goBack()" class="ui-btn-pill">
-            <i class="ph-bold ph-arrow-u-up-left"></i>
-            <span>Back</span>
-          </button>
-        </div>
-      </header>
-
-      <!-- Content -->
-      <div class="app-content-area">
-
-        <!-- Top Bar -->
-        <!-- <div class="admin-topbar">
-          <span class="admin-topbar-label">MENU</span>
-          <div class="admin-topbar-left">
-            <span class="admin-topbar-icon">
-              <i class="ph ph-shield-check"></i>
-            </span>
-            <div class="admin-topbar-text">
-              <h2 class="admin-topbar-title">Master - Privilege</h2>
-              <span class="admin-topbar-subtitle">
-                Manage role-based access control groups
-              </span>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Card -->
-        <div class="admin-card">
-          <div class="admin-form-section">
-
-            <div class="admin-form-section-header">
-              <div class="admin-form-section-icon" style="background: rgba(183,148,244,0.12); color: #B794F4">
-                <i class="ph-bold ph-plus-circle"></i>
-              </div>
-              <div>
-                <div class="admin-form-section-title">Add / Search Privilege</div>
-                <div class="admin-form-section-desc">
-                  Add a new privilege group or search existing records
+    <div class="app-layout-root">
+        <!-- Main View -->
+        <main class="app-main-view">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="app-header-group">
+                  <i class="ph ph-gear-six font-20px color-blue"></i>
+                  <h1 class="font-16px fw-bold color-primary ls-wide">Administrator</h1>
                 </div>
-              </div>
-            </div>
+                <div class="app-header-controls">
+                  <!-- Font Size Controls -->
+                  <div class="ui-control-set">
+                    <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+                      <i class="ph-bold ph-text-aa font-12px"></i>
+                    </button>
+                    <div class="ui-divider-v"></div>
+                    <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+                      <i class="ph-bold ph-text-aa font-16px"></i>
+                    </button>
+                  </div>
 
-            <div class="admin-form-section-body">
-              <div class="admin-form-cols">
-
-                <div class="admin-field-group">
-                  <label class="admin-field-label">
-                    <i class="ph ph-hash"></i> Code
-                  </label>
-                  <input type="text" class="admin-input" placeholder="Enter privilege code...">
+                  <!-- Theme Toggle -->
+                  <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+                    <i id="themeIcon" class="ph ph-moon font-16px"></i>
+                  </button>
+                  
+                  <!-- Back -->
+                  <button id="adminBackBtn" class="ui-btn-pill">
+                    <i class="ph-bold ph-arrow-u-up-left"></i>
+                    <span>Back</span>
+                  </button>
                 </div>
+            </header>
 
-                <div class="admin-field-group">
-                  <label class="admin-field-label">
-                    <i class="ph ph-text-aa"></i> Name
-                  </label>
-                  <input type="text" class="admin-input" placeholder="Enter privilege name...">
+            <!-- Content Area -->
+            <div class="app-content-area">
+                <div id="adminContent">
+                    <!-- Privilege View Fragment -->
+                    <div id="privilegeViewContainer"></div>
                 </div>
-
-              </div>
-
-              <div class="admin-btn-row mt-2px" style="justify-content: flex-start">
-                <button class="admin-btn admin-btn-primary">
-                  <i class="ph ph-plus-circle"></i> Add
-                </button>
-
-                <button class="admin-btn admin-btn-secondary">
-                  <i class="ph ph-list-magnifying-glass"></i> View All
-                </button>
-              </div>
-
             </div>
-          </div>
-        </div>
+        </main>
+    </div>
 
-      </div>
+    <!-- Modal Root -->
+    <div id="adminModalRoot" class="hidden"></div>
 
-    </main>
-  </div>
+    <script>
+        // Back Button
+        function goBack() {
+            window.location.href = "admin_dashboard.html";
+        }
 
-  <!-- Theme Script ONLY -->
-  <script src="../js/theme_manager.js"></script>
+        $(function() {
+            // --- Inline Utilities ---
+            function escapeHtml(value) {
+                const text = String(value ?? '');
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
 
-  <script>
-    // Init Theme
-    ThemeManager.init();
+            function showAdminModal(html) {
+                const $root = $('#adminModalRoot');
+                if (!$root.length) return $root;
+                $root.html(html).removeClass('hidden');
+                $root.find('.gnfc-modal-overlay').addClass('is-open');
 
-    const btn = document.getElementById("themeToggleBtn");
-    const icon = document.getElementById("themeToggleIcon");
+                $root
+                    .off('click.adminModal')
+                    .on('click.adminModal', '[data-close-modal]', () => closeModal());
+                $(document)
+                    .off('keydown.adminModal')
+                    .on('keydown.adminModal', e => {
+                        if (e.key === 'Escape') closeModal();
+                    });
+                return $root;
+            }
 
-    function updateIcon() {
-      const mode = ThemeManager.getSettings().mode;
-      icon.className = mode === "dark"
-        ? "ph ph-sun font-16px"
-        : "ph ph-moon font-16px";
-    }
+            function closeModal() {
+                const $root = $('#adminModalRoot');
+                if (!$root.length) return;
+                $root.find('.gnfc-modal-overlay').removeClass('is-open');
+                setTimeout(() => {
+                    $root.addClass('hidden').empty().off('click.adminModal');
+                }, 150);
+                $(document).off('keydown.adminModal');
+            }
 
-    btn.addEventListener("click", () => {
-      const current = ThemeManager.getSettings().mode;
-      ThemeManager.setMode(current === "dark" ? "light" : "dark");
-      updateIcon();
-    });
+            function renderTopBar(title, icon, subtitle) {
+                const iconHtml = icon
+                    ? `<span class="admin-topbar-icon"><i class="ph ${escapeHtml(icon)}"></i></span>`
+                    : '';
+                const subtitleHtml = subtitle
+                    ? `<span class="admin-topbar-subtitle">${escapeHtml(subtitle)}</span>`
+                    : '';
+                return `
+                    <div class="admin-topbar">
+                        <span class="admin-topbar-label">MENU</span>
+                        <div class="admin-topbar-left">
+                            ${iconHtml}
+                            <div class="admin-topbar-text">
+                                <h2 class="admin-topbar-title">${escapeHtml(title)}</h2>
+                                ${subtitleHtml}
+                            </div>
+                        </div>
+                        <span></span>
+                    </div>
+                `;
+            }
 
-    updateIcon();
+            // Theme Toggle
+            const $themeIcon = $('#themeIcon');
+            function updateThemeIcon() {
+                if (!$themeIcon.length) return;
+                const settings = ThemeControl.getSettings();
+                $themeIcon.attr('class', settings.mode === 'dark' ? 'ph ph-sun font-16px' : 'ph ph-moon font-16px');
+            }
 
-    // Back Button
-    function goBack() {
-      window.location.href = "admin_dashboard.html";
-    }
-  </script>
+            $('#themeToggleBtn').on('click', () => {
+                const settings = ThemeControl.getSettings();
+                ThemeControl.setMode(settings.mode === 'dark' ? 'light' : 'dark');
+                updateThemeIcon();
+            });
 
+            // Font Size Controls
+            $('#fontDecreaseBtn').on('click', () => {
+                ThemeControl.decreaseFontSize();
+            });
+
+            $('#fontIncreaseBtn').on('click', () => {
+                ThemeControl.increaseFontSize();
+            });
+
+            $('#adminBackBtn').on('click', () => {
+                goBack();
+            });
+
+            // Initial theme icon update and event listener
+            updateThemeIcon();
+            $(window).on('themeChanged', updateThemeIcon);
+
+            // --- Privilege Logic ---
+            const PrivilegeView = (() => {
+                'use strict';
+                const $container = $('#privilegeViewContainer');
+
+                function render() {
+                    const html = `
+                        ${renderTopBar('Master - Privilege', 'ph-shield-check', 'Manage role-based access control groups')}
+                        <div class="admin-card">
+                        <div class="admin-form-section">
+                            <div class="admin-form-section-header">
+                            <div class="admin-form-section-icon" style="background: rgba(183,148,244,0.12); color: #B794F4">
+                                <i class="ph-bold ph-plus-circle"></i>
+                            </div>
+                            <div>
+                                <div class="admin-form-section-title">Add / Search Privilege</div>
+                                <div class="admin-form-section-desc">Add a new privilege group or search existing records</div>
+                            </div>
+                            </div>
+                            <div class="admin-form-section-body">
+                            <div class="admin-form-cols">
+                                <div class="admin-field-group">
+                                <label for="privilegeCodeInput" class="admin-field-label"><i class="ph ph-hash"></i> Code</label>
+                                <input id="privilegeCodeInput" type="text" class="admin-input" placeholder="Enter privilege code...">
+                                </div>
+                                <div class="admin-field-group">
+                                <label for="privilegeNameInput" class="admin-field-label"><i class="ph ph-text-aa"></i> Name</label>
+                                <input id="privilegeNameInput" type="text" class="admin-input" placeholder="Enter privilege name...">
+                                </div>
+                            </div>
+                            <div class="admin-btn-row mt-2px" style="justify-content: flex-start">
+                                <button id="privilegeAddBtn" type="button" class="admin-btn admin-btn-primary">
+                                <i class="ph ph-plus-circle"></i> Add
+                                </button>
+                                <button id="privilegeViewBtn" type="button" class="admin-btn admin-btn-secondary">
+                                <i class="ph ph-list-magnifying-glass"></i> View All
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    `;
+                    $container.html(html);
+                }
+
+                function filterRows(codeText, nameText) {
+                    const cq = String(codeText || '').trim().toLowerCase();
+                    const nq = String(nameText || '').trim().toLowerCase();
+                    return AdminData.privilegeMasterRows.filter(row =>
+                        (!cq || row.code.toLowerCase().includes(cq)) &&
+                        (!nq || row.name.toLowerCase().includes(nq))
+                    );
+                }
+
+                function buildTableRows(rows) {
+                    if (!rows.length) return `<tr><td colspan="3" class="admin-table-cell text-center color-hint py-4">No records found.</td></tr>`;
+                    return rows.map(row => `
+                        <tr class="admin-table-row">
+                        <td class="admin-table-cell text-center">
+                            <input type="radio" name="privilegeModalSelected" value="${escapeHtml(row.code)}" class="admin-radio">
+                        </td>
+                        <td class="admin-table-cell font-semibold">${escapeHtml(row.code)}</td>
+                        <td class="admin-table-cell">${escapeHtml(row.name)}</td>
+                        </tr>
+                    `).join('');
+                }
+
+                function openModal(codeFilter, nameFilter) {
+                    const rows = filterRows(codeFilter, nameFilter);
+                    if (rows.length) rows[0]._selected = true;
+
+                    const html = `
+                        <div class="gnfc-modal-overlay">
+                        <div class="gnfc-modal-shell gnfc-modal-shell--medium">
+                            <div class="gnfc-modal-header">
+                            <div>
+                                <h3 class="gnfc-modal-title">Master - Privilege [ View ]</h3>
+                                <p class="gnfc-modal-subtitle">Search Results</p>
+                            </div>
+                            <button type="button" class="gnfc-modal-close" data-close-modal><i class="ph ph-x"></i></button>
+                            </div>
+                            <div class="gnfc-modal-body">
+                            <div class="admin-table-scroll" style="max-height: 400px;">
+                                <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                    <th class="admin-table-head-cell w-12 text-center">Sel</th>
+                                    <th class="admin-table-head-cell">Code</th>
+                                    <th class="admin-table-head-cell">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>${buildTableRows(rows)}</tbody>
+                                </table>
+                            </div>
+                            </div>
+                            <div class="gnfc-modal-footer gnfc-modal-footer--space-between">
+                                <button type="button" class="gnfc-modal-btn gnfc-modal-btn-danger" id="privilegeModalDeleteBtn">
+                                <i class="ph ph-trash"></i> Delete
+                                </button>
+                                <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" data-close-modal>Close</button>
+                            </div>
+                        </div>
+                        </div>
+                    `;
+
+                    showAdminModal(html);
+                    $('#privilegeModalDeleteBtn').on('click', function () {
+                        $(this).trigger('blur');
+                    });
+                }
+
+                function bind() {
+                    const $codeInput = $('#privilegeCodeInput');
+                    const $nameInput = $('#privilegeNameInput');
+                    const $addBtn = $('#privilegeAddBtn');
+                    const $viewBtn = $('#privilegeViewBtn');
+
+                    $addBtn.on('click', () => {
+                        const code = String($codeInput.val() || '').trim();
+                        const name = String($nameInput.val() || '').trim();
+                        if (!code || !name) { $codeInput.trigger('focus'); return; }
+                        const exists = AdminData.privilegeMasterRows.some(r => r.code === code);
+                        if (!exists) AdminData.privilegeMasterRows.push({ code, name });
+                        $codeInput.val('');
+                        $nameInput.val('');
+                        $codeInput.trigger('focus');
+                    });
+
+                    const openFilteredModal = () => openModal($codeInput.val(), $nameInput.val());
+                    $viewBtn.on('click', openFilteredModal);
+                    $codeInput.on('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); openFilteredModal(); } });
+                    $nameInput.on('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); openFilteredModal(); } });
+                }
+
+                return { init: () => { render(); bind(); } };
+            })();
+
+            PrivilegeView.init();
+        });
+    </script>
 </body>
-
 </html>
