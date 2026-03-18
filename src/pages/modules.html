@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Modules</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/theme-control.js"></script>
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <!-- <i class="ph ph-gear-six"></i> -->
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" onclick="window.location.href='admin_dashboard.html'">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+          <!-- Page Header -->
+          <div class="app-header-group" style="margin-bottom: 20px;">
+            <i class="ph ph-squares-four font-20px color-blue"></i>
+            <h1 class="font-16px fw-bold color-primary ls-wide">Master - Modules</h1>
+          </div>
+
+          <!-- Static Content -->
+          <div id="modulesViewContainer">
+            <!-- Add / Search Module Form Section -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
+                    <i class="ph-bold ph-plus-circle"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Add Module</div>
+                    <div class="admin-form-section-desc">Add a new system module to the registry</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-form-cols">
+                    <div class="admin-field-group" style="max-width: 500px">
+                      <label for="moduleMasterNameInput" class="admin-field-label"><i class="ph ph-puzzle-piece"></i> Module Name</label>
+                      <input id="moduleMasterNameInput" type="text" class="admin-input" placeholder="Enter module name...">
+                    </div>
+                  </div>
+                  <div class="admin-btn-row mt-16px" style="justify-content: flex-start">
+                    <button id="moduleMasterAddBtn" type="button" class="admin-btn admin-btn-primary">
+                      <i class="ph ph-plus-circle"></i> Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simplified In-Page Results Section -->
+            <div id="modulesResultsSection" class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                  <i class="ph-bold ph-list-bullets"></i>
+                </div>
+                <div>
+                  <div class="admin-form-section-title">Module List</div>
+                  <div class="admin-form-section-desc">All System Modules</div>
+                </div>
+              </div>
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell w-12 text-center">Sel</th>
+                      <th class="admin-table-head-cell">Module Name</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modulesTableBody">
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="CMS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">CMS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="COMDMS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">COMDMS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="COSTSAVING_INSTWS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">COSTSAVING_INSTWS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="CYL" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">CYL</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="DOCUMENTATION" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">DOCUMENTATION</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="ELOGBOOK" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">ELOGBOOK</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="ENG_LOG" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">ENG_LOG</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="ENGG_DOC" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">ENGG_DOC</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="EXEC-DOC" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">EXEC-DOC</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="GATEPASS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">GATEPASS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="IIMS_DOC" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">IIMS_DOC</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="INDENT" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">INDENT</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="INDUSTRY_INFO" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">INDUSTRY_INFO</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="INSTRUMENT_DATA" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">INSTRUMENT_DATA</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="ISO" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">ISO</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="JBDETAIL" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">JBDETAIL</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="JOB_HISTORY" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">JOB_HISTORY</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="JOB_LIST" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">JOB_LIST</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="LAB_JOBREGISTER" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">LAB_JOBREGISTER</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="MRS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">MRS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="OFF_LOGBOOK" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">OFF_LOGBOOK</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="OHSAS" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">OHSAS</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="PMFORM" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">PMFORM</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="POST" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">POST</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="SPPADMIN" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">SPPADMIN</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="SYSTEM_PM" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">SYSTEM_PM</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="TESTEQUIPMENT" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">TESTEQUIPMENT</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="TRAINING_DETAIL" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">TRAINING_DETAIL</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="UTILITY" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">UTILITY</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center"><input type="radio" name="moduleSelected" value="VENDORDETAIL" class="radio-input"></td>
+                      <td class="admin-table-cell font-semibold">VENDORDETAIL</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="admin-btn-row mt-16px">
+                <button type="button" class="admin-btn admin-btn-danger" id="moduleDeleteBtn">
+                  <i class="ph ph-trash"></i> Delete Selected
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    $(function () {
+      // Add logic
+      $('#moduleMasterAddBtn').on('click', function () {
+        const name = $('#moduleMasterNameInput').val().trim();
+
+        if (!name) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Empty Field',
+            text: 'Please fill the Module Name.',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)'
+          });
+          return;
+        }
+
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Do you want to add Module: " + name + "?",
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: 'var(--typo-blue, #5794F2)',
+          background: 'var(--app-panel, #181b1f)',
+          color: 'var(--app-text, #ffffff)'
+        })
+      });
+
+      // Delete logic
+      $('#moduleDeleteBtn').on('click', function () {
+        const selected = $('input[name="moduleSelected"]:checked');
+        if (!selected.length) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'No Selection',
+            text: 'Please select a module to delete.',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)'
+          });
+          return;
+        }
+
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#E53E3E',
+          background: 'var(--app-panel, #181b1f)',
+          color: 'var(--app-text, #ffffff)'
+        }).then((result) => {
+          if (result.isConfirmed) {
+             selected.closest('tr').remove();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
