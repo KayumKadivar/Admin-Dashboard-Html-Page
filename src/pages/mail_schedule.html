@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Mail Schedule</title>
+
+  <!-- Icons -->
+  <script src="../js/vendor/phosphor-icons.min.js"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+  <style>
+    /* Injected supporting table styles for mail schedule form */
+    .admin-form-table {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .admin-form-table-row {
+      display: flex;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--app-border, rgba(255, 255, 255, 0.05));
+      padding-bottom: 16px;
+    }
+    .admin-form-table-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .admin-form-table-label {
+      width: 140px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--typo-secondary, #d1d5db);
+      padding-top: 10px;
+    }
+    .admin-form-table-value {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  </style>
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+
+    <!-- Main View -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- List View Container -->
+          <div id="mailScheduleListView" class="changePasswordViewContainer">
+            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
+              <div class="app-header-group">
+                <i class="ph ph-calendar-check font-24px" style="color: var(--typo-blue, #5794F2);"></i>
+                <h2>Mail Schedule</h2>
+              </div>
+            </div>
+            
+            <div class="admin-card">
+              <div class="max-w-xl mx-auto" style="padding: 24px 0;">
+                <label for="mailScheduleSelect" class="admin-field-label mb-8px">Select Existing Schedule</label>
+                <select id="mailScheduleSelect" class="admin-select w-full">
+                  <option value="sc-1">Weekly Safety Report &nbsp;&nbsp;&nbsp; Next due: 25/03/2026</option>
+                  <option value="sc-2">Daily Plant Metric &nbsp;&nbsp;&nbsp; Next due: 20/03/2026</option>
+                  <option value="sc-3">Monthly Attendance &nbsp;&nbsp;&nbsp; Next due: 01/04/2026</option>
+                </select>
+                <div class="admin-btn-row mt-16px" style="justify-content: flex-start;">
+                  <button id="mailScheduleEditBtn" type="button" class="admin-btn admin-btn-secondary">
+                    <i class="ph ph-pencil"></i> Edit
+                  </button>
+                  <button id="mailScheduleAddBtn" type="button" class="admin-btn admin-btn-primary">
+                    <i class="ph ph-plus-circle"></i> Add New
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form View Container (Hidden Default) -->
+          <div id="mailScheduleFormView" style="display: none;">
+            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
+              <div class="app-header-group">
+                <i class="ph ph-calendar-check font-24px" style="color: var(--typo-blue, #5794F2);"></i>
+                <h2 id="formViewTitle">Add Mail Schedule</h2>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-form-table">
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">To:</label>
+                  <div class="admin-form-table-value">
+                    <select id="mailScheduleToType" class="admin-select">
+                      <option value="All">All</option>
+                      <option value="Specific">Specific User</option>
+                      <option value="Group">Group</option>
+                    </select>
+                    <input id="mailScheduleToAddress" type="text" class="admin-input mt-8px" placeholder="Email address...">
+                  </div>
+                </div>
+                
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">Sender:</label>
+                  <div class="admin-form-table-value">
+                    <select id="mailScheduleSender" class="admin-select">
+                      <option value="noreply@gnfc.in">noreply@gnfc.in</option>
+                      <option value="admin@gnfc.in">admin@gnfc.in</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">Frequency:</label>
+                  <div class="admin-form-table-value flex items-center gap-8px" style="flex-direction: row;">
+                    <input id="mailScheduleFrequency" type="number" min="0" value="0" class="admin-input" style="width: 100px;">
+                    <span class="font-13px fw-semibold color-label">Days</span>
+                  </div>
+                </div>
+
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">ON:</label>
+                  <div class="admin-form-table-value flex flex-wrap items-center gap-8px" style="flex-direction: row;">
+                    <span class="font-13px fw-semibold color-label">D</span>
+                    <select id="mailScheduleDay" class="admin-select" style="width: 80px; height: 38px; padding: 0 8px;">
+                      <option value="">-</option>
+                      <!-- loop options 1 to 31 inside script -->
+                    </select>
+                    <span class="font-13px fw-semibold color-label">M</span>
+                    <select id="mailScheduleMonth" class="admin-select" style="width: 80px; height: 38px; padding: 0 8px;">
+                      <option value="">-</option>
+                      <!-- loop options 1 to 12 inside script -->
+                    </select>
+                    <span class="font-13px fw-semibold color-label">Y</span>
+                    <select id="mailScheduleYear" class="admin-select" style="width: 100px; height: 38px; padding: 0 8px;">
+                      <option value="">-</option>
+                    </select>
+                    <span class="font-13px fw-bold color-label">Report:</span>
+                    <input id="mailScheduleReport" type="text" class="admin-input flex-1" placeholder="Enter report name...">
+                  </div>
+                </div>
+
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">Subject:</label>
+                  <div class="admin-form-table-value">
+                    <input id="mailScheduleSubject" type="text" class="admin-input" placeholder="Subject line...">
+                  </div>
+                </div>
+
+                <div class="admin-form-table-row">
+                  <label class="admin-form-table-label">Message:</label>
+                  <div class="admin-form-table-value">
+                    <textarea id="mailScheduleMessage" rows="5" class="admin-textarea" placeholder="Enter message body..."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="admin-btn-row mt-24px" style="justify-content: flex-start;">
+                <button id="mailScheduleSaveBtn" type="button" class="admin-btn admin-btn-primary">
+                  <i class="ph ph-floppy-disk"></i> Save
+                </button>
+                <button id="mailScheduleBackBtn" type="button" class="admin-btn admin-btn-secondary">
+                  <i class="ph ph-arrow-left"></i> Back
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const MailScheduleView = (() => {
+      'use strict';
+
+      // Back to dashboard
+      $('#adminBackBtn').on('click', function () {
+        window.location.href = 'admin_dashboard.html';
+      });
+
+      function init() {
+        populateSelectors();
+
+        // Add New Toggler
+        $('#mailScheduleAddBtn').on('click', function () {
+          $('#formViewTitle').text('Add Mail Schedule');
+          resetForm();
+          $('#mailScheduleSaveBtn').html('<i class="ph ph-floppy-disk"></i> Add');
+          toggleView('form');
+        });
+
+        // Edit Toggler
+        $('#mailScheduleEditBtn').on('click', function () {
+          const id = $('#mailScheduleSelect').val();
+          if (!id) return;
+          
+          $('#formViewTitle').text('Edit Mail Schedule');
+          $('#mailScheduleSaveBtn').html('<i class="ph ph-floppy-disk"></i> Update');
+          loadFormValuesWithFakeData(id);
+          toggleView('form');
+        });
+
+        // Save Submit
+        $('#mailScheduleSaveBtn').on('click', function () {
+          Swal.fire({
+            icon: 'success',
+            title: 'Saved!',
+            text: 'Schedule updated successfully.',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)',
+            confirmButtonColor: 'var(--typo-blue, #5794F2)'
+          }).then(() => {
+            toggleView('list');
+          });
+        });
+
+        // Back to list Toggler
+        $('#mailScheduleBackBtn').on('click', function () {
+          toggleView('list');
+        });
+
+        function toggleView(mode) {
+          if (mode === 'form') {
+            $('#mailScheduleListView').hide();
+            $('#mailScheduleFormView').show();
+          } else {
+            $('#mailScheduleFormView').hide();
+            $('#mailScheduleListView').show();
+          }
+        }
+
+        function populateSelectors() {
+          const $day = $('#mailScheduleDay');
+          const $month = $('#mailScheduleMonth');
+          const $year = $('#mailScheduleYear');
+
+          for (let i = 1; i <= 31; i++) $day.append(`<option value="${i}">${i}</option>`);
+          for (let i = 1; i <= 12; i++) $month.append(`<option value="${i}">${i}</option>`);
+          
+          const currentYear = new Date().getFullYear();
+          for (let i = 0; i < 5; i++) $year.append(`<option value="${currentYear+i}">${currentYear+i}</option>`);
+        }
+
+        function resetForm() {
+          $('#mailScheduleToAddress, #mailScheduleFrequency, #mailScheduleReport, #mailScheduleSubject, #mailScheduleMessage').val('');
+          $('#mailScheduleDay, #mailScheduleMonth, #mailScheduleYear').val('');
+        }
+
+        function loadFormValuesWithFakeData(id) {
+          const text = $('#mailScheduleSelect option:selected').text();
+          const title = text.split(/\s{2,}/)[0].trim();
+          
+          $('#mailScheduleReport').val(title);
+          $('#mailScheduleSubject').val(`${title} Automatic Mail`);
+          $('#mailScheduleMessage').val(`This is a template message for ${title}.`);
+          $('#mailScheduleToAddress').val('admin@gnfc.in');
+        }
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+      MailScheduleView.init();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Login Information</title>
+
+  <!-- Icons -->
+  <script src="../js/vendor/phosphor-icons.min.js"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+
+    <!-- Main View -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- Login Information Section -->
+          <div id="loginInfoViewContainer" class="changePasswordViewContainer">
+            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
+              <div class="app-header-group">
+                <i class="ph ph-sign-in font-24px" style="color: var(--typo-blue, #5794F2);"></i>
+                <h2>Login Information</h2>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <!-- Result Table -->
+              <div class="admin-table-scroll" style="max-height:68vh">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell w-16 text-center">Sr</th>
+                      <th class="admin-table-head-cell">User Name</th>
+                      <th class="admin-table-head-cell">ECNO</th>
+                      <th class="admin-table-head-cell text-center" style="width: 100px;">Group</th>
+                      <th class="admin-table-head-cell">Last Login</th>
+                      <th class="admin-table-head-cell">Machine Address</th>
+                      <th class="admin-table-head-cell text-center" style="width: 100px;">Hit Count</th>
+                    </tr>
+                  </thead>
+                  <tbody id="loginInfoTableBody">
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center">1</td>
+                      <td class="admin-table-cell font-semibold">RAHUL SHARMA</td>
+                      <td class="admin-table-cell">10204</td>
+                      <td class="admin-table-cell text-center"><span class="admin-status-badge info">Tech</span></td>
+                      <td class="admin-table-cell">23/02/2026 08:30:15</td>
+                      <td class="admin-table-cell">10.10.70.20</td>
+                      <td class="admin-table-cell text-center">1000</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center">2</td>
+                      <td class="admin-table-cell font-semibold">PRIYA PATEL</td>
+                      <td class="admin-table-cell">10355</td>
+                      <td class="admin-table-cell text-center"><span class="admin-status-badge info">CM</span></td>
+                      <td class="admin-table-cell">23/02/2026 09:14:00</td>
+                      <td class="admin-table-cell">10.10.71.32</td>
+                      <td class="admin-table-cell text-center">1173</td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell text-center">3</td>
+                      <td class="admin-table-cell font-semibold">AMIT SINGH</td>
+                      <td class="admin-table-cell">10892</td>
+                      <td class="admin-table-cell text-center"><span class="admin-status-badge info">SM</span></td>
+                      <td class="admin-table-cell">23/02/2026 10:45:12</td>
+                      <td class="admin-table-cell">10.10.72.44</td>
+                      <td class="admin-table-cell text-center">1346</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    $('#adminBackBtn').on('click', function () {
+      window.location.href = 'admin_dashboard.html';
+    });
+  </script>
+</body>
+
+</html>

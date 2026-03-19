@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - What's New</title>
+
+  <!-- Icons -->
+  <script src="../js/vendor/phosphor-icons.min.js"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+
+    <!-- Main View -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- What's New Content Section -->
+          <div id="whatsNewViewContainer" class="changePasswordViewContainer">
+            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
+              <div class="app-header-group">
+                <i class="ph ph-sparkle font-24px" style="color: var(--typo-orange, #FF9900);"></i>
+                <h2>What's New</h2>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
+                    <i class="ph-bold ph-sparkle"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">What's New Content</div>
+                    <div class="admin-form-section-desc">Edit the release notes and update information shown to users</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-field-group">
+                    <label class="admin-field-label"><i class="ph ph-note-pencil"></i> Content</label>
+                    <textarea id="whatsNewTextarea" rows="11" class="admin-textarea" placeholder="Enter release notes and updates here..."></textarea>
+                  </div>
+                  <div class="admin-btn-row mt-16px" style="justify-content: flex-start">
+                    <button id="whatsNewSaveBtn" type="button" class="admin-btn admin-btn-primary">
+                      <i class="ph ph-floppy-disk"></i> Save
+                    </button>
+                  </div>
+                  <p id="whatsNewSavedText" class="admin-status-badge success mt-12px opacity-0" style="transition: opacity 0.3s ease; width: fit-content;">
+                    <i class="ph ph-check"></i> Saved successfully
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const WhatsNewView = (() => {
+      'use strict';
+
+      // Back button
+      $('#adminBackBtn').on('click', function () {
+        window.location.href = 'admin_dashboard.html';
+      });
+
+      function init() {
+        // Load existing content from localStorage if available
+        const savedContent = localStorage.getItem('whats_new_content') || 'Welcome to the new dashboard updates! We have expanded node controls wrapper handles.';
+        $('#whatsNewTextarea').val(savedContent);
+
+        const save = () => {
+          const content = $('#whatsNewTextarea').val();
+          localStorage.setItem('whats_new_content', content);
+          
+          const $savedText = $('#whatsNewSavedText');
+          $savedText.removeClass('opacity-0');
+          setTimeout(() => $savedText.addClass('opacity-0'), 1200);
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Saved!',
+            text: 'Content saved to local storage.',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)',
+            confirmButtonColor: 'var(--typo-blue, #5794F2)'
+          });
+        };
+
+        $('#whatsNewSaveBtn').on('click', save);
+
+        $('#whatsNewTextarea').on('keydown', function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+            e.preventDefault();
+            save();
+          }
+        });
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+      WhatsNewView.init();
+    });
+  </script>
+</body>
+
+</html>

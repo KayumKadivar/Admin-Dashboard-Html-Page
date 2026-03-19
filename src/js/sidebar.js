@@ -34,9 +34,9 @@ $(function () {
             <i class="ph ph-user-circle"></i>
             <span>User</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User-Plants">
+          <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User Plants">
             <i class="ph ph-tree-structure"></i>
-            <span>User-Plants</span>
+            <span>User Plants</span>
           </a>
           <a class="admin-sidebar-link" data-nav-key="user_email" data-tooltip="User-Email">
             <i class="ph ph-envelope"></i>
@@ -93,22 +93,43 @@ $(function () {
 
   // Set active class based on current page
   const path = window.location.pathname;
+  const filename = path.split('/').pop() || "";
   $(".admin-sidebar-link").removeClass("active");
 
-  if (path.includes("admin_dashboard.html")) {
+  if (filename === "admin_dashboard.html") {
     $('[data-nav-key="admin_dashboard"]').addClass("active");
-  } else if (path.includes("user_privilege.html")) {
+  } else if (filename === "user_privilege.html") {
     $('[data-nav-key="user_privilege"]').addClass("active");
-  } else if (path.includes("default_privilege.html")) {
+  } else if (filename === "default_privilege.html") {
     $('[data-nav-key="default_privilege"]').addClass("active");
-  } else if (path.includes("privilege.html")) {
+  } else if (filename === "privilege.html") {
     $('[data-nav-key="privilege"]').addClass("active");
-  } else if (path.includes("plants.html")) {
+  } else if (filename === "user_plants.html") {
+    $('[data-nav-key="user_plants"]').addClass("active");
+  } else if (filename === "user_email.html") {
+    $('[data-nav-key="user_email"]').addClass("active");
+  } else if (filename === "plants.html") {
     $('[data-nav-key="plants"]').addClass("active");
-  } else if (path.includes("modules.html")) {
+  } else if (filename === "modules.html") {
     $('[data-nav-key="modules"]').addClass("active");
-  } else if (path.includes("user.html")) {
+  } else if (filename === "user.html") {
     $('[data-nav-key="user"]').addClass("active");
+  } else if (filename === "change_password.html") {
+    $('[data-nav-key="change_password"]').addClass("active");
+  } else if (filename === "reset_password.html") {
+    $('[data-nav-key="reset_password"]').addClass("active");
+  } else if (filename === "admin_member.html") {
+    $('[data-nav-key="admin_member"]').addClass("active");
+  } else if (filename === "whats_new.html") {
+    $('[data-nav-key="whats_new"]').addClass("active");
+  } else if (filename === "new_update_popup.html") {
+    $('[data-nav-key="new_update_popup"]').addClass("active");
+  } else if (filename === "ex_dms_space.html") {
+    $('[data-nav-key="ex_dms_space"]').addClass("active");
+  } else if (filename === "mail_schedule.html") {
+    $('[data-nav-key="mail_schedule"]').addClass("active");
+  } else if (filename === "login_info.html") {
+    $('[data-nav-key="login_info"]').addClass("active");
   }
 
   // Click handler for navigation (using event delegation)

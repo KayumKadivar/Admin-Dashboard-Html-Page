@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Admin Member</title>
+
+  <!-- Icons -->
+  <script src="../js/vendor/phosphor-icons.min.js"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+
+    <!-- Main View -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- Static Content -->
+          <div id="adminMemberViewContainer">
+
+            <!-- Select Employee Form Section -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(20,184,166,0.12); color: #14b8a6">
+                    <i class="ph-bold ph-user-focus"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Select Employee</div>
+                    <div class="admin-form-section-desc">Search and select a user to add or remove from the admin group</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-form-cols">
+                    <div class="admin-field-group">
+                      <label for="adminMemberFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
+                      <input id="adminMemberFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
+                    </div>
+                    <div class="admin-field-group">
+                      <label for="adminMemberSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <select id="adminMemberSelect" class="admin-select">
+                        <option value="">Select EC Number</option>
+                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
+                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
+                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
+                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Info Info Cards Grid (Self Loaded on Select) -->
+            <div id="adminMemberInfoGrid" class="info-stats-grid mt-24px" style="display: none;">
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-ec">
+                  <i class="ph ph-identification-badge"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">ECNo</div>
+                  <div id="lblEc" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-user">
+                  <i class="ph ph-user-focus"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">UserName</div>
+                  <div id="lblUser" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-group">
+                  <i class="ph ph-users"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">Group</div>
+                  <div id="lblGroup" class="info-stat-value">-</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons Section (Toggled on Select) -->
+            <div id="adminMemberButtonsSection" class="mt-24px" style="display: none;">
+              <div class="admin-btn-row" style="justify-content: flex-start; gap: 16px;">
+                <button id="adminMemberAddBtn" type="button" class="admin-btn admin-btn-primary">
+                  <i class="ph ph-user-plus"></i> Add To Admin Group
+                </button>
+                <button id="adminMemberRemoveBtn" type="button" class="admin-btn admin-btn-danger">
+                  <i class="ph ph-user-minus"></i> Remove From Admin Group
+                </button>
+              </div>
+              
+              <div class="admin-info-box mt-16px" style="background: rgba(20,184,166,0.06); border-color: rgba(20,184,166,0.12); color: var(--app-text, #ffffff);">
+                <i class="ph ph-info" style="color: #14b8a6; font-size: 20px;"></i>
+                <span>Elevated admin members gain access to edit global configurations configurations.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const AdminMemberView = (() => {
+      'use strict';
+
+      // Back button
+      $('#adminBackBtn').on('click', function () {
+        window.location.href = 'admin_dashboard.html';
+      });
+
+      function init() {
+        const originalOptions = $('#adminMemberSelect option').not('[value=""]').toArray().map(opt => ({
+          val: opt.value,
+          text: $(opt).text()
+        }));
+
+        // Filter Dropdown
+        $('#adminMemberFilter').on('input', function () {
+          const query = $(this).val().toLowerCase().trim();
+          const select = $('#adminMemberSelect');
+          select.empty();
+          select.append('<option value="">Select EC Number</option>');
+
+          if (!query) {
+            originalOptions.forEach(opt => select.append(`<option value="${opt.val}">${opt.text}</option>`));
+          } else {
+            originalOptions.forEach(opt => {
+              if (opt.text.toLowerCase().includes(query)) {
+                select.append(`<option value="${opt.val}">${opt.text}</option>`);
+              }
+            });
+          }
+        });
+
+        // Select Change Trigger
+        $('#adminMemberSelect').on('change', function () {
+          const val = $(this).val();
+          if (!val) {
+            $('#adminMemberInfoGrid, #adminMemberButtonsSection').hide();
+            return;
+          }
+
+          const text = $(this).find('option:selected').text();
+          const parts = text.split(/\xa0{2,}/); 
+
+          if (parts.length >= 3) {
+            $('#lblEc').text(parts[0].trim());
+            $('#lblUser').text(parts[1].trim());
+            $('#lblGroup').text(parts[2].trim());
+          }
+
+          $('#adminMemberInfoGrid, #adminMemberButtonsSection').show();
+        });
+
+        // Add Click
+        $('#adminMemberAddBtn').on('click', function () {
+          Swal.fire({
+            icon: 'success',
+            title: 'Added!',
+            text: 'User successfully added to Admin Group.',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)',
+            confirmButtonColor: 'var(--typo-blue, #5794F2)'
+          });
+        });
+
+        // Remove Click
+        $('#adminMemberRemoveBtn').on('click', function () {
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to remove this user from the Admin Group!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#F2495C',
+            cancelButtonColor: 'var(--app-border, #4b5563)',
+            confirmButtonText: 'Yes, Remove',
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Removed!',
+                text: 'User removed from Admin Group.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+            }
+          });
+        });
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+      AdminMemberView.init();
+    });
+  </script>
+</body>
+
+</html>

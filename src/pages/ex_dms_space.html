@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master - Ex-DMS Space</title>
+
+  <!-- Icons -->
+  <script src="../js/vendor/phosphor-icons.min.js"></script>
+
+  <!-- Theme & Utilities -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+
+    <!-- Main View -->
+    <main class="app-main-view">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- Ex-DMS Space Container -->
+          <div id="exDmsViewContainer" class="changePasswordViewContainer">
+            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
+              <div class="app-header-group">
+                <i class="ph ph-folder-open font-24px" style="color: var(--typo-green, #73BF69);"></i>
+                <h2>Ex-DMS Space Management</h2>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-icon" style="background: rgba(115,191,105,0.12); color: #73BF69">
+                    <i class="ph-bold ph-folder-plus"></i>
+                  </div>
+                  <div>
+                    <div class="admin-form-section-title">Create Ex-DMS Space</div>
+                    <div class="admin-form-section-desc">Select a user and create their external DMS space</div>
+                  </div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="admin-form-cols">
+                    <div class="admin-field-group">
+                      <label for="exDmsFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
+                      <input id="exDmsFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
+                    </div>
+                    <div class="admin-field-group" style="max-width: 500px">
+                      <label for="exDmsUserSelect" class="admin-field-label"><i class="ph ph-user"></i> Select User</label>
+                      <select id="exDmsUserSelect" class="admin-select">
+                        <option value="">Select EC Number</option>
+                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
+                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
+                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
+                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Info Info Cards Grid (Self Loaded on Select) -->
+            <div id="exDmsInfoGrid" class="info-stats-grid mt-24px" style="display: none;">
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-ec">
+                  <i class="ph ph-identification-badge"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">ECNo</div>
+                  <div id="lblEc" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-user">
+                  <i class="ph ph-user-focus"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">UserName</div>
+                  <div id="lblUser" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-group">
+                  <i class="ph ph-users"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">Group</div>
+                  <div id="lblGroup" class="info-stat-value">-</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Section (Toggled on Select) -->
+            <div id="exDmsActionSection" class="mt-24px" style="display: none;">
+              <div class="admin-btn-row" style="justify-content: flex-start;">
+                <button id="exDmsCreateBtn" type="button" class="admin-btn admin-btn-primary">
+                  <i class="ph ph-folder-plus"></i> Create Space
+                </button>
+              </div>
+              
+              <p id="exDmsStatus" class="admin-status-badge success mt-16px opacity-0" style="transition: opacity 0.3s ease; width: fit-content;">
+                <i class="ph ph-check"></i> Space created
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const ExDmsView = (() => {
+      'use strict';
+
+      // Back button
+      $('#adminBackBtn').on('click', function () {
+        window.location.href = 'admin_dashboard.html';
+      });
+
+      function init() {
+        const originalOptions = $('#exDmsUserSelect option').not('[value=""]').toArray().map(opt => ({
+          val: opt.value,
+          text: $(opt).text()
+        }));
+
+        // Filter Dropdown
+        $('#exDmsFilter').on('input', function () {
+          const query = $(this).val().toLowerCase().trim();
+          const select = $('#exDmsUserSelect');
+          select.empty();
+          select.append('<option value="">Select EC Number</option>');
+
+          if (!query) {
+            originalOptions.forEach(opt => select.append(`<option value="${opt.val}">${opt.text}</option>`));
+          } else {
+            originalOptions.forEach(opt => {
+              if (opt.text.toLowerCase().includes(query)) {
+                select.append(`<option value="${opt.val}">${opt.text}</option>`);
+              }
+            });
+          }
+        });
+
+        // Select Change Trigger
+        $('#exDmsUserSelect').on('change', function () {
+          const val = $(this).val();
+          if (!val) {
+            $('#exDmsInfoGrid, #exDmsActionSection').hide();
+            return;
+          }
+
+          const text = $(this).find('option:selected').text();
+          const parts = text.split(/\xa0{2,}/); 
+
+          if (parts.length >= 3) {
+            $('#lblEc').text(parts[0].trim());
+            $('#lblUser').text(parts[1].trim());
+            $('#lblGroup').text(parts[2].trim());
+          }
+
+          $('#exDmsInfoGrid, #exDmsActionSection').show();
+        });
+
+        // Create Space Click
+        $('#exDmsCreateBtn').on('click', function () {
+          const selectedText = $('#exDmsUserSelect option:selected').text();
+          const parts = selectedText.split(/\xa0{2,}/);
+          const userName = parts.length >= 2 ? parts[1].trim() : 'User';
+
+          const $status = $('#exDmsStatus');
+          $status.html(`<i class="ph ph-check"></i> Space created for ${userName}`);
+          $status.removeClass('opacity-0');
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Created!',
+            text: `Ex-DMS Space created for ${userName} successfully.`,
+            background: 'var(--app-panel, #181b1f)',
+            color: 'var(--app-text, #ffffff)',
+            confirmButtonColor: 'var(--typo-blue, #5794F2)'
+          }).then(() => {
+             // Optional: Hide status badge after SweetAlert if you want
+             // setTimeout(() => $status.addClass('opacity-0'), 1800);
+          });
+        });
+      }
+
+      return { init };
+    })();
+
+    $(function () {
+      ExDmsView.init();
+    });
+  </script>
+</body>
+
+</html>

@@ -54,7 +54,7 @@
           </button>
 
           <!-- Back -->
-          <button id="adminBackBtn" class="ui-btn-pill" onclick="window.location.href='admin_dashboard.html'">
+          <button id="adminBackBtn" class="ui-btn-pill" title="Back">
             <i class="ph-bold ph-arrow-u-up-left"></i>
             <span>Back</span>
           </button>
@@ -64,7 +64,6 @@
       <!-- Content Area -->
       <div class="app-content-area">
         <div id="adminContent">
-
 
           <!-- Static Content -->
           <div id="userInfoViewContainer">
@@ -97,6 +96,7 @@
                     <div class="admin-field-group">
                       <label for="userInfoGroup" class="admin-field-label"><i class="ph ph-users"></i> Group</label>
                       <select id="userInfoGroup" class="admin-select">
+                        <option value="" disabled selected>Select Group</option>
                         <option value="Tech">Tech</option>
                         <option value="IE/SIE">IE/SIE</option>
                         <option value="M">M</option>
@@ -104,17 +104,6 @@
                         <option value="CM">CM</option>
                         <option value="AGM">AGM</option>
                         <option value="GM">GM</option>
-                        <option value="IED">IED</option>
-                        <option value="GAT">GAT</option>
-                        <option value="DAT">DAT</option>
-                        <option value="GUEST">GUEST</option>
-                        <option value="VISITOR">VISITOR</option>
-                        <option value="TS">TS</option>
-                        <option value="CLAB">CLAB</option>
-                        <option value="R&D">R&D</option>
-                        <option value="IAT">IAT</option>
-                        <option value="OVS">OVS</option>
-                        <option value="PURCHASE">PURCHASE</option>
                       </select>
                     </div>
                   </div>
@@ -144,7 +133,8 @@
                     <tr>
                       <th class="admin-table-head-cell">EC Number</th>
                       <th class="admin-table-head-cell">User Name</th>
-                      <th class="admin-table-head-cell">Group</th>
+                      <th class="admin-table-head-cell">Group ID</th>
+                      <th class="admin-table-head-cell">Group Name</th>
                       <th class="admin-table-head-cell text-center">Actions</th>
                     </tr>
                   </thead>
@@ -152,6 +142,7 @@
                     <tr class="admin-table-row">
                       <td class="admin-table-cell font-semibold">10204</td>
                       <td class="admin-table-cell">Rahul Sharma</td>
+                      <td class="admin-table-cell">2</td>
                       <td class="admin-table-cell">Tech</td>
                       <td class="admin-table-cell text-center">
                         <div class="admin-table-actions">
@@ -163,6 +154,7 @@
                     <tr class="admin-table-row">
                       <td class="admin-table-cell font-semibold">10355</td>
                       <td class="admin-table-cell">Priya Patel</td>
+                      <td class="admin-table-cell">23</td>
                       <td class="admin-table-cell">CM</td>
                       <td class="admin-table-cell text-center">
                         <div class="admin-table-actions">
@@ -174,6 +166,7 @@
                     <tr class="admin-table-row">
                       <td class="admin-table-cell font-semibold">10892</td>
                       <td class="admin-table-cell">Amit Singh</td>
+                      <td class="admin-table-cell">3</td>
                       <td class="admin-table-cell">SM</td>
                       <td class="admin-table-cell text-center">
                         <div class="admin-table-actions">
@@ -185,6 +178,7 @@
                     <tr class="admin-table-row">
                       <td class="admin-table-cell font-semibold">11044</td>
                       <td class="admin-table-cell">Neha Desai</td>
+                      <td class="admin-table-cell">12</td>
                       <td class="admin-table-cell">GM</td>
                       <td class="admin-table-cell text-center">
                         <div class="admin-table-actions">
@@ -196,6 +190,7 @@
                     <tr class="admin-table-row">
                       <td class="admin-table-cell font-semibold">11289</td>
                       <td class="admin-table-cell">Rakesh Kumar</td>
+                      <td class="admin-table-cell">2</td>
                       <td class="admin-table-cell">Tech</td>
                       <td class="admin-table-cell text-center">
                         <div class="admin-table-actions">
@@ -207,7 +202,6 @@
                   </tbody>
                 </table>
               </div>
-              <!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
@@ -221,17 +215,24 @@
       const UserManager = (() => {
         'use strict';
 
+        // Back button
+        $('#adminBackBtn').on('click', function () {
+          window.location.href = 'admin_dashboard.html';
+        });
+
         function bind() {
-          // Add User
+          // Add New User
           $('#userInfoAddBtn').on('click', function () {
             const ec = $('#userInfoEc').val().trim();
             const name = $('#userInfoName').val().trim();
+            const group = $('#userInfoGroup').val().trim();
 
-            if (!ec || !name) {
+            // Check if EC Number, Name and Group are not empty
+            if (!ec || !group || !name) {
               Swal.fire({
                 icon: 'warning',
                 title: 'Empty Fields',
-                text: 'Please fill both EC Number and Name.',
+                text: 'Please fill all EC Number, Name and Group.',
                 background: 'var(--app-panel, #181b1f)',
                 color: 'var(--app-text, #ffffff)',
                 confirmButtonColor: 'var(--typo-blue, #5794F2)'
@@ -239,6 +240,7 @@
               return;
             }
 
+            // Add New User 
             Swal.fire({
               icon: 'success',
               title: 'Added!',
@@ -290,7 +292,7 @@
             activeRow = $(this).closest('tr');
             const ec = activeRow.find('td:nth-child(1)').text().trim();
             const name = activeRow.find('td:nth-child(2)').text().trim();
-            const group = activeRow.find('td:nth-child(3)').text().trim();
+            const group = activeRow.find('td:nth-child(4)').text().trim();
 
             $('#editUserEcInput').val(ec);
             $('#editUserNameInput').val(name);
@@ -368,7 +370,7 @@
           <input id="editUserNameInput" type="text" class="admin-input">
         </div>
         <div class="admin-field-group mb-0">
-          <label for="editUserGroupSelect" class="admin-field-label">Group</label>
+          <label for="editUserGroupSelect" class="admin-field-label">Group Name</label>
           <select id="editUserGroupSelect" class="admin-select">
             <option value="Tech">Tech</option>
             <option value="IE/SIE">IE/SIE</option>
