@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
   <title>GNFC | Master - User Email</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -72,7 +72,7 @@
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(87,148,242,0.12); color: #5794F2">
+                  <div class="admin-form-section-icon icon-theme-primary ">
                     <i class="ph-bold ph-user-focus"></i>
                   </div>
                   <div>
@@ -83,68 +83,68 @@
                 <div class="admin-form-section-body">
                   <div class="admin-form-cols">
                     <div class="admin-field-group">
-                      <label for="userEmailFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
+                      <label for="userEmailFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i>
+                        Filter</label>
                       <input id="userEmailFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
                     </div>
                     <div class="admin-field-group">
-                      <label for="userEmailSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <label for="userEmailSelect" class="admin-field-label"><i class="ph ph-identification-card"></i>
+                        EC Number</label>
                       <select id="userEmailSelect" class="admin-select">
                         <option value="">Select EC Number</option>
-                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
-                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
-                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
-                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
-                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10204">10204 Rahul Sharma Tech</option>
+                        <option value="10355">10355 Priya Patel CM</option>
+                        <option value="10892">10892 Amit Singh SM</option>
+                        <option value="11044">11044 Neha Desai GM</option>
+                        <option value="11289">11289 Rakesh Kumar Tech</option>
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- User Info Info Cards Grid (Self Loaded on Select) -->
-            <div id="userEmailInfoGrid" class="info-stats-grid mt-24px" style="display: none;">
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-ec">
-                  <i class="ph ph-identification-badge"></i>
-                </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">ECNo</div>
-                  <div id="lblEc" class="info-stat-value">-</div>
-                </div>
-              </div>
-              
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-user">
-                  <i class="ph ph-user-focus"></i>
-                </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">UserName</div>
-                  <div id="lblUser" class="info-stat-value">-</div>
-                </div>
-              </div>
-              
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-group">
-                  <i class="ph ph-users"></i>
-                </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">Group</div>
-                  <div id="lblGroup" class="info-stat-value">-</div>
-                </div>
-              </div>
-            </div>
-
             <!-- Email Address Form Section -->
             <div id="userEmailFormSection" class="admin-card mt-24px" style="display: none;">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
+                  <div class="admin-form-section-icon icon-theme-emerald">
                     <i class="ph-bold ph-envelope-simple"></i>
                   </div>
                   <div>
                     <div class="admin-form-section-title">Email Address</div>
                     <div class="admin-form-section-desc">Enter or update the email for the selected user</div>
+                  </div>
+                </div>
+                <!-- User Info Info Cards Grid  -->
+                <div id="userEmailInfoGrid" class="info-stats-grid mt-24px">
+                  <div class="info-stat-card">
+                    <div class="info-stat-icon bg-ec">
+                      <i class="ph ph-identification-badge"></i>
+                    </div>
+                    <div class="info-stat-content">
+                      <div class="info-stat-label">ECNo</div>
+                      <div id="lblEc" class="info-stat-value">-</div>
+                    </div>
+                  </div>
+
+                  <div class="info-stat-card">
+                    <div class="info-stat-icon bg-user">
+                      <i class="ph ph-user-focus"></i>
+                    </div>
+                    <div class="info-stat-content">
+                      <div class="info-stat-label">UserName</div>
+                      <div id="lblUser" class="info-stat-value">-</div>
+                    </div>
+                  </div>
+
+                  <div class="info-stat-card">
+                    <div class="info-stat-icon bg-group">
+                      <i class="ph ph-users"></i>
+                    </div>
+                    <div class="info-stat-content">
+                      <div class="info-stat-label">Group</div>
+                      <div id="lblGroup" class="info-stat-value">-</div>
+                    </div>
                   </div>
                 </div>
                 <div class="admin-form-section-body">
@@ -208,17 +208,27 @@
             return;
           }
 
-          const text = $(this).find('option:selected').text();
-          const parts = text.split(/\xa0{2,}/); 
+          const text = $(this).find('option:selected').text().trim();
+          const parts = text.split(/\s+/);
 
-          if (parts.length >= 3) {
-            $('#lblEc').text(parts[0].trim());
-            $('#lblUser').text(parts[1].trim());
-            $('#lblGroup').text(parts[2].trim());
-
-            // Fake email mapping for static presentation
-            const cleanName = parts[1].trim().toLowerCase().replace(/\s+/g, '.');
-            $('#userEmailInput').val(`${cleanName}@gnfc.in`);
+          if (parts.length >= 2) {
+            $('#lblEc').text(parts[0]);
+            
+            if (parts.length >= 3) {
+              const group = parts[parts.length - 1];
+              const nameParts = parts.slice(1, -1);
+              const name = nameParts.join(' ');
+              
+              $('#lblUser').text(name);
+              $('#lblGroup').text(group);
+              
+              const cleanName = name.toLowerCase().replace(/\s+/g, '.');
+              $('#userEmailInput').val(`${cleanName}@gnfc.in`);
+            } else {
+              $('#lblUser').text(parts[1]);
+              $('#lblGroup').text('-');
+              $('#userEmailInput').val(`${parts[1].toLowerCase()}@gnfc.in`);
+            }
           }
 
           $('#userEmailInfoGrid, #userEmailFormSection').show();
@@ -260,3 +270,5 @@
 </body>
 
 </html>
+
+

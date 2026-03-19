@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
   <title>GNFC | Master - New Update Popup</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -67,13 +67,6 @@
 
           <!-- What's New Content Section -->
           <div id="whatsNewViewContainer" class="changePasswordViewContainer">
-            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
-              <div class="app-header-group">
-                <i class="ph ph-sparkle font-24px" style="color: var(--typo-orange, #FF9900);"></i>
-                <h2>New Update Popup</h2>
-              </div>
-            </div>
-
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
@@ -90,14 +83,11 @@
                     <label class="admin-field-label"><i class="ph ph-note-pencil"></i> Content</label>
                     <textarea id="whatsNewTextarea" rows="11" class="admin-textarea" placeholder="Enter release notes and updates here..."></textarea>
                   </div>
-                  <div class="admin-btn-row mt-16px" style="justify-content: flex-start">
+                  <div class="admin-btn-row mt-16px flex-start">
                     <button id="whatsNewSaveBtn" type="button" class="admin-btn admin-btn-primary">
                       <i class="ph ph-floppy-disk"></i> Save
                     </button>
                   </div>
-                  <p id="whatsNewSavedText" class="admin-status-badge success mt-12px opacity-0" style="transition: opacity 0.3s ease; width: fit-content;">
-                    <i class="ph ph-check"></i> Saved successfully
-                  </p>
                 </div>
               </div>
             </div>
@@ -160,3 +150,5 @@
 </body>
 
 </html>
+
+

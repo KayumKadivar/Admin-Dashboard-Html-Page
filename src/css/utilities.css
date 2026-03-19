@@ -300,6 +300,10 @@
 .justify-between { justify-content: space-between !important; }
 .justify-around { justify-content: space-around !important; }
 .justify-evenly { justify-content: space-evenly !important; }
+.justify-stretch { justify-content: space-stretch !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
 
 .items-start { align-items: flex-start !important; }
 .items-center { align-items: center !important; }
@@ -352,13 +356,6 @@
 .text-shadow-lg { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3) !important; }
 .text-shadow-xl { text-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4) !important; }
 
-/* ======================================== Text Wrap ======================================== */
-
-.text-wrap { white-space: normal !important; }
-.text-nowrap { white-space: nowrap !important; }
-.text-pre { white-space: pre !important; }
-.text-pre-wrap { white-space: pre-wrap !important; }
-.text-pre-line { white-space: pre-line !important; }
 
 /* ======================================== Text Indent ======================================== */
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
   <title>GNFC | Master - Privilege</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -95,11 +95,11 @@
                           class="ph ph-identification-card"></i> EC Number</label>
                       <select id="userPrivilegeSelect" class="admin-select">
                         <option value="">Select EC Number</option>
-                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
-                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
-                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
-                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
-                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10204">10204  Rahul Sharma  Tech</option>
+                        <option value="10355">10355  Priya Patel  CM</option>
+                        <option value="10892">10892  Amit Singh  SM</option>
+                        <option value="11044">11044  Neha Desai  GM</option>
+                        <option value="11289">11289  Rakesh Kumar  Tech</option>
                       </select>
                     </div>
                   </div>
@@ -107,7 +107,7 @@
               </div>
             </div>
 
-            <div id="userPrivilegeResultsSection" class="admin-card mt-24px">
+            <div id="userPrivilegeResultsSection" class="admin-card mt-24px" style="display: none;">
 
               <!-- Header -->
               <div class="admin-form-section-header justify-between">
@@ -121,7 +121,7 @@
                   </div>
                 </div>
                 <div class="flex items-center gap-12px">
-                  <button type="button" id="userPrivilegeSaveBtn" class="admin-btn admin-btn-primary">
+                  <button type="button" id="userPrivilegeSaveTop" class="admin-btn admin-btn-primary">
                     <i class="ph ph-floppy-disk"></i> Save Access
                   </button>
                   <button type="button" id="userPrivilegeDefaultBtn" class="admin-btn btn-default">
@@ -573,7 +573,7 @@
 
               <!-- Footer Buttons -->
               <div class="admin-form-section-footer">
-                <button type="button" id="userPrivilegeSaveBtn" class="admin-btn admin-btn-primary mt-16px">
+                <button type="button" id="userPrivilegeSaveBot" class="admin-btn admin-btn-primary mt-16px">
                   <i class="ph ph-floppy-disk"></i> Save Access
                 </button>
               </div>
@@ -623,28 +623,28 @@
         $('#userPrivilegeSelect').on('change', function () {
           const val = $(this).val();
           if (!val) {
+            $('#userPrivilegeResultsSection').hide();
             $('#lblEc').text('-');
             $('#lblUser').text('-');
             $('#lblGroup').text('-');
             return;
           }
-          const text = $(this).find('option:selected').text();
-          
-          // split by &nbsp;&nbsp;&nbsp; which translates to multiple spaces or non-breaking spaces (\xa0)
-          const parts = text.split(/\xa0{2,}/);
-          if (parts.length >= 3) {
-            $('#lblEc').text(parts[0].trim());
-            $('#lblUser').text(parts[1].trim());
-            $('#lblGroup').text(parts[2].trim());
-          } else {
-            // fallback for standard spaces
-            const fallbackParts = text.trim().split(/\s{2,}/);
-            if (fallbackParts.length >= 3) {
-              $('#lblEc').text(fallbackParts[0].trim());
-              $('#lblUser').text(fallbackParts[1].trim());
-              $('#lblGroup').text(fallbackParts[2].trim());
+          const text = $(this).find('option:selected').text().trim();
+          const parts = text.split(/\s+/); 
+
+          if (parts.length >= 2) {
+            $('#lblEc').text(parts[0]);
+            if (parts.length >= 3) {
+               $('#lblGroup').text(parts[parts.length - 1]);
+               const nameParts = parts.slice(1, -1);
+               $('#lblUser').text(nameParts.join(' '));
+            } else {
+               $('#lblUser').text(parts[1]);
+               $('#lblGroup').text('-');
             }
           }
+
+          $('#userPrivilegeResultsSection').show();
         });
 
         // Default Button Support
@@ -663,7 +663,7 @@
         });
 
         // Save Support
-        $('#userPrivilegeSaveBtn').on('click', function () {
+        $('#userPrivilegeSaveTop, #userPrivilegeSaveBot').on('click', function () {
           const selectedEc = $('#userPrivilegeSelect').val();
           if (!selectedEc) {
             Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)', confirmButtonColor: 'var(--typo-blue, #5794F2)' });
@@ -690,3 +690,5 @@
 </body>
 
 </html>
+
+

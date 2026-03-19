@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
   <title>GNFC | Master - User Plants</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -21,6 +21,7 @@
   <script src="../js/vendor/sweetalert2.all.min.js"></script>
   <script src="../js/theme-control.js"></script>
   <script src="../js/sidebar.js"></script>
+  <script src="../js/admin/admin_data.js"></script>
 
 </head>
 
@@ -40,7 +41,7 @@
           <!-- Font Size Controls -->
           <div class="ui-control-set">
             <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
-              <i class="ph-bold ph-text-aa font-16px"></i>
+              <i class="ph-bold ph-text-aa font-12px"></i>
             </button>
             <div class="ui-divider-v"></div>
             <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
@@ -65,107 +66,152 @@
       <div class="app-content-area">
         <div id="adminContent">
 
-          <!-- Static Content -->
-          <div id="userPlantsViewContainer">
-
-            <!-- Select Employee Form Section -->
-            <div class="admin-card">
-              <div class="admin-form-section">
-                <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(115,191,105,0.12); color: #73BF69">
-                    <i class="ph-bold ph-user-focus"></i>
-                  </div>
-                  <div>
-                    <div class="admin-form-section-title">Select Employee</div>
-                    <div class="admin-form-section-desc">Choose a user to view their assigned plant list</div>
-                  </div>
+          <!-- Select Employee Form Section -->
+          <div class="admin-card">
+            <div class="admin-form-section">
+              <div class="admin-form-section-header">
+                <div class="admin-form-section-icon" style="background: rgba(115,191,105,0.12); color: #73BF69">
+                  <i class="ph-bold ph-user-focus"></i>
                 </div>
-                <div class="admin-form-section-body">
-                  <div class="flex items-end gap-16px justify-start">
-                    <div class="admin-field-group">
-                      <label for="userPlantsFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
-                      <input id="userPlantsFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
-                    </div>
-                    <div class="admin-field-group">
-                      <label for="userPlantsSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
-                      <select id="userPlantsSelect" class="admin-select">
-                        <option value="">Select EC Number</option>
-                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
-                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
-                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
-                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
-                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
-                      </select>
-                    </div>
-                    <button id="userPlantsGoBtn" type="button" class="admin-btn admin-btn-primary">
-                      <i class="ph ph-eye"></i> View
-                    </button>
+                <div>
+                  <div class="admin-form-section-title">Select Employee</div>
+                  <div class="admin-form-section-desc">Choose a user to view and manage their assigned plant list</div>
+                </div>
+              </div>
+              <div class="admin-form-section-body">
+                <div class="flex items-end gap-16px justify-start">
+                  <div class="admin-field-group">
+                    <label for="userPlantsFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
+                    <input id="userPlantsFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
                   </div>
-                  <div class="admin-info-box mt-16px" style="background: rgba(53, 131, 247, 0.08); border-color: rgba(53, 131, 247, 0.2); color: var(--typo-blue, #5794F2);">
-                    <i class="ph ph-info"></i>
-                    <span>Click <strong>View</strong> to display the plants assigned down beneath instead of an overlay modal.</span>
+                  <div class="admin-field-group">
+                    <label for="userPlantsSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                    <select id="userPlantsSelect" class="admin-select">
+                      <option value="">Select EC Number</option>
+                      <option value="10204">10204  Rahul Sharma  Tech</option>
+                      <option value="10355">10355  Priya Patel  CM</option>
+                      <option value="10892">10892  Amit Singh  SM</option>
+                      <option value="11044">11044  Neha Desai  GM</option>
+                      <option value="11289">11289  Rakesh Kumar  Tech</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- Assigned Plants Results Section (Hidden Default) -->
-            <div id="userPlantsResultsSection" class="admin-card mt-24px" style="display: none;">
-              <!-- Header -->
-              <div class="admin-form-section-header justify-between">
-                <div class="flex items-center gap-12px">
-                  <div class="admin-form-section-icon icon-theme-primary">
-                    <i class="ph-bold ph-tree"></i>
-                  </div>
-                  <div>
-                    <div class="admin-form-section-title" id="resultsTitle">Plants — ABG (8491)</div>
-                    <div class="admin-form-section-desc">Designated plant mappings per user</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-12px">
-                  <button type="button" id="saveUserPlantsBtn" class="admin-btn admin-btn-primary">
-                    <i class="ph ph-floppy-disk"></i> Save Access
-                  </button>
-                </div>
-              </div>
-
-              <!-- User Privilege Table -->
-              <div class="admin-table-scroll">
-                <table class="admin-table">
-                  <thead>
-                    <tr>
-                      <th class="admin-table-head-cell">Plant</th>
-                      <th class="admin-table-head-cell">Code</th>
-                      <th class="admin-table-head-cell text-center" style="width: 15%">Assigned</th>
-                    </tr>
-                  </thead>
-                  <tbody id="userPlantsTableBody">
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell">Dahej Plant</td>
-                      <td class="admin-table-cell font-15px fw-semibold">DAH</td>
-                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" checked></td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell">Surat Plant</td>
-                      <td class="admin-table-cell font-15px fw-semibold">SRT</td>
-                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell">Bharuch Plant</td>
-                      <td class="admin-table-cell font-15px fw-semibold">BCH</td>
-                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" checked></td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell">Narmada Plant</td>
-                      <td class="admin-table-cell font-15px fw-semibold">NMD</td>
-                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
           </div>
+
+          <!-- Assigned Plants Results Section (Hidden Default) -->
+          <div id="userPlantsResultsSection" class="admin-card mt-24px" style="display: none;">
+            
+            <!-- Header -->
+            <div class="admin-form-section-header justify-between">
+              <div class="flex items-center gap-12px">
+                <div class="admin-form-section-icon icon-theme-primary bg-theme-primary">
+                  <i class="ph-bold ph-tree"></i>
+                </div>
+                <div>
+                  <div class="admin-form-section-title">User Plant Access</div>
+                  <div class="admin-form-section-desc">Manage plant access and permissions</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-12px">
+                <button type="button" id="saveUserPlantsBtnfir" class="admin-btn admin-btn-primary">
+                  <i class="ph ph-floppy-disk"></i> Save Access
+                </button>
+              </div>
+            </div>
+
+            <!-- User Info Info Cards Grid -->
+            <div class="info-stats-grid">
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-ec">
+                  <i class="ph ph-identification-badge"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">ECNo</div>
+                  <div id="lblEc" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-user">
+                  <i class="ph ph-user-focus"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">UserName</div>
+                  <div id="lblUser" class="info-stat-value">-</div>
+                </div>
+              </div>
+              
+              <div class="info-stat-card">
+                <div class="info-stat-icon bg-group">
+                  <i class="ph ph-users"></i>
+                </div>
+                <div class="info-stat-content">
+                  <div class="info-stat-label">Group</div>
+                  <div id="lblGroup" class="info-stat-value">-</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Privilege Table -->
+            <div class="admin-table-scroll">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th class="admin-table-head-cell">Plant</th>
+                    <th class="admin-table-head-cell">Code</th>
+                    <th class="admin-table-head-cell text-center" style="width: 15%">Assigned</th>
+                  </tr>
+                </thead>
+                <tbody id="userPlantsTableBody">
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">ACETIC ACID</td>
+                    <td class="admin-table-cell">AA</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">AAQM</td>
+                    <td class="admin-table-cell">AAQM</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">AMMONIA</td>
+                    <td class="admin-table-cell">AMM</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">ANIP FILLING</td>
+                    <td class="admin-table-cell">ANIPF</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">ANITDI</td>
+                    <td class="admin-table-cell">ANITDI</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">BOILER</td>
+                    <td class="admin-table-cell">BOILER</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" checked></td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell font-15px fw-semibold">BAGGING</td>
+                    <td class="admin-table-cell">BAGG</td>
+                    <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Footer -->
+            <div class="admin-form-section-footer">
+              <button type="button" id="saveUserPlantsBtnsec" class="admin-btn admin-btn-primary mt-20px">
+                <i class="ph ph-floppy-disk"></i> Save Access
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>
@@ -204,32 +250,51 @@
           }
         });
 
-        // View Button Click
-        $('#userPlantsGoBtn').on('click', function () {
-          const val = $('#userPlantsSelect').val();
+        // Select Change Trigger Auto-Load
+        $('#userPlantsSelect').on('change', function () {
+          const val = $(this).val();
           if (!val) {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Select User',
-              text: 'Please select an employee first.',
-              background: 'var(--app-panel, #181b1f)',
-              color: 'var(--app-text, #ffffff)',
-              confirmButtonColor: 'var(--typo-blue, #5794F2)'
-            });
+            $('#userPlantsResultsSection').hide();
             return;
           }
 
-          const text = $('#userPlantsSelect find("option:selected")').text();
-          const parts = text.split(/\xa0{2,}/);
-          let name = 'User';
-          if (parts.length >= 2) name = parts[1].trim();
+          const text = $(this).find('option:selected').text().trim();
+          const parts = text.split(/\s+/); 
 
-          $('#resultsTitle').text(`Plants — ${name.toUpperCase()} (${val})`);
+          if (parts.length >= 2) {
+            $('#lblEc').text(parts[0]);
+            if (parts.length >= 3) {
+               $('#lblGroup').text(parts[parts.length - 1]);
+               const nameParts = parts.slice(1, -1);
+               $('#lblUser').text(nameParts.join(' '));
+            } else {
+               // 2 parts: EC and Name
+               $('#lblUser').text(parts[1]);
+               $('#lblGroup').text('-');
+            }
+          }
+
+          loadFakeUserPlantsData(val);
           $('#userPlantsResultsSection').show();
         });
 
+        function loadFakeUserPlantsData(ec) {
+          // Uncheck all except BOILER for demo setup trigger flows
+          $('#userPlantsTableBody input[type="checkbox"]').prop('checked', false);
+          
+          if (ec === '10204') {
+             $('#userPlantsTableBody tr').eq(0).find('input').prop('checked', true); // ACETIC ACID
+             $('#userPlantsTableBody tr').eq(2).find('input').prop('checked', true); // AMMONIA
+          } else if (ec === '10355') {
+             $('#userPlantsTableBody tr').eq(1).find('input').prop('checked', true); // AAQM
+             $('#userPlantsTableBody tr').eq(3).find('input').prop('checked', true); // ANIP FILLING
+          } else {
+             $('#userPlantsTableBody tr').eq(5).find('input').prop('checked', true); // BOILER (Default check)
+          }
+        }
+
         // Save Click
-        $('#saveUserPlantsBtn').on('click', function () {
+        $('#saveUserPlantsBtnfir, #saveUserPlantsBtnsec').on('click', function () {
           Swal.fire({
             icon: 'success',
             title: 'Saved',
@@ -251,3 +316,5 @@
 </body>
 
 </html>
+
+

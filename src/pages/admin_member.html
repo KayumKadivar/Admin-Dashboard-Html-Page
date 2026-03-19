@@ -7,7 +7,7 @@
   <title>GNFC | Master - Admin Member</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -77,24 +77,28 @@
                   </div>
                   <div>
                     <div class="admin-form-section-title">Select Employee</div>
-                    <div class="admin-form-section-desc">Search and select a user to add or remove from the admin group</div>
+                    <div class="admin-form-section-desc">Search and select a user to add or remove from the admin group
+                    </div>
                   </div>
                 </div>
                 <div class="admin-form-section-body">
                   <div class="admin-form-cols">
                     <div class="admin-field-group">
-                      <label for="adminMemberFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i> Filter</label>
-                      <input id="adminMemberFilter" type="text" class="admin-input" placeholder="Search by EC or Name...">
+                      <label for="adminMemberFilter" class="admin-field-label"><i class="ph ph-magnifying-glass"></i>
+                        Filter</label>
+                      <input id="adminMemberFilter" type="text" class="admin-input"
+                        placeholder="Search by EC or Name...">
                     </div>
                     <div class="admin-field-group">
-                      <label for="adminMemberSelect" class="admin-field-label"><i class="ph ph-identification-card"></i> EC Number</label>
+                      <label for="adminMemberSelect" class="admin-field-label"><i class="ph ph-identification-card"></i>
+                        EC Number</label>
                       <select id="adminMemberSelect" class="admin-select">
                         <option value="">Select EC Number</option>
-                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
-                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
-                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
-                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
-                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10204">10204 Rahul Sharma Tech</option>
+                        <option value="10355">10355 Priya Patel CM</option>
+                        <option value="10892">10892 Amit Singh SM</option>
+                        <option value="11044">11044 Neha Desai GM</option>
+                        <option value="11289">11289 Rakesh Kumar Tech</option>
                       </select>
                     </div>
                   </div>
@@ -102,60 +106,153 @@
               </div>
             </div>
 
-            <!-- User Info Info Cards Grid (Self Loaded on Select) -->
-            <div id="adminMemberInfoGrid" class="info-stats-grid mt-24px" style="display: none;">
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-ec">
-                  <i class="ph ph-identification-badge"></i>
+            <div id="adminMemberDetails" class="admin-card mt-24px" style="display: none;">
+              <!-- User Info Info Cards Grid (Self Loaded on Select) -->
+              <div id="adminMemberInfoGrid" class="info-stats-grid" >
+
+                <div class="info-stat-card">
+                  <div class="info-stat-icon bg-ec">
+                    <i class="ph ph-identification-badge"></i>
+                  </div>
+                  <div class="info-stat-content">
+                    <div class="info-stat-label">ECNO</div>
+                    <div id="lblEc" class="info-stat-value">-</div>
+                  </div>
                 </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">ECNo</div>
-                  <div id="lblEc" class="info-stat-value">-</div>
+
+                <div class="info-stat-card">
+                  <div class="info-stat-icon bg-user">
+                    <i class="ph ph-user-focus"></i>
+                  </div>
+                  <div class="info-stat-content">
+                    <div class="info-stat-label">USERNAME</div>
+                    <div id="lblUser" class="info-stat-value">-</div>
+                  </div>
                 </div>
+
+                <div class="info-stat-card">
+                  <div class="info-stat-icon bg-group">
+                    <i class="ph ph-users"></i>
+                  </div>
+                  <div class="info-stat-content">
+                    <div class="info-stat-label">GROUP</div>
+                    <div id="lblGroup" class="info-stat-value">-</div>
+                  </div>
+                </div>
+
               </div>
-              
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-user">
-                  <i class="ph ph-user-focus"></i>
-                </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">UserName</div>
-                  <div id="lblUser" class="info-stat-value">-</div>
-                </div>
-              </div>
-              
-              <div class="info-stat-card">
-                <div class="info-stat-icon bg-group">
-                  <i class="ph ph-users"></i>
-                </div>
-                <div class="info-stat-content">
-                  <div class="info-stat-label">Group</div>
-                  <div id="lblGroup" class="info-stat-value">-</div>
+
+              <!-- Action Buttons Section (Toggled on Select) -->
+              <div id="adminMemberButtonsSection">
+                <div class="admin-btn-row" style="justify-content: flex-start; gap: 16px;">
+                  <button id="adminMemberAddBtn" type="button" class="admin-btn admin-btn-primary">
+                    <i class="ph ph-user-plus"></i> Add To Admin Group
+                  </button>
+                  <button id="adminMemberRemoveBtn" type="button" class="admin-btn admin-btn-danger">
+                    <i class="ph ph-user-minus"></i> Remove From Admin Group
+                  </button>
                 </div>
               </div>
             </div>
-
-            <!-- Action Buttons Section (Toggled on Select) -->
-            <div id="adminMemberButtonsSection" class="mt-24px" style="display: none;">
-              <div class="admin-btn-row" style="justify-content: flex-start; gap: 16px;">
-                <button id="adminMemberAddBtn" type="button" class="admin-btn admin-btn-primary">
-                  <i class="ph ph-user-plus"></i> Add To Admin Group
-                </button>
-                <button id="adminMemberRemoveBtn" type="button" class="admin-btn admin-btn-danger">
-                  <i class="ph ph-user-minus"></i> Remove From Admin Group
-                </button>
-              </div>
-              
-              <div class="admin-info-box mt-16px" style="background: rgba(20,184,166,0.06); border-color: rgba(20,184,166,0.12); color: var(--app-text, #ffffff);">
-                <i class="ph ph-info" style="color: #14b8a6; font-size: 20px;"></i>
-                <span>Elevated admin members gain access to edit global configurations configurations.</span>
-              </div>
-            </div>
-
           </div>
+
+          <!-- Admin Member List Table -->
+          <div class="admin-card mt-24px">
+            <div class="admin-form-section">
+              <div class="admin-form-section-header">
+                <div class="admin-form-section-icon" style="background: rgba(20,184,166,0.12); color: #14b8a6">
+                  <i class="ph-bold ph-users-three"></i>
+                </div>
+                <div>
+                  <div class="admin-form-section-title">Current Admin Members</div>
+                  <div class="admin-form-section-desc">List of all users with elevated admin privileges</div>
+                </div>
+                <div style="margin-left: auto;">
+                  <span id="adminMemberCount" class="admin-status-badge success">
+                    <i class="ph ph-users"></i> 4 Members
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-table-scroll">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th class="admin-table-head-cell" style="width:52px;">Sr</th>
+                    <th class="admin-table-head-cell">EC No</th>
+                    <th class="admin-table-head-cell">Name</th>
+                    <th class="admin-table-head-cell">Group</th>
+                    <th class="admin-table-head-cell">Added On</th>
+                    <th class="admin-table-head-cell" style="text-align:center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminMemberTableBody">
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell" style="font-weight:600; opacity:0.5;">1</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge warning">10204</span></td>
+                    <td class="admin-table-cell" style="font-weight:600;">Rahul Sharma</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge success">Tech</span></td>
+                    <td class="admin-table-cell" style="opacity:0.7;">2025-01-10</td>
+                    <td class="admin-table-cell">
+                      <div class="admin-table-actions">
+                        <button class="admin-action-btn delete-btn remove-admin-btn" title="Remove from Admin Group">
+                          <i class="ph ph-user-minus"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell" style="font-weight:600; opacity:0.5;">2</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge warning">10355</span></td>
+                    <td class="admin-table-cell" style="font-weight:600;">Priya Patel</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge success">CM</span></td>
+                    <td class="admin-table-cell" style="opacity:0.7;">2025-02-14</td>
+                    <td class="admin-table-cell">
+                      <div class="admin-table-actions">
+                        <button class="admin-action-btn delete-btn remove-admin-btn" title="Remove from Admin Group">
+                          <i class="ph ph-user-minus"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell" style="font-weight:600; opacity:0.5;">3</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge warning">10892</span></td>
+                    <td class="admin-table-cell" style="font-weight:600;">Amit Singh</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge success">SM</span></td>
+                    <td class="admin-table-cell" style="opacity:0.7;">2025-03-01</td>
+                    <td class="admin-table-cell">
+                      <div class="admin-table-actions">
+                        <button class="admin-action-btn delete-btn remove-admin-btn" title="Remove from Admin Group">
+                          <i class="ph ph-user-minus"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="admin-table-row">
+                    <td class="admin-table-cell" style="font-weight:600; opacity:0.5;">4</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge warning">11044</span></td>
+                    <td class="admin-table-cell" style="font-weight:600;">Neha Desai</td>
+                    <td class="admin-table-cell"><span class="admin-status-badge success">GM</span></td>
+                    <td class="admin-table-cell" style="opacity:0.7;">2025-03-15</td>
+                    <td class="admin-table-cell">
+                      <div class="admin-table-actions">
+                        <button class="admin-action-btn delete-btn remove-admin-btn" title="Remove from Admin Group">
+                          <i class="ph ph-user-minus"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
       </div>
-    </main>
+  </div>
+  </main>
   </div>
 
   <script>
@@ -179,7 +276,6 @@
           const select = $('#adminMemberSelect');
           select.empty();
           select.append('<option value="">Select EC Number</option>');
-
           if (!query) {
             originalOptions.forEach(opt => select.append(`<option value="${opt.val}">${opt.text}</option>`));
           } else {
@@ -195,39 +291,70 @@
         $('#adminMemberSelect').on('change', function () {
           const val = $(this).val();
           if (!val) {
-            $('#adminMemberInfoGrid, #adminMemberButtonsSection').hide();
+            $('#adminMemberDetails').hide();
             return;
           }
 
-          const text = $(this).find('option:selected').text();
-          const parts = text.split(/\xa0{2,}/); 
+          const text = $(this).find('option:selected').text().trim();
+          const parts = text.split(/\s+/);
 
           if (parts.length >= 3) {
             $('#lblEc').text(parts[0].trim());
-            $('#lblUser').text(parts[1].trim());
-            $('#lblGroup').text(parts[2].trim());
+            const name = parts.slice(1, -1).join(' ');
+            $('#lblUser').text(name);
+            $('#lblGroup').text(parts[parts.length - 1].trim());
           }
 
-          $('#adminMemberInfoGrid, #adminMemberButtonsSection').show();
+          $('#adminMemberDetails').show();
         });
 
-        // Add Click
+        // Add to Admin Group
         $('#adminMemberAddBtn').on('click', function () {
+          const ec = $('#lblEc').text();
+          const name = $('#lblUser').text();
+
           Swal.fire({
-            icon: 'success',
-            title: 'Added!',
-            text: 'User successfully added to Admin Group.',
+            title: 'Add to Admin Group?',
+            html: `Are you sure you want to grant <strong>${name}</strong> (EC: ${ec}) admin privileges?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: 'var(--typo-blue, #5794F2)',
+            cancelButtonColor: 'var(--app-border, #4b5563)',
+            confirmButtonText: 'Yes, Add',
+            cancelButtonText: 'Cancel',
             background: 'var(--app-panel, #181b1f)',
-            color: 'var(--app-text, #ffffff)',
-            confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            color: 'var(--app-text, #ffffff)'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Added!',
+                text: `${name} has been added to the Admin Group.`,
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+            }
           });
         });
 
-        // Remove Click
+        // Remove via form button
         $('#adminMemberRemoveBtn').on('click', function () {
+          const name = $('#lblUser').text();
+          confirmRemove(name);
+        });
+
+        // Remove via table row button or document delegation
+        $(document).on('click', '.remove-admin-btn', function () {
+          const row = $(this).closest('tr');
+          const name = row.find('td:nth-child(3)').text(); // Name column
+          confirmRemove(name);
+        });
+
+        function confirmRemove(name) {
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You are about to remove this user from the Admin Group!",
+            title: 'Remove Admin?',
+            text: `Remove ${name} from the Admin Group?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#F2495C',
@@ -240,14 +367,14 @@
               Swal.fire({
                 icon: 'success',
                 title: 'Removed!',
-                text: 'User removed from Admin Group.',
+                text: `${name} has been removed from the Admin Group.`,
                 background: 'var(--app-panel, #181b1f)',
                 color: 'var(--app-text, #ffffff)',
                 confirmButtonColor: 'var(--typo-blue, #5794F2)'
               });
             }
           });
-        });
+        }
       }
 
       return { init };

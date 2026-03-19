@@ -7,7 +7,7 @@
   <title>GNFC | Master - Ex-DMS Space</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -67,13 +67,6 @@
 
           <!-- Ex-DMS Space Container -->
           <div id="exDmsViewContainer" class="changePasswordViewContainer">
-            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
-              <div class="app-header-group">
-                <i class="ph ph-folder-open font-24px" style="color: var(--typo-green, #73BF69);"></i>
-                <h2>Ex-DMS Space Management</h2>
-              </div>
-            </div>
-
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
@@ -95,11 +88,11 @@
                       <label for="exDmsUserSelect" class="admin-field-label"><i class="ph ph-user"></i> Select User</label>
                       <select id="exDmsUserSelect" class="admin-select">
                         <option value="">Select EC Number</option>
-                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
-                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
-                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
-                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
-                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10204">10204  Rahul Sharma  Tech</option>
+                        <option value="10355">10355  Priya Patel  CM</option>
+                        <option value="10892">10892  Amit Singh  SM</option>
+                        <option value="11044">11044  Neha Desai  GM</option>
+                        <option value="11289">11289  Rakesh Kumar  Tech</option>
                       </select>
                     </div>
                   </div>
@@ -147,10 +140,6 @@
                   <i class="ph ph-folder-plus"></i> Create Space
                 </button>
               </div>
-              
-              <p id="exDmsStatus" class="admin-status-badge success mt-16px opacity-0" style="transition: opacity 0.3s ease; width: fit-content;">
-                <i class="ph ph-check"></i> Space created
-              </p>
             </div>
 
           </div>
@@ -200,13 +189,14 @@
             return;
           }
 
-          const text = $(this).find('option:selected').text();
-          const parts = text.split(/\xa0{2,}/); 
+          const text = $(this).find('option:selected').text().trim();
+          const parts = text.split(/\s+/); 
 
           if (parts.length >= 3) {
             $('#lblEc').text(parts[0].trim());
-            $('#lblUser').text(parts[1].trim());
-            $('#lblGroup').text(parts[2].trim());
+            const name = parts.slice(1, -1).join(' ');
+            $('#lblUser').text(name);
+            $('#lblGroup').text(parts[parts.length - 1].trim());
           }
 
           $('#exDmsInfoGrid, #exDmsActionSection').show();
@@ -214,9 +204,9 @@
 
         // Create Space Click
         $('#exDmsCreateBtn').on('click', function () {
-          const selectedText = $('#exDmsUserSelect option:selected').text();
-          const parts = selectedText.split(/\xa0{2,}/);
-          const userName = parts.length >= 2 ? parts[1].trim() : 'User';
+          const selectedText = $('#exDmsUserSelect option:selected').text().trim();
+          const parts = selectedText.split(/\s+/);
+          const userName = parts.length >= 3 ? parts.slice(1, -1).join(' ') : (parts.length >= 2 ? parts[1].trim() : 'User');
 
           const $status = $('#exDmsStatus');
           $status.html(`<i class="ph ph-check"></i> Space created for ${userName}`);
@@ -246,3 +236,5 @@
 </body>
 
 </html>
+
+

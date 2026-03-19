@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
   <title>GNFC | Master - Mail Schedule</title>
 
   <!-- Icons -->
-  <script src="../js/vendor/phosphor-icons.min.js"></script>
+  <link rel="stylesheet" href="../css/phosphor.css">
 
   <!-- Theme & Utilities -->
   <link rel="stylesheet" href="../css/utilities.css">
@@ -98,20 +98,13 @@
 
           <!-- List View Container -->
           <div id="mailScheduleListView" class="changePasswordViewContainer">
-            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
-              <div class="app-header-group">
-                <i class="ph ph-calendar-check font-24px" style="color: var(--typo-blue, #5794F2);"></i>
-                <h2>Mail Schedule</h2>
-              </div>
-            </div>
-            
             <div class="admin-card">
-              <div class="max-w-xl mx-auto" style="padding: 24px 0;">
+              <div class="max-w-xl mx-auto">
                 <label for="mailScheduleSelect" class="admin-field-label mb-8px">Select Existing Schedule</label>
                 <select id="mailScheduleSelect" class="admin-select w-full">
-                  <option value="sc-1">Weekly Safety Report &nbsp;&nbsp;&nbsp; Next due: 25/03/2026</option>
-                  <option value="sc-2">Daily Plant Metric &nbsp;&nbsp;&nbsp; Next due: 20/03/2026</option>
-                  <option value="sc-3">Monthly Attendance &nbsp;&nbsp;&nbsp; Next due: 01/04/2026</option>
+                  <option value="sc-1">Weekly Safety Report  Next due: 25/03/2026</option>
+                  <option value="sc-2">Daily Plant Metric  Next due: 20/03/2026</option>
+                  <option value="sc-3">Monthly Attendance  Next due: 01/04/2026</option>
                 </select>
                 <div class="admin-btn-row mt-16px" style="justify-content: flex-start;">
                   <button id="mailScheduleEditBtn" type="button" class="admin-btn admin-btn-secondary">
@@ -127,14 +120,9 @@
 
           <!-- Form View Container (Hidden Default) -->
           <div id="mailScheduleFormView" style="display: none;">
-            <div class="app-header mb-16px" style="padding: 0; background: transparent; border-bottom: none; height: auto;">
-              <div class="app-header-group">
-                <i class="ph ph-calendar-check font-24px" style="color: var(--typo-blue, #5794F2);"></i>
-                <h2 id="formViewTitle">Add Mail Schedule</h2>
-              </div>
-            </div>
 
             <div class="admin-card">
+            <h3 id="formViewTitle" class="mb-16px">Add Mail Schedule</h3>
               <div class="admin-form-table">
                 <div class="admin-form-table-row">
                   <label class="admin-form-table-label">To:</label>
@@ -317,3 +305,5 @@
 </body>
 
 </html>
+
+

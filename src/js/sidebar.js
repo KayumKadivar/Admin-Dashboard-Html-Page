@@ -10,6 +10,10 @@ $(function () {
 
         <!-- Navigation List -->
         <div class="admin-sidebar-section mt-12px">
+          <a class="admin-sidebar-link" data-nav-key="admin_dashboard" data-tooltip="Dashboard">
+            <i class="ph ph-squares-four"></i>
+            <span>Dashboard</span>
+          </a>
           <a class="admin-sidebar-link" data-nav-key="privilege" data-tooltip="Privilege">
             <i class="ph ph-shield-check"></i>
             <span>Privilege</span>
