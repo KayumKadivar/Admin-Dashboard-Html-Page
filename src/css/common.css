@@ -346,7 +346,7 @@ html[data-theme="light"] .sidebar-collapsed .admin-sidebar-exit::after {
 .admin-select {
     height: 46px;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid var(--app-border, #23272e);
     background: var(--app-bg, #111217);
     padding: 0 16px;
@@ -504,10 +504,6 @@ html[data-theme="light"] .sidebar-collapsed .admin-sidebar-exit::after {
 
 .admin-table-row:last-child {
     border-bottom: none;
-}
-
-.admin-table-row:hover {
-    background: rgba(255, 255, 255, 0.03);
 }
 
 /* ── Active/Updated Row Highlights ── */

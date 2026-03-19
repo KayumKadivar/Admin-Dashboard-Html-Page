@@ -8,18 +8,8 @@ $(function () {
           <img src="../assets/images/gnfc-sidebar-logo-short.png" alt="GNFC" class="logo-short" style="display: none;">
         </div>
 
-        <!-- Overview -->
+        <!-- Navigation List -->
         <div class="admin-sidebar-section mt-12px">
-          <div class="admin-sidebar-section-label">Overview</div>
-          <a class="admin-sidebar-link" data-nav-key="admin_dashboard" data-tooltip="Dashboard">
-            <i class="ph ph-squares-four"></i>
-            <span>Dashboard</span>
-          </a>
-        </div>
-
-        <!-- Masters -->
-        <div class="admin-sidebar-section">
-          <div class="admin-sidebar-section-label">Masters</div>
           <a class="admin-sidebar-link" data-nav-key="privilege" data-tooltip="Privilege">
             <i class="ph ph-shield-check"></i>
             <span>Privilege</span>
@@ -27,6 +17,10 @@ $(function () {
           <a class="admin-sidebar-link" data-nav-key="default_privilege" data-tooltip="Default Privilege">
             <i class="ph ph-shield-star"></i>
             <span>Default Privilege</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="user_privilege" data-tooltip="User Privilege">
+            <i class="ph ph-user-check"></i>
+            <span>User Privilege</span>
           </a>
           <a class="admin-sidebar-link" data-nav-key="plants" data-tooltip="Plants">
             <i class="ph ph-factory"></i>
@@ -36,36 +30,18 @@ $(function () {
             <i class="ph ph-puzzle-piece"></i>
             <span>Modules</span>
           </a>
-        </div>
-
-        <!-- Users -->
-        <div class="admin-sidebar-section">
-          <div class="admin-sidebar-section-label">Users</div>
-          <a class="admin-sidebar-link" data-nav-key="user" data-tooltip="User Info">
+          <a class="admin-sidebar-link" data-nav-key="user" data-tooltip="User">
             <i class="ph ph-user-circle"></i>
-            <span>User Info</span>
+            <span>User</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_privilege" data-tooltip="User Privilege">
-            <i class="ph ph-user-check"></i>
-            <span>User Privilege</span>
-          </a>
-          <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User Plants">
+          <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User-Plants">
             <i class="ph ph-tree-structure"></i>
-            <span>User Plants</span>
+            <span>User-Plants</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_email" data-tooltip="User Email">
+          <a class="admin-sidebar-link" data-nav-key="user_email" data-tooltip="User-Email">
             <i class="ph ph-envelope"></i>
-            <span>User Email</span>
+            <span>User-Email</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="admin_member" data-tooltip="Admin Member">
-            <i class="ph ph-users-three"></i>
-            <span>Admin Member</span>
-          </a>
-        </div>
-
-        <!-- Security -->
-        <div class="admin-sidebar-section">
-          <div class="admin-sidebar-section-label">Security</div>
           <a class="admin-sidebar-link" data-nav-key="change_password" data-tooltip="Change Password">
             <i class="ph ph-key"></i>
             <span>Change Password</span>
@@ -74,11 +50,18 @@ $(function () {
             <i class="ph ph-arrow-counter-clockwise"></i>
             <span>Reset Password</span>
           </a>
-        </div>
-
-        <!-- System -->
-        <div class="admin-sidebar-section mb-16px">
-          <div class="admin-sidebar-section-label">System</div>
+          <a class="admin-sidebar-link" data-nav-key="admin_member" data-tooltip="Admin Member">
+            <i class="ph ph-users-three"></i>
+            <span>Admin Member</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="new_update_popup" data-tooltip="New Update Popup">
+            <i class="ph ph-bell"></i>
+            <span>New Update Popup</span>
+          </a>
+          <a class="admin-sidebar-link" data-nav-key="whats_new" data-tooltip="What's new">
+            <i class="ph ph-sparkle"></i>
+            <span>What's new</span>
+          </a>
           <a class="admin-sidebar-link" data-nav-key="mail_schedule" data-tooltip="Mail Schedule">
             <i class="ph ph-calendar-check"></i>
             <span>Mail Schedule</span>
@@ -87,17 +70,9 @@ $(function () {
             <i class="ph ph-signpost"></i>
             <span>Login Info</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="ex_dms_space" data-tooltip="Ex-DMS Space">
+          <a class="admin-sidebar-link" data-nav-key="ex_dms_space" data-tooltip="Space for Ex-DMS">
             <i class="ph ph-folder-open"></i>
-            <span>Ex-DMS Space</span>
-          </a>
-          <a class="admin-sidebar-link" data-nav-key="new_update_popup" data-tooltip="Login Popup">
-            <i class="ph ph-bell"></i>
-            <span>Login Popup</span>
-          </a>
-          <a class="admin-sidebar-link" data-nav-key="whats_new" data-tooltip="What's New">
-            <i class="ph ph-sparkle"></i>
-            <span>What's New</span>
+            <span>Space for Ex-DMS</span>
           </a>
         </div>
 
@@ -122,6 +97,8 @@ $(function () {
 
   if (path.includes("admin_dashboard.html")) {
     $('[data-nav-key="admin_dashboard"]').addClass("active");
+  } else if (path.includes("user_privilege.html")) {
+    $('[data-nav-key="user_privilege"]').addClass("active");
   } else if (path.includes("default_privilege.html")) {
     $('[data-nav-key="default_privilege"]').addClass("active");
   } else if (path.includes("privilege.html")) {
@@ -130,8 +107,6 @@ $(function () {
     $('[data-nav-key="plants"]').addClass("active");
   } else if (path.includes("modules.html")) {
     $('[data-nav-key="modules"]').addClass("active");
-  } else if (path.includes("user_privilege.html")) {
-    $('[data-nav-key="user_privilege"]').addClass("active");
   } else if (path.includes("user.html")) {
     $('[data-nav-key="user"]').addClass("active");
   }
