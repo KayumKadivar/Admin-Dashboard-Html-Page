@@ -41,9 +41,9 @@
 
 /* ── Logo Area ── */
 .logo-block { text-align: center; margin-bottom: 32px; }
-.logo-block img { height: 72px; width: auto; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)); }
-.logo-block h1 { font-size: 18px; font-weight: 800; background: linear-gradient(135deg, var(--typo-primary, #ffffff) 0%, var(--typo-secondary, #94a3b8) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.logo-block .subtitle { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 5px 14px; background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--typo-teal, #14b8a6); }
+.logo-block img { height: 72px; width: auto; margin-bottom: 12px; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)); }
+.logo-block h1 { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--typo-primary, #ffffff) 0%, var(--typo-secondary, #94a3b8) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.logo-block .subtitle { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 5px 14px; background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--typo-teal, #14b8a6); }
 
 /* ── Welcome Text ── */
 .welcome-text { margin-bottom: 15px;}

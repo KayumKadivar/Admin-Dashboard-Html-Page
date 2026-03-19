@@ -108,19 +108,26 @@
   justify-content: center;
 }
 
+.admin-dash-kpi-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4;
+}
+
 .admin-dash-kpi-value {
   font-size: 2.25rem;
   font-weight: 800;
   line-height: 1;
   color: var(--typo-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 .admin-dash-kpi-label {
   font-size: 0.9375rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--typo-label);
+  color: var(--typo-label, #9ca3af);
 }
 
 .admin-dash-kpi-badge {
@@ -288,8 +295,8 @@
   }
 }
 
-@media (max-width: 992px) { 
-  .admin-dash-action-card{
+@media (max-width: 992px) {
+  .admin-dash-action-card {
     flex-wrap: wrap;
   }
 }
@@ -395,6 +402,7 @@
 .admin-btn-primary {
   background: var(--typo-blue, #5794F2);
   color: #ffffff;
+  border-color: var(--typo-blue, #5794F2);
 }
 
 .admin-btn-primary:hover {

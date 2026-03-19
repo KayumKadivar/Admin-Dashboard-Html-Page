@@ -1,5 +1,5 @@
 /* ── Reset & Base ── */
-*{
+* {
     box-sizing: border-box;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
@@ -145,8 +145,9 @@ html {
 }
 
 .admin-sidebar-link:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--typo-primary, #ffffff);
+    background: rgba(255, 153, 0, 0.12);
+    color: #FF9900;
+    border-color: rgba(255, 153, 0, 0.25);
 }
 
 .admin-sidebar-link.active {
@@ -203,12 +204,13 @@ html {
 /* --- Sidebar Collapse Styles --- */
 .sidebar-collapsed .app-sidebar-wrap {
     width: 72px;
-    overflow-x: hidden;
+    overflow: visible !important;
+    /* Allow tooltips to show outside */
 }
 
-/* Custom scrollbar for collapsed sidebar to prevent crowding */
-.sidebar-collapsed .app-sidebar-wrap::-webkit-scrollbar {
-    width: 3px;
+.sidebar-collapsed .admin-sidebar {
+    overflow: visible !important;
+    /* Allow tooltips to show outside */
 }
 
 .sidebar-collapsed .logo-full {
@@ -242,12 +244,86 @@ html {
 
 }
 
-.sidebar-collapsed .admin-sidebar-logo {
-    justify-content: center;
-    padding: 0 0 0.5rem 0;
-    border-bottom: 1px solid var(--app-border, #23272e);
-    margin-bottom: 0.5rem;
+/* ── Sidebar Tooltips (Only when collapsed) ── */
+.sidebar-collapsed .admin-sidebar-link,
+.sidebar-collapsed .admin-sidebar-exit {
+    position: relative;
 }
+
+.sidebar-collapsed .admin-sidebar-link::before,
+.sidebar-collapsed .admin-sidebar-link::after,
+.sidebar-collapsed .admin-sidebar-exit::before,
+.sidebar-collapsed .admin-sidebar-exit::after {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    pointer-events: none;
+    left: 100%;
+    top: 50%;
+}
+
+/* Tooltip Bubble - Dark Theme Default (Light BG Tooltip) */
+.sidebar-collapsed .admin-sidebar-link::before,
+.sidebar-collapsed .admin-sidebar-exit::before {
+    content: attr(data-tooltip);
+    transform: translateY(-50%) translateX(8px);
+    background: #ffffff;
+    color: #1a1f26;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tooltip Arrow - Dark Theme Default */
+.sidebar-collapsed .admin-sidebar-link::after,
+.sidebar-collapsed .admin-sidebar-exit::after {
+    content: '';
+    transform: translateY(-50%) translateX(-4px);
+    border: 6px solid transparent;
+    border-right-color: #ffffff;
+}
+
+/* Hover Actions */
+.sidebar-collapsed .admin-sidebar-link:hover::before,
+.sidebar-collapsed .admin-sidebar-exit:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(16px);
+}
+
+.sidebar-collapsed .admin-sidebar-link:hover::after,
+.sidebar-collapsed .admin-sidebar-exit:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(4px);
+}
+
+/* ── Light Theme Exceptions (Dark BG Tooltip) ── */
+html[data-theme="light"] .sidebar-collapsed .admin-sidebar-link::before,
+html[data-theme="light"] .sidebar-collapsed .admin-sidebar-exit::before {
+    background: #1e2530;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="light"] .sidebar-collapsed .admin-sidebar-link::after,
+html[data-theme="light"] .sidebar-collapsed .admin-sidebar-exit::after {
+    border-right-color: #1e2530;
+}
+
+/* Ensure tooltips do not get clipped by parent streams */
+.sidebar-collapsed .app-sidebar-wrap,
+.sidebar-collapsed .admin-sidebar {
+    overflow: visible !important;
+}
+
+
 
 /* ── UI Components ── */
 .admin-card {
@@ -656,10 +732,10 @@ html {
 .admin-action-btn {
     width: 28px;
     height: 28px;
-    border-radius: 4px;
-    border: 1px solid var(--app-border, #23272e);
-    background: var(--app-bg, #111217);
-    color: var(--app-text-muted, #a0aec0);
+    border-radius: 6px;
+    border: 1px solid rgba(87, 148, 242, 0.2);
+    background: rgba(87, 148, 242, 0.1);
+    color: var(--typo-blue, #5794F2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -667,16 +743,22 @@ html {
     transition: all 0.2s;
     font-size: 14px;
     padding: 0;
+    position: relative;
+    /* Added for tooltip */
 }
 
 .admin-action-btn:hover {
-    border-color: var(--typo-blue, #5794F2);
-    color: var(--typo-blue, #5794F2);
-    background: rgba(87, 148, 242, 0.05);
+    background: rgba(87, 148, 242, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Delete Button Specific */
+.admin-action-btn.delete-btn {
+    border-color: rgba(242, 73, 92, 0.2);
+    background: rgba(242, 73, 92, 0.1);
+    color: #F2495C;
 }
 
 .admin-action-btn.delete-btn:hover {
-    border-color: var(--app-red, #E53E3E);
-    color: var(--app-red, #E53E3E);
-    background: rgba(229, 62, 62, 0.05);
+    background: rgba(242, 73, 92, 0.2);
 }

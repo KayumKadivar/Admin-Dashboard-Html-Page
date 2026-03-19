@@ -7,7 +7,6 @@
   <title>GNFC | User Privilege</title>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="../css/fonts.css">
 
   <!-- Icons -->
   <script src="../js/vendor/phosphor-icons.min.js"></script>
@@ -73,7 +72,7 @@
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(183,148,244,0.12); color: #B794F4">
+                  <div class="admin-form-section-icon icon-theme-purple">
                     <i class="ph-bold ph-user-focus"></i>
                   </div>
                   <div>
@@ -93,7 +92,12 @@
                       <label for="userPrivilegeSelect" class="admin-field-label"><i
                           class="ph ph-identification-card"></i> EC Number</label>
                       <select id="userPrivilegeSelect" class="admin-select">
-                        <!-- Loaded dynamically -->
+                        <option value="">Select EC Number</option>
+                        <option value="10204">10204 &nbsp;&nbsp;&nbsp; Rahul Sharma &nbsp;&nbsp;&nbsp; Tech</option>
+                        <option value="10355">10355 &nbsp;&nbsp;&nbsp; Priya Patel &nbsp;&nbsp;&nbsp; CM</option>
+                        <option value="10892">10892 &nbsp;&nbsp;&nbsp; Amit Singh &nbsp;&nbsp;&nbsp; SM</option>
+                        <option value="11044">11044 &nbsp;&nbsp;&nbsp; Neha Desai &nbsp;&nbsp;&nbsp; GM</option>
+                        <option value="11289">11289 &nbsp;&nbsp;&nbsp; Rakesh Kumar &nbsp;&nbsp;&nbsp; Tech</option>
                       </select>
                     </div>
                     <button id="userPrivilegeGo" type="button" class="admin-btn admin-btn-primary">
@@ -111,7 +115,7 @@
             <!-- Simplified In-Page Results Section (Direct Plant Access Table) -->
             <div id="userPrivilegeResultsSection" class="admin-card mt-24px">
               <div class="admin-form-section-header mb-16px">
-                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                <div class="admin-form-section-icon icon-theme-primary-alt">
                   <i class="ph-bold ph-shield"></i>
                 </div>
                 <div>
@@ -129,7 +133,46 @@
                     </tr>
                   </thead>
                   <tbody id="userPrivilegeTableBody">
-                    <!-- Loaded dynamically -->
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">ACETIC ACID</td>
+                      <td class="admin-table-cell font-15px fw-semibold">AA</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="AA"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">AAQM</td>
+                      <td class="admin-table-cell font-15px fw-semibold">AAQM</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="AAQM"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">AMMONIA</td>
+                      <td class="admin-table-cell font-15px fw-semibold">AMM</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="AMM"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">ANIF FILLING</td>
+                      <td class="admin-table-cell font-15px fw-semibold">ANIPF</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="ANIPF"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">ANITDI</td>
+                      <td class="admin-table-cell font-15px fw-semibold">ANITDI</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="ANITDI"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">ASGP</td>
+                      <td class="admin-table-cell font-15px fw-semibold">ASGP</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="ASGP"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">MINMAX</td>
+                      <td class="admin-table-cell font-15px fw-semibold">MINMAX</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="MINMAX"></td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell">NITRO PHOSPHATE</td>
+                      <td class="admin-table-cell font-15px fw-semibold">NPP</td>
+                      <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="NPP"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -149,52 +192,27 @@
     const UserPrivilegeView = (() => {
       'use strict';
 
-      function filterRows(filterText) {
-        const query = String(filterText || '').trim().toLowerCase();
-        const rows = AdminData.userPrivilegeRows || [];
-        if (!query) return rows;
-        return rows.filter(row =>
-          row.ec.toLowerCase().includes(query) ||
-          row.name.toLowerCase().includes(query) ||
-          row.group.toLowerCase().includes(query)
-        );
-      }
-
-      function buildSelectOptions(rows) {
-        if (!rows.length) return '<option value="">No records found</option>';
-        let html = '<option value="">Select EC Number</option>';
-        rows.forEach(row => {
-          const label = `${row.ec}    ${row.name}    ${row.group}`;
-          html += `<option value="${row.ec}">${label}</option>`;
-        });
-        return html;
-      }
-
-      function renderTable() {
-        const plants = AdminData.userPlantsPrivilegePlantRows || [];
-        let html = '';
-        plants.forEach(plant => {
-          html += `
-            <tr class="admin-table-row">
-              <td class="admin-table-cell">${plant.name}</td>
-              <td class="admin-table-cell font-15px fw-semibold">${plant.code}</td>
-              <td class="admin-table-cell text-center"><input type="checkbox" class="checkbox-input" value="${plant.code}"></td>
-            </tr>
-          `;
-        });
-        $('#userPrivilegeTableBody').html(html);
-      }
-
       function init() {
-        // Render initial structures
-        const rows = filterRows('');
-        $('#userPrivilegeSelect').html(buildSelectOptions(rows));
-        renderTable();
+        const originalOptions = $('#userPrivilegeSelect option').not('[value=""]').toArray().map(opt => ({
+           val: opt.value, 
+           text: $(opt).text()
+        }));
 
-        // Filter event
         $('#userPrivilegeFilter').on('input', function () {
-          const filtered = filterRows($(this).val());
-          $('#userPrivilegeSelect').html(buildSelectOptions(filtered));
+          const query = $(this).val().toLowerCase().trim();
+          const select = $('#userPrivilegeSelect');
+          select.empty();
+          select.append('<option value="">Select EC Number</option>');
+
+          if(!query) {
+             originalOptions.forEach(opt => select.append(`<option value="${opt.val}">${opt.text}</option>`));
+          } else {
+             originalOptions.forEach(opt => {
+                if(opt.text.toLowerCase().includes(query)) {
+                   select.append(`<option value="${opt.val}">${opt.text}</option>`);
+                }
+             });
+          }
         });
 
         // Event delegation for row clicks
@@ -208,7 +226,7 @@
         $('#userPrivilegeGo').on('click', function () {
           const ec = $('#userPrivilegeSelect').val();
           if (!ec) {
-            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)', confirmButtonColor: 'var(--typo-blue, #5794F2)' });
             return;
           }
           Swal.fire({
@@ -226,7 +244,7 @@
         $('#userPrivilegeSaveBtn').on('click', function () {
           const selectedEc = $('#userPrivilegeSelect').val();
           if (!selectedEc) {
-            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+            Swal.fire({ icon: 'warning', title: 'Select User', text: 'Please select a user first.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)', confirmButtonColor: 'var(--typo-blue, #5794F2)' });
             return;
           }
           Swal.fire({
@@ -234,7 +252,8 @@
             title: 'Saved',
             text: 'User plant access permissions saved successfully for EC: ' + selectedEc,
             background: 'var(--app-panel, #181b1f)',
-            color: 'var(--app-text, #ffffff)'
+            color: 'var(--app-text, #ffffff)',
+            confirmButtonColor: 'var(--typo-blue, #5794F2)'
           });
         });
       }

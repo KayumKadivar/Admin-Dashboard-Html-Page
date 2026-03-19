@@ -513,3 +513,31 @@
 .group:focus-within .group-focus-within-color-blue {
   color: var(--typo-blue, #5794F2) !important;
 }
+
+/* ======================================== ICON THEME UTILITIES ======================================== */
+.icon-theme-primary { background: rgba(87, 148, 242, 0.12) !important; color: var(--typo-blue, #5794F2) !important; }
+.icon-theme-primary-alt { background: rgba(66, 153, 225, 0.12) !important; color: #4299E1 !important; }
+
+.icon-theme-success { background: rgba(115, 191, 105, 0.12) !important; color: var(--typo-green, #73BF69) !important; }
+.icon-theme-warning { background: rgba(255, 153, 0, 0.12) !important; color: var(--typo-orange, #FF9900) !important; }
+.icon-theme-danger { background: rgba(242, 73, 92, 0.12) !important; color: var(--typo-red, #F2495C) !important; }
+
+.icon-theme-purple { background: rgba(183, 148, 244, 0.12) !important; color: var(--typo-purple, #B794F4) !important; }
+.icon-theme-teal { background: rgba(20, 184, 166, 0.12) !important; color: var(--typo-teal, #14b8a6) !important; }
+.icon-theme-cyan { background: rgba(6, 182, 212, 0.12) !important; color: var(--typo-cyan, #06b6d4) !important; }
+.icon-theme-amber { background: rgba(245, 158, 11, 0.12) !important; color: var(--typo-amber, #f59e0b) !important; }
+.icon-theme-pink { background: rgba(236, 72, 153, 0.12) !important; color: #ec4899 !important; }
+.icon-theme-indigo { background: rgba(99, 102, 241, 0.12) !important; color: #6366f1 !important; }
+.icon-theme-rose { background: rgba(244, 63, 94, 0.12) !important; color: #f43f5e !important; }
+.icon-theme-emerald { background: rgba(16, 185, 129, 0.12) !important; color: #10b981 !important; }
+.icon-theme-gray { background: rgba(107, 114, 128, 0.12) !important; color: #6b7280 !important; }
+.icon-theme-slate { background: rgba(100, 116, 139, 0.12) !important; color: #64748b !important; }
+
+/* 15% opacity variants */
+.icon-theme-primary-15 { background: rgba(87, 148, 242, 0.15) !important; color: var(--typo-blue, #5794F2) !important; }
+.icon-theme-success-15 { background: rgba(115, 191, 105, 0.15) !important; color: var(--typo-green, #73BF69) !important; }
+.icon-theme-warning-15 { background: rgba(255, 153, 0, 0.15) !important; color: var(--typo-orange, #FF9900) !important; }
+.icon-theme-purple-15 { background: rgba(183, 148, 244, 0.15) !important; color: var(--typo-purple, #B794F4) !important; }
+.icon-theme-teal-15 { background: rgba(20, 184, 166, 0.15) !important; color: var(--typo-teal, #14b8a6) !important; }
+.icon-theme-cyan-15 { background: rgba(6, 182, 212, 0.15) !important; color: var(--typo-cyan, #06b6d4) !important; }
+.icon-theme-danger-15 { background: rgba(242, 73, 92, 0.15) !important; color: var(--typo-red, #F2495C) !important; }

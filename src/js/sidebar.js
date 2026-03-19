@@ -11,7 +11,7 @@ $(function () {
         <!-- Overview -->
         <div class="admin-sidebar-section mt-12px">
           <div class="admin-sidebar-section-label">Overview</div>
-          <a class="admin-sidebar-link" data-nav-key="admin_dashboard">
+          <a class="admin-sidebar-link" data-nav-key="admin_dashboard" data-tooltip="Dashboard">
             <i class="ph ph-squares-four"></i>
             <span>Dashboard</span>
           </a>
@@ -20,19 +20,19 @@ $(function () {
         <!-- Masters -->
         <div class="admin-sidebar-section">
           <div class="admin-sidebar-section-label">Masters</div>
-          <a class="admin-sidebar-link" data-nav-key="privilege">
+          <a class="admin-sidebar-link" data-nav-key="privilege" data-tooltip="Privilege">
             <i class="ph ph-shield-check"></i>
             <span>Privilege</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="default_privilege">
+          <a class="admin-sidebar-link" data-nav-key="default_privilege" data-tooltip="Default Privilege">
             <i class="ph ph-shield-star"></i>
             <span>Default Privilege</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="plants">
+          <a class="admin-sidebar-link" data-nav-key="plants" data-tooltip="Plants">
             <i class="ph ph-factory"></i>
             <span>Plants</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="modules">
+          <a class="admin-sidebar-link" data-nav-key="modules" data-tooltip="Modules">
             <i class="ph ph-puzzle-piece"></i>
             <span>Modules</span>
           </a>
@@ -41,23 +41,23 @@ $(function () {
         <!-- Users -->
         <div class="admin-sidebar-section">
           <div class="admin-sidebar-section-label">Users</div>
-          <a class="admin-sidebar-link" data-nav-key="user">
+          <a class="admin-sidebar-link" data-nav-key="user" data-tooltip="User Info">
             <i class="ph ph-user-circle"></i>
             <span>User Info</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_privilege">
+          <a class="admin-sidebar-link" data-nav-key="user_privilege" data-tooltip="User Privilege">
             <i class="ph ph-user-check"></i>
             <span>User Privilege</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_plants">
+          <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User Plants">
             <i class="ph ph-tree-structure"></i>
             <span>User Plants</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="user_email">
+          <a class="admin-sidebar-link" data-nav-key="user_email" data-tooltip="User Email">
             <i class="ph ph-envelope"></i>
             <span>User Email</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="admin_member">
+          <a class="admin-sidebar-link" data-nav-key="admin_member" data-tooltip="Admin Member">
             <i class="ph ph-users-three"></i>
             <span>Admin Member</span>
           </a>
@@ -66,11 +66,11 @@ $(function () {
         <!-- Security -->
         <div class="admin-sidebar-section">
           <div class="admin-sidebar-section-label">Security</div>
-          <a class="admin-sidebar-link" data-nav-key="change_password">
+          <a class="admin-sidebar-link" data-nav-key="change_password" data-tooltip="Change Password">
             <i class="ph ph-key"></i>
             <span>Change Password</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="reset_password">
+          <a class="admin-sidebar-link" data-nav-key="reset_password" data-tooltip="Reset Password">
             <i class="ph ph-arrow-counter-clockwise"></i>
             <span>Reset Password</span>
           </a>
@@ -79,30 +79,30 @@ $(function () {
         <!-- System -->
         <div class="admin-sidebar-section mb-16px">
           <div class="admin-sidebar-section-label">System</div>
-          <a class="admin-sidebar-link" data-nav-key="mail_schedule">
+          <a class="admin-sidebar-link" data-nav-key="mail_schedule" data-tooltip="Mail Schedule">
             <i class="ph ph-calendar-check"></i>
             <span>Mail Schedule</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="login_info">
+          <a class="admin-sidebar-link" data-nav-key="login_info" data-tooltip="Login Info">
             <i class="ph ph-signpost"></i>
             <span>Login Info</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="ex_dms_space">
+          <a class="admin-sidebar-link" data-nav-key="ex_dms_space" data-tooltip="Ex-DMS Space">
             <i class="ph ph-folder-open"></i>
             <span>Ex-DMS Space</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="new_update_popup">
+          <a class="admin-sidebar-link" data-nav-key="new_update_popup" data-tooltip="Login Popup">
             <i class="ph ph-bell"></i>
             <span>Login Popup</span>
           </a>
-          <a class="admin-sidebar-link" data-nav-key="whats_new">
+          <a class="admin-sidebar-link" data-nav-key="whats_new" data-tooltip="What's New">
             <i class="ph ph-sparkle"></i>
             <span>What's New</span>
           </a>
         </div>
 
         <div class="admin-sidebar-footer">
-          <a class="admin-sidebar-exit" href="../../index.html">
+          <a class="admin-sidebar-exit" href="../../index.html" data-tooltip="Exit">
             <i class="ph ph-sign-out"></i>
             <span>Exit</span>
           </a>
@@ -147,7 +147,7 @@ $(function () {
   // Inject Toggle Button into Header if not exists
   if ($("#sidebarToggleBtn").length === 0) {
     $(".app-header-group").prepend(`
-      <button id="sidebarToggleBtn" class="ui-btn-icon" style="margin-right: 12px;" title="Toggle Sidebar">
+      <button id="sidebarToggleBtn" class="ui-btn-icon" title="Toggle Sidebar">
         <i class="ph ph-list font-20px"></i>
       </button>
     `);

@@ -7,7 +7,6 @@
   <title>GNFC | Master - Modules</title>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="../css/fonts.css">
 
   <!-- Icons -->
   <script src="../js/vendor/phosphor-icons.min.js"></script>
@@ -72,7 +71,7 @@
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(255,153,0,0.12); color: #FF9900">
+                  <div class="admin-form-section-icon icon-theme-warning">
                     <i class="ph-bold ph-plus-circle"></i>
                   </div>
                   <div>
@@ -97,7 +96,7 @@
             <!-- Simplified In-Page Results Section -->
             <div id="modulesResultsSection" class="admin-card mt-24px">
               <div class="admin-form-section-header mb-16px">
-                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                <div class="admin-form-section-icon icon-theme-primary-alt">
                   <i class="ph-bold ph-list-bullets"></i>
                 </div>
                 <div>
@@ -114,11 +113,64 @@
                     </tr>
                   </thead>
                   <tbody id="modulesTableBody">
-                    <!-- Loaded dynamically -->
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">Administrator</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">User Management</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">System Settings</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">Reporting</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">Security</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
-              <!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
@@ -128,75 +180,149 @@
 
   <script>
     $(function () {
+      // --- Module Logic ---
+      const ModuleManager = (() => {
+        'use strict';
 
-      // Row click selects radio
-      $('.admin-table-row').on('click', function (e) {
-        if ($(e.target).is('input[type="radio"]')) return;
-        $(this).find('input[type="radio"]').prop('checked', true);
-      });
+        function bind() {
+          // Add Module
+          $('#moduleMasterAddBtn').on('click', function () {
+            const name = $('#moduleMasterNameInput').val().trim();
 
-      // Add logic
-      $('#moduleMasterAddBtn').on('click', function () {
-        const name = $('#moduleMasterNameInput').val().trim();
+            if (!name) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Empty Field',
+                text: 'Please fill the Module Name.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
+              return;
+            }
 
-        if (!name) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Empty Field',
-            text: 'Please fill the Module Name.',
-            background: 'var(--app-panel, #181b1f)',
-            color: 'var(--app-text, #ffffff)'
-          });
-          return;
-        }
-
-        Swal.fire({
-          icon: 'success',
-          title: 'Added',
-          text: 'Module "' + name + '" added successfully.',
-          background: 'var(--app-panel, #181b1f)',
-          color: 'var(--app-text, #ffffff)'
-        });
-        $('#moduleMasterNameInput').val('');
-      });
-
-      // Delete logic
-      $('#moduleDeleteBtn').on('click', function () {
-        const selected = $('input[name="moduleSelected"]:checked');
-        if (!selected.length) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'No Selection',
-            text: 'Please select a module to delete.',
-            background: 'var(--app-panel, #181b1f)',
-            color: 'var(--app-text, #ffffff)'
-          });
-          return;
-        }
-
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#E53E3E',
-          background: 'var(--app-panel, #181b1f)',
-          color: 'var(--app-text, #ffffff)'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            selected.closest('tr').remove();
             Swal.fire({
               icon: 'success',
-              title: 'Deleted',
-              text: 'The plant has been deleted.',
+              title: 'Added!',
+              text: 'Module "' + name + '" added successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+            $('#moduleMasterNameInput').val('');
+          });
+
+          // Delete Logic (Row-level)
+          $(document).on('click', '.delete-btn', function (e) {
+            e.stopPropagation();
+            const row = $(this).closest('tr');
+            const name = row.find('td:first-child').text().trim();
+
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want to delete Module: " + name + "?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#F2495C',
               background: 'var(--app-panel, #181b1f)',
               color: 'var(--app-text, #ffffff)'
-            });;
-          }
-        });
-      });
+            }).then((result) => {
+              if (result.isConfirmed) {
+                row.remove();
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Deleted!',
+                  text: 'Module has been removed.',
+                  background: 'var(--app-panel, #181b1f)',
+                  color: 'var(--app-text, #ffffff)',
+                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
+                });
+              }
+            });
+          });
+
+          // Edit Logic (Open Modal)
+          let activeRow = null;
+
+          $(document).on('click', '.edit-btn', function (e) {
+            e.stopPropagation();
+            activeRow = $(this).closest('tr');
+            const name = activeRow.find('td:nth-child(1)').text().trim();
+
+            $('#editModuleNameInput').val(name);
+            $('#editModuleErrorMsg').hide();
+
+            $('#editModuleModal').addClass('is-open');
+          });
+
+          // Close Modal
+          $('#closeEditModuleModal, #cancelEditModuleModal').on('click', function () {
+            $('#editModuleModal').removeClass('is-open');
+          });
+
+          // Update Click
+          $('#updateModuleBtn').on('click', function () {
+            const newName = $('#editModuleNameInput').val().trim();
+
+            if (!newName) {
+              $('#editModuleErrorMsg').show();
+              return;
+            }
+
+            if (activeRow) {
+              activeRow.find('td:nth-child(1)').text(newName);
+
+              activeRow.addClass('updated-row-highlight');
+              setTimeout(() => {
+                activeRow.removeClass('updated-row-highlight');
+              }, 4000);
+            }
+
+            $('#editModuleModal').removeClass('is-open');
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated!',
+              text: 'Module updated successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+          });
+        }
+
+        return { init: bind };
+      })();
+
+      ModuleManager.init();
     });
   </script>
+
+  <!-- Edit Module Modal -->
+  <div id="editModuleModal" class="gnfc-modal-overlay">
+    <div class="gnfc-modal-shell gnfc-modal-shell--narrow">
+      <div class="gnfc-modal-header">
+        <div>
+          <div class="gnfc-modal-title">Edit Module</div>
+          <div class="gnfc-modal-subtitle">Update module details</div>
+        </div>
+        <button type="button" class="gnfc-modal-close" id="closeEditModuleModal"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="gnfc-modal-body">
+        <div class="admin-field-group mb-0">
+          <label for="editModuleNameInput" class="admin-field-label">Module Name</label>
+          <input id="editModuleNameInput" type="text" class="admin-input">
+          <div id="editModuleErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 4px; display: none;">Module Name is required</div>
+        </div>
+      </div>
+
+      <div class="gnfc-modal-footer">
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" id="cancelEditModuleModal">Cancel</button>
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-primary" id="updateModuleBtn">Update</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

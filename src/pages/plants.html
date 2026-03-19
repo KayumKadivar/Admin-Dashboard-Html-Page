@@ -7,7 +7,6 @@
   <title>GNFC | Master - Plants</title>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="../css/fonts.css">
 
   <!-- Icons -->
   <script src="../js/vendor/phosphor-icons.min.js"></script>
@@ -71,7 +70,7 @@
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(115,191,105,0.12); color: #73BF69">
+                  <div class="admin-form-section-icon icon-theme-success">
                     <i class="ph-bold ph-plus-circle"></i>
                   </div>
                   <div>
@@ -82,11 +81,13 @@
                 <div class="admin-form-section-body">
                   <div class="flex items-end gap-16px justify-start">
                     <div class="admin-field-group w-300px mb-0">
-                      <label for="plantCodeInput" class="admin-field-label"><i class="ph ph-hash"></i> Plant Code</label>
+                      <label for="plantCodeInput" class="admin-field-label"><i class="ph ph-hash"></i> Plant
+                        Code</label>
                       <input id="plantCodeInput" type="text" class="admin-input" placeholder="Enter plant code...">
                     </div>
                     <div class="admin-field-group w-300px mb-0">
-                      <label for="plantNameInput" class="admin-field-label"><i class="ph ph-factory"></i> Plant Name</label>
+                      <label for="plantNameInput" class="admin-field-label"><i class="ph ph-factory"></i> Plant
+                        Name</label>
                       <input id="plantNameInput" type="text" class="admin-input" placeholder="Enter plant name...">
                     </div>
                     <button id="plantsAddBtn" type="button" class="admin-btn admin-btn-primary">
@@ -100,7 +101,7 @@
             <!-- Simplified In-Page Results Section -->
             <div id="plantsResultsSection" class="admin-card mt-24px">
               <div class="admin-form-section-header mb-16px">
-                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                <div class="admin-form-section-icon icon-theme-primary-alt">
                   <i class="ph-bold ph-list-bullets"></i>
                 </div>
                 <div>
@@ -112,152 +113,202 @@
                 <table class="admin-table">
                   <thead>
                     <tr>
-                      <th class="admin-table-head-cell w-12 text-center">Sel</th>
+                      <th class="admin-table-head-cell w-12">Plant Name</th>
                       <th class="admin-table-head-cell">Plant Code</th>
-                      <th class="admin-table-head-cell">Plant Name</th>
+                      <th class="admin-table-head-cell text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody id="plantsTableBody">
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="AA" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">AA</td>
                       <td class="admin-table-cell">ACETIC ACID</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="AAQM" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">AAQM</td>
                       <td class="admin-table-cell">AAQM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="AMM" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">AMM</td>
                       <td class="admin-table-cell">AMMONIA</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="ANIPF" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">ANIPF</td>
                       <td class="admin-table-cell">ANIF FILLING</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="ANITDI" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">ANITDI</td>
                       <td class="admin-table-cell">ANITDI</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="ASGP" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">ASGP</td>
                       <td class="admin-table-cell">ASGP</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="MINMAX" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">MINMAX</td>
                       <td class="admin-table-cell">MINMAX</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="NPP" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">NPP</td>
                       <td class="admin-table-cell">NITRO PHOSPHATE</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="OFFLOG" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">OFFLOG</td>
                       <td class="admin-table-cell">OFF_LOGBOOK</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
                     <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="PURCHASE" class="radio-input"></td>
                       <td class="admin-table-cell font-semibold">PURCHASE</td>
                       <td class="admin-table-cell">PURCHASE</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i
+                              class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i
+                              class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
                     </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="R&D" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">R&D</td>
-                      <td class="admin-table-cell">R&D</td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="SPP" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">SPP</td>
-                      <td class="admin-table-cell">SPP</td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="STORE" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">STORE</td>
-                      <td class="admin-table-cell">STORE</td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="UREA" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">UREA</td>
-                      <td class="admin-table-cell">UREA</td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="UTILDOC" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">UTILDOC</td>
-                      <td class="admin-table-cell">UTILITY DOCUMENTS</td>
-                    </tr>
-                    <tr class="admin-table-row">
-                      <td class="admin-table-cell text-center"><input type="radio" name="plantSelected" value="UTILITY" class="radio-input"></td>
-                      <td class="admin-table-cell font-semibold">UTILITY</td>
-                      <td class="admin-table-cell">UTILITY</td>
-                    </tr>
+
                   </tbody>
                 </table>
               </div>
-              <!-- Removed bulk delete button -->
             </div>
           </div>
         </div>
       </div>
     </main>
   </div>
-
   <script>
-    const PlantsView = (() => {
-      'use strict';
+    // Back Button
+    function goBack() {
+      window.location.href = "admin_dashboard.html";
+    }
 
-      function renderTable() {
-        const plants = AdminData.plantMasterRows || [];
-        let html = '';
-        if (!plants.length) {
-           html = '<tr><td colspan="3" class="text-center">No plants found</td></tr>';
-        } else {
-           plants.forEach(plant => {
-             html += `
-               <tr class="admin-table-row">
-                 <td class="admin-table-cell">${plant.name}</td>
-                 <td class="admin-table-cell font-15px fw-semibold">${plant.code}</td>
-                 <td class="admin-table-cell text-center">
-                   <div class="admin-table-actions">
-                     <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
-                     <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
-                   </div>
-                 </td>
-               </tr>
-             `;
-           });
-        }
-        $('#plantsTableBody').html(html);
-      }
+    // Plant Manager
+    $(function () {
+      // --- Plant Logic ---
+      const PlantManager = (() => {
+        'use strict';
 
-      function init() {
-         renderTable();
+        // Bind Events
+        function bind() {
 
-         $('#plantsAddBtn').on('click', function () {
+          // Back Button
+          $('#adminBackBtn').on('click', goBack);
+
+          // Add Plant
+          $('#plantsAddBtn').on('click', function () {
             const code = $('#plantCodeInput').val().trim();
             const name = $('#plantNameInput').val().trim();
+
+            // Empty Fields Alert
             if (!code || !name) {
-              Swal.fire({ icon: 'warning', title: 'Empty Fields', text: 'Please fill both Plant Code and Name.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              Swal.fire({
+                icon: 'warning',
+                title: 'Empty Fields',
+                text: 'Please fill both Code and Name fields.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
               return;
             }
-            Swal.fire({ icon: 'success', title: 'Added', text: 'Plant added successfully.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
-            $('#plantCodeInput').val(''); $('#plantNameInput').val('');
-         });
 
-         $(document).on('click', '.delete-btn', function (e) {
-            e.stopPropagation();
+            // Add Plant Alert
+            Swal.fire({
+              icon: 'success',
+              title: 'Added!',
+              text: 'Plant has been added successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+            $('#plantCodeInput').val('');
+            $('#plantNameInput').val('');
+
+          });
+
+          // Delete Logic (Row-level)
+          $(document).on('click', '.delete-btn', function (e) {
+            e.stopPropagation(); // Prevent click bubbles
             const row = $(this).closest('tr');
-            const code = row.find('td:nth-child(2)').text().trim(); // Plant code is 2nd cell
+            const name = row.find('td:first-child').text().trim(); // Get Name from first cell
+
+            // Delete Confirmation Alert
             Swal.fire({
               title: 'Are you sure?',
-              text: "Do you want to delete Plant Code: " + code + "?",
+              text: "Do you want to delete Plant: " + name + "?",
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#F2495C',
@@ -266,19 +317,121 @@
             }).then((result) => {
               if (result.isConfirmed) {
                 row.remove();
-                Swal.fire({ icon: 'success', title: 'Deleted!', text: 'Plant has been removed.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Deleted!',
+                  text: 'Plant has been removed.',
+                  background: 'var(--app-panel, #181b1f)',
+                  color: 'var(--app-text, #ffffff)',
+                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
+                });
               }
             });
-         });
-      }
+          });
 
-      return { init };
-    })();
+          // Edit Logic (Open Modal)
+          let activeRow = null;
 
-    $(function () {
-       PlantsView.init();
+          // Edit Button
+          $(document).on('click', '.edit-btn', function (e) {
+            e.stopPropagation();
+            activeRow = $(this).closest('tr');
+            const name = activeRow.find('td:nth-child(1)').text().trim();
+            const code = activeRow.find('td:nth-child(2)').text().trim();
+
+            $('#editPlantNameInput').val(name);
+            $('#editPlantCodeInput').val(code);
+            $('#editPlantErrorMsg').hide();
+
+            $('#editPlantModal').addClass('is-open');
+          });
+
+          // Close Modal
+          $('#closeEditPlantModal, #cancelEditPlantModal').on('click', function () {
+            $('#editPlantModal').removeClass('is-open');
+          });
+
+          // Update Click
+          $('#updatePlantBtn').on('click', function () {
+            const newName = $('#editPlantNameInput').val().trim();
+            const newCode = $('#editPlantCodeInput').val().trim();
+
+            // Empty Fields Alert
+            if (!newCode || !newName) {
+              $('#editPlantErrorMsg').show();
+              return;
+            }
+
+            // Update Plant
+            if (activeRow) {
+              activeRow.find('td:nth-child(1)').text(newName);
+              activeRow.find('td:nth-child(2)').text(newCode);
+
+              // Highlight row
+              activeRow.addClass('updated-row-highlight');
+              setTimeout(() => {
+                activeRow.removeClass('updated-row-highlight');
+              }, 4000);
+            }
+
+            // Close Modal
+            $('#editPlantModal').removeClass('is-open');
+
+            // Success Alert
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated!',
+              text: 'Plant updated successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+          });
+        }
+
+        return { init: bind };
+      })();
+
+      // Initialize Plant Manager
+      PlantManager.init();
     });
   </script>
+
+  <!-- Edit Plant Modal -->
+  <div id="editPlantModal" class="gnfc-modal-overlay">
+    <div class="gnfc-modal-shell gnfc-modal-shell--narrow">
+      <!-- Modal Header -->
+      <div class="gnfc-modal-header">
+        <div>
+          <div class="gnfc-modal-title">Edit Plant</div>
+          <div class="gnfc-modal-subtitle">Update plant details</div>
+        </div>
+        <button type="button" class="gnfc-modal-close" id="closeEditPlantModal"><i class="ph ph-x"></i></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="gnfc-modal-body">
+        <div class="admin-field-group mb-16px">
+          <label for="editPlantNameInput" class="admin-field-label">Plant Name</label>
+          <input id="editPlantNameInput" type="text" class="admin-input">
+        </div>
+        <div class="admin-field-group">
+          <label for="editPlantCodeInput" class="admin-field-label">Plant Code</label>
+          <input id="editPlantCodeInput" type="text" class="admin-input" placeholder="Enter new code...">
+          <div id="editPlantErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 4px; display: none;">Both
+            fields are required</div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="gnfc-modal-footer">
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" id="cancelEditPlantModal">Cancel</button>
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-primary" id="updatePlantBtn">Update</button>
+      </div>
+    </div>
+  </div>
+  <!-- End Edit Plant Modal -->
+
 </body>
 
 </html>

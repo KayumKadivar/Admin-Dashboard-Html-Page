@@ -7,7 +7,6 @@
   <title>GNFC | User Information</title>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="../css/fonts.css">
 
   <!-- Icons -->
   <script src="../js/vendor/phosphor-icons.min.js"></script>
@@ -73,7 +72,7 @@
             <div class="admin-card">
               <div class="admin-form-section">
                 <div class="admin-form-section-header">
-                  <div class="admin-form-section-icon" style="background: rgba(87,148,242,0.12); color: #5794F2">
+                  <div class="admin-form-section-icon icon-theme-primary">
                     <i class="ph-bold ph-user-plus"></i>
                   </div>
                   <div>
@@ -131,7 +130,7 @@
             <!-- Simplified In-Page Results Section -->
             <div id="userInfoResultsSection" class="admin-card mt-24px">
               <div class="admin-form-section-header mb-16px">
-                <div class="admin-form-section-icon" style="background: rgba(66,153,225,0.12); color: #4299E1">
+                <div class="admin-form-section-icon icon-theme-primary-alt">
                   <i class="ph-bold ph-list-bullets"></i>
                 </div>
                 <div>
@@ -150,7 +149,61 @@
                     </tr>
                   </thead>
                   <tbody id="userInfoTableBody">
-                    <!-- Loaded dynamically -->
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">10204</td>
+                      <td class="admin-table-cell">Rahul Sharma</td>
+                      <td class="admin-table-cell">Tech</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">10355</td>
+                      <td class="admin-table-cell">Priya Patel</td>
+                      <td class="admin-table-cell">CM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">10892</td>
+                      <td class="admin-table-cell">Amit Singh</td>
+                      <td class="admin-table-cell">SM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">11044</td>
+                      <td class="admin-table-cell">Neha Desai</td>
+                      <td class="admin-table-cell">GM</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-semibold">11289</td>
+                      <td class="admin-table-cell">Rakesh Kumar</td>
+                      <td class="admin-table-cell">Tech</td>
+                      <td class="admin-table-cell text-center">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -163,52 +216,49 @@
   </div>
 
   <script>
-    const UserInfoView = (() => {
-      'use strict';
+    $(function () {
+      // --- User Logic ---
+      const UserManager = (() => {
+        'use strict';
 
-      function renderTable() {
-        const users = AdminData.userInfoRows || [];
-        let html = '';
-        if (!users.length) {
-           html = '<tr><td colspan="4" class="text-center">No users found</td></tr>';
-        } else {
-           users.forEach(user => {
-             html += `
-               <tr class="admin-table-row">
-                 <td class="admin-table-cell font-semibold">${user.ec}</td>
-                 <td class="admin-table-cell">${user.userName}</td>
-                 <td class="admin-table-cell">${user.group || '-'}</td>
-                 <td class="admin-table-cell text-center">
-                   <div class="admin-table-actions">
-                     <button type="button" class="admin-action-btn edit-btn" title="Edit"><i class="ph ph-pencil-simple"></i></button>
-                     <button type="button" class="admin-action-btn delete-btn" title="Delete"><i class="ph ph-trash"></i></button>
-                   </div>
-                 </td>
-               </tr>
-             `;
-           });
-        }
-        $('#userInfoTableBody').html(html);
-      }
-
-      function init() {
-         renderTable();
-
-         $('#userInfoAddBtn').on('click', function () {
+        function bind() {
+          // Add User
+          $('#userInfoAddBtn').on('click', function () {
             const ec = $('#userInfoEc').val().trim();
             const name = $('#userInfoName').val().trim();
+
             if (!ec || !name) {
-              Swal.fire({ icon: 'warning', title: 'Empty Fields', text: 'Please fill both EC Number and Name.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+              Swal.fire({
+                icon: 'warning',
+                title: 'Empty Fields',
+                text: 'Please fill both EC Number and Name.',
+                background: 'var(--app-panel, #181b1f)',
+                color: 'var(--app-text, #ffffff)',
+                confirmButtonColor: 'var(--typo-blue, #5794F2)'
+              });
               return;
             }
-            Swal.fire({ icon: 'success', title: 'Added', text: 'User added successfully.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
-            $('#userInfoEc').val(''); $('#userInfoName').val('');
-         });
 
-         $(document).on('click', '.delete-btn', function (e) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Added!',
+              text: 'User added successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+            $('#userInfoEc').val('');
+            $('#userInfoName').val('');
+            $('#userInfoPassword').val('');
+            $('#userInfoGroup').prop('selectedIndex', 0);
+          });
+
+          // Delete Logic (Row-level)
+          $(document).on('click', '.delete-btn', function (e) {
             e.stopPropagation();
             const row = $(this).closest('tr');
             const ec = row.find('td:first-child').text().trim();
+
             Swal.fire({
               title: 'Are you sure?',
               text: "Do you want to delete User EC: " + ec + "?",
@@ -220,19 +270,135 @@
             }).then((result) => {
               if (result.isConfirmed) {
                 row.remove();
-                Swal.fire({ icon: 'success', title: 'Deleted!', text: 'User has been removed.', background: 'var(--app-panel, #181b1f)', color: 'var(--app-text, #ffffff)' });
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Deleted!',
+                  text: 'User has been removed.',
+                  background: 'var(--app-panel, #181b1f)',
+                  color: 'var(--app-text, #ffffff)',
+                  confirmButtonColor: 'var(--typo-blue, #5794F2)'
+                });
               }
             });
-         });
-      }
+          });
 
-      return { init };
-    })();
+          // Edit Logic (Open Modal)
+          let activeRow = null;
 
-    $(function () {
-       UserInfoView.init();
+          $(document).on('click', '.edit-btn', function (e) {
+            e.stopPropagation();
+            activeRow = $(this).closest('tr');
+            const ec = activeRow.find('td:nth-child(1)').text().trim();
+            const name = activeRow.find('td:nth-child(2)').text().trim();
+            const group = activeRow.find('td:nth-child(3)').text().trim();
+
+            $('#editUserEcInput').val(ec);
+            $('#editUserNameInput').val(name);
+            $('#editUserGroupSelect').val(group).change();
+
+            $('#editUserErrorMsg').hide();
+            $('#editUserModal').addClass('is-open');
+          });
+
+          // Close Modal
+          $('#closeEditUserModal, #cancelEditUserModal').on('click', function () {
+            $('#editUserModal').removeClass('is-open');
+          });
+
+          // Update Click
+          $('#updateUserBtn').on('click', function () {
+            const newEc = $('#editUserEcInput').val().trim();
+            const newName = $('#editUserNameInput').val().trim();
+            const newGroup = $('#editUserGroupSelect').val();
+
+            if (!newEc || !newName) {
+              $('#editUserErrorMsg').show();
+              return;
+            }
+
+            if (activeRow) {
+              activeRow.find('td:nth-child(1)').text(newEc);
+              activeRow.find('td:nth-child(2)').text(newName);
+              activeRow.find('td:nth-child(3)').text(newGroup || '-');
+
+              activeRow.addClass('updated-row-highlight');
+              setTimeout(() => {
+                activeRow.removeClass('updated-row-highlight');
+              }, 4000);
+            }
+
+            $('#editUserModal').removeClass('is-open');
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated!',
+              text: 'User updated successfully.',
+              background: 'var(--app-panel, #181b1f)',
+              color: 'var(--app-text, #ffffff)',
+              confirmButtonColor: 'var(--typo-blue, #5794F2)'
+            });
+          });
+        }
+
+        return { init: bind };
+      })();
+
+      UserManager.init();
     });
   </script>
+
+  <!-- Edit User Modal -->
+  <div id="editUserModal" class="gnfc-modal-overlay">
+    <div class="gnfc-modal-shell gnfc-modal-shell--narrow">
+      <div class="gnfc-modal-header">
+        <div>
+          <div class="gnfc-modal-title">Edit User</div>
+          <div class="gnfc-modal-subtitle">Update user details</div>
+        </div>
+        <button type="button" class="gnfc-modal-close" id="closeEditUserModal"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="gnfc-modal-body">
+        <div class="admin-field-group mb-16px">
+          <label for="editUserEcInput" class="admin-field-label">EC Number</label>
+          <input id="editUserEcInput" type="text" class="admin-input">
+        </div>
+        <div class="admin-field-group mb-16px">
+          <label for="editUserNameInput" class="admin-field-label">User Name</label>
+          <input id="editUserNameInput" type="text" class="admin-input">
+        </div>
+        <div class="admin-field-group mb-0">
+          <label for="editUserGroupSelect" class="admin-field-label">Group</label>
+          <select id="editUserGroupSelect" class="admin-select">
+            <option value="Tech">Tech</option>
+            <option value="IE/SIE">IE/SIE</option>
+            <option value="M">M</option>
+            <option value="SM">SM</option>
+            <option value="CM">CM</option>
+            <option value="AGM">AGM</option>
+            <option value="GM">GM</option>
+            <option value="IED">IED</option>
+            <option value="GAT">GAT</option>
+            <option value="DAT">DAT</option>
+            <option value="GUEST">GUEST</option>
+            <option value="VISITOR">VISITOR</option>
+            <option value="TS">TS</option>
+            <option value="CLAB">CLAB</option>
+            <option value="R&D">R&D</option>
+            <option value="IAT">IAT</option>
+            <option value="OVS">OVS</option>
+            <option value="PURCHASE">PURCHASE</option>
+          </select>
+          <div id="editUserErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 4px; display: none;">Both EC Number and Name are required</div>
+        </div>
+      </div>
+
+      <div class="gnfc-modal-footer">
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" id="cancelEditUserModal">Cancel</button>
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-primary" id="updateUserBtn">Update</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
