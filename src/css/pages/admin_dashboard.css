@@ -338,7 +338,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .admin-form-section-icon {
@@ -349,6 +349,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  display: none;
 }
 
 .admin-form-section-title {
@@ -361,6 +362,7 @@
   font-size: 0.875rem;
   color: var(--typo-hint);
   margin-top: 2px;
+  display: none;
 }
 
 .admin-form-section-body {
@@ -457,6 +459,7 @@
   align-items: center;
   gap: 12px;
 }
+
 /* ── User Privilege Specific Infobox Stat Cards ── */
 .info-stats-grid {
   display: grid;
@@ -477,9 +480,7 @@
   transition: all 0.2s ease;
 }
 
-.info-stat-card:hover {
-  
-}
+.info-stat-card:hover {}
 
 .info-stat-icon {
   width: 42px;
@@ -532,4 +533,38 @@
 
 .btn-default:hover {
   background: rgba(255, 171, 0, 0.2);
+}
+
+.master-btn-card {
+  text-align: center;
+  width: 100%;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.master-btn-card:hover {
+  border-color: var(--typo-blue, #5794F2);
+  color: var(--typo-blue, #5794F2);
+}
+
+.master-btn-card.active {
+  background: color-mix(in srgb, var(--typo-blue, #5794F2) 15%, var(--app-panel, #181b1f));
+  border-color: var(--typo-blue, #5794F2);
+  color: var(--typo-blue, #5794F2);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--typo-blue, #5794F2);
+}
+
+/* ── Tab View Section Switching ── */
+.master-view-section {
+  display: none;
+}
+
+.master-view-section.active {
+  display: block;
 }

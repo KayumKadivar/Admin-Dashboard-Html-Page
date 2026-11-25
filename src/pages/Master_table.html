@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNFC | Master Tables</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../css/phosphor.css">
+
+  <!-- Theme & Utilities (Existing Project Stylesheets) -->
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/modal-ui.css">
+  <link rel="stylesheet" href="../css/pages/admin_dashboard.css">
+  <link rel="stylesheet" href="../css/theme-vars.css">
+
+  <!-- Core JS -->
+  <script src="../js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../js/vendor/sweetalert2.all.min.js"></script>
+  <script src="../js/theme-control.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+</head>
+
+<body class="admin-dashboard-layout">
+  <div class="app-layout-root">
+    <!-- Main View -->
+    <main class="app-main-view">
+      <!-- Header (Uses classes from common.css & utilities.css) -->
+      <header class="app-header">
+        <div class="app-header-group">
+          <h1>Administrator</h1>
+        </div>
+        <div class="app-header-controls">
+          <!-- Font Size Controls -->
+          <div class="ui-control-set">
+            <button id="fontDecreaseBtn" class="ui-btn-icon" title="Decrease Size">
+              <i class="ph-bold ph-text-aa font-12px"></i>
+            </button>
+            <div class="ui-divider-v"></div>
+            <button id="fontIncreaseBtn" class="ui-btn-icon" title="Increase Size">
+              <i class="ph-bold ph-text-aa font-16px"></i>
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="ui-btn-theme" title="Toggle Theme">
+            <i id="themeIcon" class="ph ph-moon font-16px"></i>
+          </button>
+
+          <!-- Back -->
+          <button id="adminBackBtn" class="ui-btn-pill" onclick="window.location.href='admin_dashboard.html'">
+            <i class="ph-bold ph-arrow-u-up-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="app-content-area">
+        <div id="adminContent">
+
+          <!-- 5 MASTER BUTTONS (Uses admin-dash-kpi-grid & admin-dash-section-btn from admin_dashboard.css) -->
+          <div class="admin-dash-kpi-grid mb-24px">
+            <button type="button" class="admin-dash-section-btn master-btn-card active" data-target="#masterView-inst_type">
+              Inst type
+            </button>
+            <button type="button" class="admin-dash-section-btn master-btn-card" data-target="#masterView-type_of_hardware">
+              Type of hardware
+            </button>
+            <button type="button" class="admin-dash-section-btn master-btn-card" data-target="#masterView-type_on_job_master">
+              Type on job master
+            </button>
+            <button type="button" class="admin-dash-section-btn master-btn-card" data-target="#masterView-tech_logbook_category">
+              Tech logbook category
+            </button>
+            <button type="button" class="admin-dash-section-btn master-btn-card" data-target="#masterView-system_master">
+              System master
+            </button>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- 1. INST TYPE SECTION (FORM + TABLE)                      -->
+          <!-- ========================================================= -->
+          <div id="masterView-inst_type" class="master-view-section active">
+            <!-- Form -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-title">Add Inst type Record</div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="flex items-end gap-16px justify-start flex-wrap">
+                    <div class="admin-field-group mb-0px" style="min-width: 320px; max-width: 520px; flex: 1;">
+                      <label class="admin-field-label">
+                        <i class="ph ph-tag"></i> Name / Category Title
+                      </label>
+                      <input type="text" class="admin-input master-input-name" placeholder="Enter name...">
+                    </div>
+                    <button type="button" class="admin-btn admin-btn-primary btn-add-master-record">
+                      <i class="ph ph-plus-circle"></i> Add Record
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-title">Inst type List</div>
+              </div>
+
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell" style="width: 80px;">Sr</th>
+                      <th class="admin-table-head-cell">Name / Title</th>
+                      <th class="admin-table-head-cell text-center" style="width: 120px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">1</td>
+                      <td class="admin-table-cell font-semibold row-name">Pressure Transmitter</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">2</td>
+                      <td class="admin-table-cell font-semibold row-name">Temperature Transmitter</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">3</td>
+                      <td class="admin-table-cell font-semibold row-name">Flow Transmitter</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">4</td>
+                      <td class="admin-table-cell font-semibold row-name">Level Transmitter</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">5</td>
+                      <td class="admin-table-cell font-semibold row-name">Control Valve</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">6</td>
+                      <td class="admin-table-cell font-semibold row-name">Analytical Transmitter</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- 2. TYPE OF HARDWARE SECTION (FORM + TABLE)                -->
+          <!-- ========================================================= -->
+          <div id="masterView-type_of_hardware" class="master-view-section">
+            <!-- Form -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-title">Add Type of hardware Record</div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="flex items-end gap-16px justify-start flex-wrap">
+                    <div class="admin-field-group mb-0px" style="min-width: 320px; max-width: 520px; flex: 1;">
+                      <label class="admin-field-label">
+                        <i class="ph ph-tag"></i> Name / Category Title
+                      </label>
+                      <input type="text" class="admin-input master-input-name" placeholder="Enter name...">
+                    </div>
+                    <button type="button" class="admin-btn admin-btn-primary btn-add-master-record">
+                      <i class="ph ph-plus-circle"></i> Add Record
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-title">Type of hardware List</div>
+              </div>
+
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell" style="width: 80px;">Sr</th>
+                      <th class="admin-table-head-cell">Name / Title</th>
+                      <th class="admin-table-head-cell text-center" style="width: 120px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">1</td>
+                      <td class="admin-table-cell font-semibold row-name">PLC Controller</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">2</td>
+                      <td class="admin-table-cell font-semibold row-name">DCS Controller</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">3</td>
+                      <td class="admin-table-cell font-semibold row-name">I/O Modules</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">4</td>
+                      <td class="admin-table-cell font-semibold row-name">Communication Gateway</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">5</td>
+                      <td class="admin-table-cell font-semibold row-name">Industrial PC / HMI</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">6</td>
+                      <td class="admin-table-cell font-semibold row-name">IS Barrier / Isolator</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- 3. TYPE ON JOB MASTER SECTION (FORM + TABLE)              -->
+          <!-- ========================================================= -->
+          <div id="masterView-type_on_job_master" class="master-view-section">
+            <!-- Form -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-title">Add Type on job master Record</div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="flex items-end gap-16px justify-start flex-wrap">
+                    <div class="admin-field-group mb-0px" style="min-width: 320px; max-width: 520px; flex: 1;">
+                      <label class="admin-field-label">
+                        <i class="ph ph-tag"></i> Name / Category Title
+                      </label>
+                      <input type="text" class="admin-input master-input-name" placeholder="Enter name...">
+                    </div>
+                    <button type="button" class="admin-btn admin-btn-primary btn-add-master-record">
+                      <i class="ph ph-plus-circle"></i> Add Record
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-title">Type on job master List</div>
+              </div>
+
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell" style="width: 80px;">Sr</th>
+                      <th class="admin-table-head-cell">Name / Title</th>
+                      <th class="admin-table-head-cell text-center" style="width: 120px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">1</td>
+                      <td class="admin-table-cell font-semibold row-name">Preventive Maintenance</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">2</td>
+                      <td class="admin-table-cell font-semibold row-name">Breakdown Maintenance</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">3</td>
+                      <td class="admin-table-cell font-semibold row-name">Calibration & Testing</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">4</td>
+                      <td class="admin-table-cell font-semibold row-name">Installation & Commissioning</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">5</td>
+                      <td class="admin-table-cell font-semibold row-name">Modification / MOC</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">6</td>
+                      <td class="admin-table-cell font-semibold row-name">Overhauling & Servicing</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- 4. TECH LOGBOOK CATEGORY SECTION (FORM + TABLE)          -->
+          <!-- ========================================================= -->
+          <div id="masterView-tech_logbook_category" class="master-view-section">
+            <!-- Form -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-title">Add Tech logbook category Record</div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="flex items-end gap-16px justify-start flex-wrap">
+                    <div class="admin-field-group mb-0px" style="min-width: 320px; max-width: 520px; flex: 1;">
+                      <label class="admin-field-label">
+                        <i class="ph ph-tag"></i> Name / Category Title
+                      </label>
+                      <input type="text" class="admin-input master-input-name" placeholder="Enter name...">
+                    </div>
+                    <button type="button" class="admin-btn admin-btn-primary btn-add-master-record">
+                      <i class="ph ph-plus-circle"></i> Add Record
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-title">Tech logbook category List</div>
+              </div>
+
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell" style="width: 80px;">Sr</th>
+                      <th class="admin-table-head-cell">Name / Title</th>
+                      <th class="admin-table-head-cell text-center" style="width: 120px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">1</td>
+                      <td class="admin-table-cell font-semibold row-name">Shift Handover Notes</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">2</td>
+                      <td class="admin-table-cell font-semibold row-name">Critical Alarm Log</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">3</td>
+                      <td class="admin-table-cell font-semibold row-name">Plant Round Inspection</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">4</td>
+                      <td class="admin-table-cell font-semibold row-name">Permit To Work (PTW)</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">5</td>
+                      <td class="admin-table-cell font-semibold row-name">Defect / Defective Items</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">6</td>
+                      <td class="admin-table-cell font-semibold row-name">Audit & Compliance Note</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- 5. SYSTEM MASTER SECTION (FORM + TABLE)                   -->
+          <!-- ========================================================= -->
+          <div id="masterView-system_master" class="master-view-section">
+            <!-- Form -->
+            <div class="admin-card">
+              <div class="admin-form-section">
+                <div class="admin-form-section-header">
+                  <div class="admin-form-section-title">Add System master Record</div>
+                </div>
+                <div class="admin-form-section-body">
+                  <div class="flex items-end gap-16px justify-start flex-wrap">
+                    <div class="admin-field-group mb-0px" style="min-width: 320px; max-width: 520px; flex: 1;">
+                      <label class="admin-field-label">
+                        <i class="ph ph-tag"></i> Name / Category Title
+                      </label>
+                      <input type="text" class="admin-input master-input-name" placeholder="Enter name...">
+                    </div>
+                    <button type="button" class="admin-btn admin-btn-primary btn-add-master-record">
+                      <i class="ph ph-plus-circle"></i> Add Record
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="admin-card mt-24px">
+              <div class="admin-form-section-header mb-16px">
+                <div class="admin-form-section-title">System master List</div>
+              </div>
+
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th class="admin-table-head-cell" style="width: 80px;">Sr</th>
+                      <th class="admin-table-head-cell">Name / Title</th>
+                      <th class="admin-table-head-cell text-center" style="width: 120px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">1</td>
+                      <td class="admin-table-cell font-semibold row-name">Honeywell Experion PKS</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">2</td>
+                      <td class="admin-table-cell font-semibold row-name">Yokogawa CENTUM VP</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">3</td>
+                      <td class="admin-table-cell font-semibold row-name">Emerson DeltaV</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">4</td>
+                      <td class="admin-table-cell font-semibold row-name">Siemens SIMATIC S7-400H</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">5</td>
+                      <td class="admin-table-cell font-semibold row-name">Triconex Tricon SIS</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="admin-table-row">
+                      <td class="admin-table-cell font-mono row-sr" style="width: 80px;">6</td>
+                      <td class="admin-table-cell font-semibold row-name">Bently Nevada 3500 VMS</td>
+                      <td class="admin-table-cell text-center" style="width: 120px;">
+                        <div class="admin-table-actions">
+                          <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                          <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Lightweight Switching & Row Event Handlers -->
+  <script>
+    $(function () {
+      // ── Helper: Recalculate Serial Numbers ──
+      function updateSerial(sectionEl) {
+        const rows = sectionEl.find('tbody tr.admin-table-row');
+        rows.each(function (idx) {
+          $(this).find('.row-sr').text(idx + 1);
+        });
+      }
+
+      // Initialize all serial numbers
+      $('.master-view-section').each(function () {
+        updateSerial($(this));
+      });
+
+      // ── 1. Switch Active Master on Card Click ──
+      $('.master-btn-card').on('click', function () {
+        const targetId = $(this).data('target');
+
+        // Toggle card active state
+        $('.master-btn-card').removeClass('active');
+        $(this).addClass('active');
+
+        // Toggle section display
+        $('.master-view-section').removeClass('active');
+        $(targetId).addClass('active');
+      });
+
+      // ── 2. Add New Record ──
+      $(document).on('click', '.btn-add-master-record', function () {
+        const section = $(this).closest('.master-view-section');
+        const input = section.find('.master-input-name');
+        const name = input.val().trim();
+
+        if (!name) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Required Field',
+            text: 'Please enter a name or category title.',
+            confirmButtonColor: '#5794F2'
+          });
+          return;
+        }
+
+        const tbody = section.find('tbody');
+        const newRowHtml = `
+          <tr class="admin-table-row">
+            <td class="admin-table-cell font-mono row-sr" style="width: 80px;"></td>
+            <td class="admin-table-cell font-semibold row-name">${$('<div>').text(name).html()}</td>
+            <td class="admin-table-cell text-center" style="width: 120px;">
+              <div class="admin-table-actions">
+                <button type="button" class="admin-action-btn edit-btn" title="Edit Record"><i class="ph ph-pencil-simple"></i></button>
+                <button type="button" class="admin-action-btn delete-btn" title="Delete Record"><i class="ph ph-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        `;
+
+        tbody.append(newRowHtml);
+        input.val('');
+        updateSerial(section);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Record Added',
+          text: `"${name}" added successfully.`,
+          timer: 1500,
+          showConfirmButton: false
+        });
+      });
+
+      // ── 3. Edit Record Modal Logic ──
+      let currentEditingRow = null;
+
+      $(document).on('click', '.edit-btn', function () {
+        currentEditingRow = $(this).closest('tr');
+        const section = currentEditingRow.closest('.master-view-section');
+        const sectionTitle = section.find('.admin-form-section-title').first().text().replace('Add ', '').replace(' Record', '');
+        const currentName = currentEditingRow.find('.row-name').text().trim();
+
+        $('#editModalTitle').text(`Edit ${sectionTitle} Record`);
+        $('#editModalSubtitle').text(`Update item name in ${sectionTitle}`);
+        $('#editMasterNameInput').val(currentName);
+        $('#editMasterErrorMsg').hide();
+        $('#editMasterModal').addClass('is-open');
+        $('#editMasterNameInput').trigger('focus');
+      });
+
+      // Close modal events
+      $('#closeEditModalBtn, #cancelEditModalBtn').on('click', function () {
+        $('#editMasterModal').removeClass('is-open');
+        currentEditingRow = null;
+      });
+
+      // Close on backdrop click
+      $('#editMasterModal').on('click', function (e) {
+        if ($(e.target).is('#editMasterModal')) {
+          $('#editMasterModal').removeClass('is-open');
+          currentEditingRow = null;
+        }
+      });
+
+      // Save changes from Modal
+      $('#saveEditModalBtn').on('click', function () {
+        const newName = $('#editMasterNameInput').val().trim();
+        if (!newName) {
+          $('#editMasterErrorMsg').show();
+          $('#editMasterNameInput').trigger('focus');
+          return;
+        }
+
+        if (currentEditingRow) {
+          currentEditingRow.find('.row-name').text(newName);
+        }
+
+        $('#editMasterModal').removeClass('is-open');
+        currentEditingRow = null;
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
+          text: 'Record updated successfully.',
+          timer: 1200,
+          showConfirmButton: false
+        });
+      });
+
+      // Enter key submits modal
+      $('#editMasterNameInput').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          $('#saveEditModalBtn').click();
+        }
+      });
+
+      // ── 4. Delete Record ──
+      $(document).on('click', '.delete-btn', function () {
+        const row = $(this).closest('tr');
+        const section = row.closest('.master-view-section');
+        const currentName = row.find('.row-name').text().trim();
+
+        Swal.fire({
+          title: 'Delete Record?',
+          text: `Are you sure you want to delete "${currentName}"?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#F2495C',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            row.remove();
+            updateSerial(section);
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted',
+              text: 'The record has been removed.',
+              timer: 1200,
+              showConfirmButton: false
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Edit Master Record Modal (Uses modal-ui.css classes) -->
+  <div id="editMasterModal" class="gnfc-modal-overlay">
+    <div class="gnfc-modal-shell gnfc-modal-shell--narrow">
+      <!-- Modal Header -->
+      <div class="gnfc-modal-header">
+        <div>
+          <div class="gnfc-modal-title" id="editModalTitle">Edit Record</div>
+          <div class="gnfc-modal-subtitle" id="editModalSubtitle">Update master record title</div>
+        </div>
+        <button type="button" class="gnfc-modal-close" id="closeEditModalBtn" title="Close"><i class="ph ph-x"></i></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="gnfc-modal-body">
+        <div class="admin-field-group mb-0px">
+          <label for="editMasterNameInput" class="admin-field-label">
+            <i class="ph ph-tag"></i> Name / Category Title
+          </label>
+          <input id="editMasterNameInput" type="text" class="admin-input" placeholder="Enter title...">
+          <div id="editMasterErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 6px; display: none;">
+            Name / Title cannot be empty.
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="gnfc-modal-footer">
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-secondary" id="cancelEditModalBtn">Cancel</button>
+        <button type="button" class="gnfc-modal-btn gnfc-modal-btn-primary" id="saveEditModalBtn">Update</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

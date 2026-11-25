@@ -35,6 +35,10 @@ $(function () {
             <i class="ph ph-puzzle-piece"></i>
             <span>Modules</span>
           </a>
+          <a class="admin-sidebar-link" data-nav-key="Master_table" data-tooltip="Master Tables">
+            <i class="ph ph-database"></i>
+            <span>Master Tables</span>
+          </a>
           <a class="admin-sidebar-link" data-nav-key="user" data-tooltip="User">
             <i class="ph ph-user-circle"></i>
             <span>User Info</span>
@@ -117,6 +121,8 @@ $(function () {
     $('[data-nav-key="plants"]').addClass("active");
   } else if (filename === "modules.html") {
     $('[data-nav-key="modules"]').addClass("active");
+  } else if (filename.toLowerCase() === "master_table.html") {
+    $('[data-nav-key="Master_table"]').addClass("active");
   } else if (filename === "user.html") {
     $('[data-nav-key="user"]').addClass("active");
   } else if (filename === "change_password.html") {
