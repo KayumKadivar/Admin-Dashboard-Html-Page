@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="src/css/utilities.css">
   <link rel="stylesheet" href="src/css/common.css">
   <link rel="stylesheet" href="src/css/pages/login.css">
+  <script src="src/js/vendor/jquery-3.7.1.min.js"></script>
   <script src="src/js/theme-control.js"></script>
 </head>
 
@@ -51,7 +52,7 @@
         </div>
 
         <!-- Form -->
-        <form id="adminLoginForm" onsubmit="handleLogin(event)" autocomplete="on">
+        <form id="adminLoginForm" autocomplete="on">
 
           <div class="form-group">
             <label class="form-label" for="username">Username</label>
@@ -97,59 +98,50 @@
   </div>
 
   <script>
-    /* â”€â”€ Login Logic â”€â”€ */
-    function handleLogin(event) {
-      event.preventDefault();
-      localStorage.setItem('userRole', 'admin');
-      localStorage.setItem('currentUserName', 'Administrator');
-      localStorage.setItem('gnfc_login_session_id', String(Date.now()));
-      localStorage.removeItem('gnfc_calibration_modal_shown_for_login');
-      window.location.href = 'src/pages/admin_dashboard.html';
-    }
+    $(document).ready(function() {
+      // Login Logic
+      $('#adminLoginForm').on('submit', function(e) {
+        e.preventDefault();
+        localStorage.setItem('userRole', 'admin');
+        localStorage.setItem('currentUserName', 'Administrator');
+        localStorage.setItem('gnfc_login_session_id', String(Date.now()));
+        localStorage.removeItem('gnfc_calibration_modal_shown_for_login');
+        window.location.href = 'src/pages/admin_dashboard.html';
+      });
 
-    /* â”€â”€ Password Toggle â”€â”€ */
-    document.addEventListener('DOMContentLoaded', () => {
-      const passwordInput = document.getElementById('password');
-      const toggleBtn = document.getElementById('togglePasswordBtn');
-      const toggleIcon = document.getElementById('togglePasswordIcon');
-      if (!passwordInput || !toggleBtn || !toggleIcon) return;
+      // Password Toggle
+      $('#togglePasswordBtn').on('click', function() {
+        const passwordInput = $('#password');
+        const toggleIcon = $('#togglePasswordIcon');
+        const isPassword = passwordInput.attr('type') === 'password';
 
-      toggleBtn.addEventListener('click', () => {
-        const show = passwordInput.type === 'password';
-        passwordInput.type = show ? 'text' : 'password';
-        toggleIcon.className = show ? 'ph ph-eye-slash' : 'ph ph-eye';
-        toggleBtn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+        passwordInput.attr('type', isPassword ? 'text' : 'password');
+        toggleIcon.toggleClass('ph-eye ph-eye-slash');
+        $(this).attr('aria-label', isPassword ? 'Hide password' : 'Show password');
       });
 
       // Theme Integration
-      const themeToggleBtn = document.getElementById('themeToggle');
-      const themeIcon = document.getElementById('themeIcon');
-
       function updateThemeUI() {
-        if (!themeIcon) return;
+        const themeIcon = $('#themeIcon');
+        if (!themeIcon.length || typeof ThemeControl === 'undefined') return;
         const settings = ThemeControl.getSettings();
-        themeIcon.className = settings.mode === 'dark' ? 'ph ph-moon' : 'ph ph-sun';
+        themeIcon.attr('class', settings.mode === 'dark' ? 'ph ph-moon' : 'ph ph-sun');
       }
 
-      if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-          const settings = ThemeControl.getSettings();
-          ThemeControl.setMode(settings.mode === 'dark' ? 'light' : 'dark');
-          updateThemeUI();
-        });
-      }
+      $('#themeToggle').on('click', function() {
+        const settings = ThemeControl.getSettings();
+        ThemeControl.setMode(settings.mode === 'dark' ? 'light' : 'dark');
+        updateThemeUI();
+      });
 
-      // Init theme
+      // Init Theme
       if (typeof ThemeControl !== 'undefined') {
         updateThemeUI();
       }
 
       window.addEventListener('themeChanged', updateThemeUI);
     });
-
   </script>
-
-  <script src="./src/js/theme-control.js"></script>
 
 </body>
 

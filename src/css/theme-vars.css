@@ -11,7 +11,7 @@
   --typo-primary: #ffffff;
   --typo-secondary: #d1d5db;
   --typo-label: #9ca3af;
-  --typo-hint: #6b7280;
+  --typo-hint: #e4e6eb;
   --typo-blue: #5794F2;
   --typo-orange: #FF9900;
   --typo-green: #73BF69;
@@ -33,7 +33,7 @@
   --typo-primary: #111827;
   --typo-secondary: #374151;
   --typo-label: #6b7280;
-  --typo-hint: #9ca3af;
+  --typo-hint: #333436;
 }
 
 body {

@@ -77,6 +77,15 @@ window.ThemeControl = (function () {
           this.decreaseFontSize();
         }
       });
+
+      // Global Dropdown Icon Rotation Logic (Global Delegate)
+      $(document).on('click', '.admin-select', function () {
+        // Toggle icon rotation on every click
+        $(this).parent('.admin-select-group').toggleClass('is-open');
+      }).on('blur change', '.admin-select', function () {
+        // Always close icon on focus lost or item selected
+        $(this).parent('.admin-select-group').removeClass('is-open');
+      });
     },
   };
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -95,16 +95,18 @@
                     </div>
                     <div class="admin-field-group">
                       <label for="userInfoGroup" class="admin-field-label"><i class="ph ph-users"></i> Group</label>
-                      <select id="userInfoGroup" class="admin-select">
-                        <option value="" disabled selected>Select Group</option>
-                        <option value="Tech">Tech</option>
-                        <option value="IE/SIE">IE/SIE</option>
-                        <option value="M">M</option>
-                        <option value="SM">SM</option>
-                        <option value="CM">CM</option>
-                        <option value="AGM">AGM</option>
-                        <option value="GM">GM</option>
-                      </select>
+                      <div class="admin-select-group">
+                        <select id="userInfoGroup" class="admin-select">
+                          <option value="" disabled selected>Select Group</option>
+                          <option value="Tech">Tech</option>
+                          <option value="IE/SIE">IE/SIE</option>
+                          <option value="M">M</option>
+                          <option value="SM">SM</option>
+                          <option value="CM">CM</option>
+                          <option value="AGM">AGM</option>
+                          <option value="GM">GM</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                   <div class="admin-btn-row mt-16px justify-start">
@@ -371,26 +373,28 @@
         </div>
         <div class="admin-field-group mb-0">
           <label for="editUserGroupSelect" class="admin-field-label">Group Name</label>
-          <select id="editUserGroupSelect" class="admin-select">
-            <option value="Tech">Tech</option>
-            <option value="IE/SIE">IE/SIE</option>
-            <option value="M">M</option>
-            <option value="SM">SM</option>
-            <option value="CM">CM</option>
-            <option value="AGM">AGM</option>
-            <option value="GM">GM</option>
-            <option value="IED">IED</option>
-            <option value="GAT">GAT</option>
-            <option value="DAT">DAT</option>
-            <option value="GUEST">GUEST</option>
-            <option value="VISITOR">VISITOR</option>
-            <option value="TS">TS</option>
-            <option value="CLAB">CLAB</option>
-            <option value="R&D">R&D</option>
-            <option value="IAT">IAT</option>
-            <option value="OVS">OVS</option>
-            <option value="PURCHASE">PURCHASE</option>
-          </select>
+          <div class="admin-select-group">
+            <select id="editUserGroupSelect" class="admin-select">
+              <option value="Tech">Tech</option>
+              <option value="IE/SIE">IE/SIE</option>
+              <option value="M">M</option>
+              <option value="SM">SM</option>
+              <option value="CM">CM</option>
+              <option value="AGM">AGM</option>
+              <option value="GM">GM</option>
+              <option value="IED">IED</option>
+              <option value="GAT">GAT</option>
+              <option value="DAT">DAT</option>
+              <option value="GUEST">GUEST</option>
+              <option value="VISITOR">VISITOR</option>
+              <option value="TS">TS</option>
+              <option value="CLAB">CLAB</option>
+              <option value="R&D">R&D</option>
+              <option value="IAT">IAT</option>
+              <option value="OVS">OVS</option>
+              <option value="PURCHASE">PURCHASE</option>
+            </select>
+          </div>
           <div id="editUserErrorMsg" style="color: #F2495C; font-size: 13px; margin-top: 4px; display: none;">Both EC Number and Name are required</div>
         </div>
       </div>

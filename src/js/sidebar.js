@@ -6,6 +6,7 @@ $(function () {
         <div class="admin-sidebar-logo">
           <img src="../assets/images/gnfc-full-logo.png" alt="GNFC" class="logo-full">
           <img src="../assets/images/gnfc-sidebar-logo-short.png" alt="GNFC" class="logo-short" style="display: none;">
+          <span class="logo-text">IIMS Admin</span>
         </div>
 
         <!-- Navigation List -->
@@ -36,7 +37,7 @@ $(function () {
           </a>
           <a class="admin-sidebar-link" data-nav-key="user" data-tooltip="User">
             <i class="ph ph-user-circle"></i>
-            <span>User</span>
+            <span>User Info</span>
           </a>
           <a class="admin-sidebar-link" data-nav-key="user_plants" data-tooltip="User Plants">
             <i class="ph ph-tree-structure"></i>
