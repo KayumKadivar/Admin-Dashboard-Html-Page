@@ -13,11 +13,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 15px;
   border-radius: var(--dash-radius-8px);
   background: linear-gradient(135deg, var(--app-panel, #181b1f) 0%, rgba(87, 148, 242, 0.06) 100%);
   border: 1px solid var(--app-border, #23272e);
-  margin-bottom: 24px;
+  margin-bottom: 15px;
   gap: 18px;
   flex-wrap: wrap;
   box-shadow: var(--dash-shadow-sm);
@@ -69,15 +69,15 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 15px;
 }
 
 .admin-dash-kpi-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 20px 22px;
+  gap: 5px;
+  padding: 10px 20px;
   border-radius: var(--dash-radius-14px);
   background: var(--app-panel, #181b1f);
   border: 1px solid var(--app-border, #23272e);
@@ -192,7 +192,7 @@
 
 /* ── Section Headers ── */
 .admin-dash-section {
-  margin-bottom: 24px !important;
+  margin-bottom: 10px !important;
 }
 
 .admin-dash-section-header {
@@ -477,9 +477,9 @@
   transition: all 0.2s ease;
 }
 
-/* .info-stat-card:hover {
+.info-stat-card:hover {
   
-} */
+}
 
 .info-stat-icon {
   width: 42px;
